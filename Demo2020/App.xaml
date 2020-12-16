@@ -3,10 +3,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:comn_vm="clr-namespace:Demo2020.Biz.Commons.ViewModels;assembly=Demo2020.Biz"
+    xmlns:converter="clr-namespace:Demo2020.Converters"
     xmlns:local="clr-namespace:Demo2020"
     xmlns:vm="clr-namespace:Demo2020.Biz;assembly=Demo2020.Biz"
-    xmlns:converter="clr-namespace:Demo2020.Converters"
-    StartupUri="StartupWindow.xaml">
+    StartupUri="Application_Startup">
     <Application.Resources>
 
         <local:MessageListener x:Key="MessageListener" />
