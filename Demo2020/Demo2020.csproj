@@ -107,12 +107,27 @@
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BoolToVisiblityConverter.cs" />
+    <Compile Include="Converters\IsGreaterThanValueConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageListener.cs" />
+    <Compile Include="MonsterManual\UserControls\StatBlockControl.xaml.cs">
+      <DependentUpon>StatBlockControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonsterManual\Views\MonsterManualView.xaml.cs">
+      <DependentUpon>MonsterManualView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProgramConfig.cs" />
     <Page Include="MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MonsterManual\UserControls\StatBlockControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MonsterManual\Views\MonsterManualView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

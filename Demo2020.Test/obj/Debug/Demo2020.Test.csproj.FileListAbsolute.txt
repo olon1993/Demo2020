@@ -1,0 +1,17 @@
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.abstractions.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.runner.visualstudio.testadapter.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.runner.reporters.net452.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.runner.utility.net452.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\Demo2020.Test.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\Demo2020.Test.pdb
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.assert.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.core.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.execution.desktop.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.assert.xml
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.core.xml
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\bin\Debug\xunit.execution.desktop.xml
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.csprojAssemblyReference.cache
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.csproj.CoreCompileInputs.cache
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.csproj.CopyComplete
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.pdb

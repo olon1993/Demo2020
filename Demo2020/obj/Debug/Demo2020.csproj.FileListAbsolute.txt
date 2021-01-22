@@ -102,3 +102,7 @@ C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MainWindow.g.cs
 C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MainWindow.baml
 C:\Users\sbatey\source\repos\Demo2020\Demo2020\bin\Debug\Demo2020.Data.dll
 C:\Users\sbatey\source\repos\Demo2020\Demo2020\bin\Debug\Demo2020.Data.pdb
+C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserControls\StatBlockControl.g.cs
+C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserControls\StatBlockControl.baml
+C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\MonsterManualView.g.cs
+C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\MonsterManualView.baml

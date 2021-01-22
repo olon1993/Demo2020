@@ -1,6 +1,7 @@
 ﻿using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Commons.ViewModels;
+using Demo2020.Biz.MonsterManual.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Demo2020.Biz
         public MainViewModel(IDataAccessService dataAccessService)
         {
             _dataAccessService = dataAccessService;
+            CurrentViewModel = new MonsterManualViewModel();
         }
 
         //**************************************************\\
