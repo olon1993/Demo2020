@@ -84,6 +84,7 @@
     <Compile Include="Commons\Interfaces\IDataAccessService.cs" />
     <Compile Include="Commons\Interfaces\IMainViewModel.cs" />
     <Compile Include="Commons\Interfaces\IMainWindow.cs" />
+    <Compile Include="Commons\Models\CloseWindowMessage.cs" />
     <Compile Include="Commons\Models\MessageWindowConfiguration.cs" />
     <Compile Include="Commons\Models\ObservableObject.cs" />
     <Compile Include="Commons\Services\SqlDataAccessService.cs" />

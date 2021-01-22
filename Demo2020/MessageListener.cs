@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Demo2020
 {
@@ -28,6 +29,22 @@ namespace Demo2020
                     DataContext = new MessageWindowViewModel(msg)
                 };
                 win.Show();
+            });
+
+            Messenger.Default.Register<CloseWindowMessage>(this, msg => 
+            {
+                foreach(Window window in Application.Current.Windows)
+                {
+                    if(window.DataContext == null)
+                    {
+                        continue;
+                    }
+
+                    if(window.DataContext == msg.DataContext)
+                    {
+                        window.Close();
+                    }
+                }
             });
         }
     }

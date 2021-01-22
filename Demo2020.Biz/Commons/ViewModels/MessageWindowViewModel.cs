@@ -1,9 +1,12 @@
 ﻿using Demo2020.Biz.Commons.Models;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Demo2020.Biz.Commons.ViewModels
 {
@@ -20,7 +23,37 @@ namespace Demo2020.Biz.Commons.ViewModels
             Message = config.Message;
             IsTrueFalseVisible = config.IsTrueFalseVisible;
             IsOkVisible = config.IsOkVisible;
+
+            OkCommand = new RelayCommand(Ok);
+            TrueCommand = new RelayCommand(True);
+            FalseCommand = new RelayCommand(False);
         }
+
+        private void Ok()
+        {
+            Close();
+        }
+
+        private void True()
+        {
+            // Send true message
+            Close();
+        }
+
+        private void False()
+        {
+            // Send false message
+            Close();
+        }
+
+        private void Close()
+        {
+            Messenger.Default.Send(new CloseWindowMessage(this));
+        }
+
+        public ICommand OkCommand { get; set; }
+        public ICommand TrueCommand { get; set; }
+        public ICommand FalseCommand { get; set; }
 
         public string Title 
         {

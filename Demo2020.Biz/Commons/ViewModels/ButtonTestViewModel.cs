@@ -1,5 +1,6 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Demo2020.Biz.Commons.ViewModels
 
         private void Test()
         {
-            Console.WriteLine("BUTTON PRESSED!!!!");
+            Messenger.Default.Send(MessageWindowConfiguration.DefaultConfig("Test"));
         }
 
         public ICommand TestButton { get; set; }
