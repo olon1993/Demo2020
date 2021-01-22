@@ -10,6 +10,13 @@ namespace Demo2020.Biz
 {
     public class MainViewModel : ObservableObject, IMainViewModel
     {
+        private IDataAccessService _dataAccessService;
+
+        public MainViewModel(IDataAccessService dataAccessService)
+        {
+            _dataAccessService = dataAccessService;
+        }
+
         public string Test { get; set; } = "Testing View Model";
     }
 }

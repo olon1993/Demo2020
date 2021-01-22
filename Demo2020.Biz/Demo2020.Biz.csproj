@@ -81,10 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commons\Interfaces\IDataAccessService.cs" />
     <Compile Include="Commons\Interfaces\IMainViewModel.cs" />
     <Compile Include="Commons\Interfaces\IMainWindow.cs" />
     <Compile Include="Commons\Models\MessageWindowConfiguration.cs" />
     <Compile Include="Commons\Models\ObservableObject.cs" />
+    <Compile Include="Commons\Services\SqlDataAccessService.cs" />
     <Compile Include="Commons\ViewModels\MessageWindowViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +97,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Characters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Demo2020.Data\Demo2020.Data.csproj">
+      <Project>{8433cdaf-3bd9-47c1-92cb-f68751574f87}</Project>
+      <Name>Demo2020.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

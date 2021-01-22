@@ -1,0 +1,6 @@
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Data\bin\Debug\Demo2020.Data.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Data\bin\Debug\Demo2020.Data.pdb
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.csprojAssemblyReference.cache
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.csproj.CoreCompileInputs.cache
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.pdb

@@ -70,3 +70,5 @@ C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.csproj
 C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.csproj.CopyComplete
 C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.dll
 C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.pdb
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\bin\Debug\Demo2020.Data.dll
+C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\bin\Debug\Demo2020.Data.pdb
