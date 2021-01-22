@@ -88,7 +88,6 @@
     <Compile Include="Commons\Models\MessageWindowConfiguration.cs" />
     <Compile Include="Commons\Models\ObservableObject.cs" />
     <Compile Include="Commons\Services\SqlDataAccessService.cs" />
-    <Compile Include="Commons\ViewModels\ButtonTestViewModel.cs" />
     <Compile Include="Commons\ViewModels\MessageWindowViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

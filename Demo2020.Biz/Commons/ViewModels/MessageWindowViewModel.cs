@@ -12,10 +12,15 @@ namespace Demo2020.Biz.Commons.ViewModels
 {
     public class MessageWindowViewModel : ObservableObject
     {
+        //**************************************************\\
+        //********************* Fields *********************\\
+        //**************************************************\\
+        #region Fiels
         private string _title;
         private string _message;
         private bool _isTrueFalseVisible;
         private bool _isOkVisible;
+        #endregion
 
         public MessageWindowViewModel(MessageWindowConfiguration config)
         {
@@ -29,6 +34,10 @@ namespace Demo2020.Biz.Commons.ViewModels
             FalseCommand = new RelayCommand(False);
         }
 
+        //**************************************************\\
+        //******************** Methods *********************\\
+        //**************************************************\\
+        #region Methods
         private void Ok()
         {
             Close();
@@ -50,7 +59,12 @@ namespace Demo2020.Biz.Commons.ViewModels
         {
             Messenger.Default.Send(new CloseWindowMessage(this));
         }
+        #endregion
 
+        //**************************************************\\
+        //******************* Properties *******************\\
+        //**************************************************\\
+        #region Properties
         public ICommand OkCommand { get; set; }
         public ICommand TrueCommand { get; set; }
         public ICommand FalseCommand { get; set; }
@@ -106,5 +120,6 @@ namespace Demo2020.Biz.Commons.ViewModels
                 }
             }
         }
+        #endregion
     }
 }

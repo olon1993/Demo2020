@@ -11,6 +11,9 @@ namespace Demo2020.Biz
 {
     public class MainViewModel : ObservableObject, IMainViewModel
     {
+        //**************************************************\\
+        //********************* Fields *********************\\
+        //**************************************************\\
         private IDataAccessService _dataAccessService;
 
         private ObservableObject _currentViewModel;
@@ -18,9 +21,11 @@ namespace Demo2020.Biz
         public MainViewModel(IDataAccessService dataAccessService)
         {
             _dataAccessService = dataAccessService;
-            CurrentViewModel = new ButtonTestViewModel();
         }
 
+        //**************************************************\\
+        //******************* Properties *******************\\
+        //**************************************************\\
         public ObservableObject CurrentViewModel
         {
             get { return _currentViewModel; }

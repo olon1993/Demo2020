@@ -95,10 +95,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Commons\Views\ButtonTest.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Commons\Windows\MessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,9 +102,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Commons\Views\ButtonTest.xaml.cs">
-      <DependentUpon>ButtonTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commons\Windows\MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
@@ -159,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Commons\Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

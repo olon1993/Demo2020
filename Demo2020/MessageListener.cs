@@ -13,8 +13,6 @@ namespace Demo2020
 {
     public class MessageListener
     {
-        public bool BindableProperty { get; set; } = true;
-
         public MessageListener()
         {
             RegiserCommonMessages();
@@ -47,6 +45,8 @@ namespace Demo2020
                 }
             });
         }
+
+        public bool BindableProperty { get; set; } = true;
     }
 
 }

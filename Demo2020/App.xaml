@@ -2,7 +2,6 @@
     x:Class="Demo2020.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:comn_view="clr-namespace:Demo2020.Commons.Views"
     xmlns:comn_vm="clr-namespace:Demo2020.Biz.Commons.ViewModels;assembly=Demo2020.Biz"
     xmlns:converter="clr-namespace:Demo2020.Converters"
     xmlns:local="clr-namespace:Demo2020"
@@ -12,13 +11,7 @@
 
         <local:MessageListener x:Key="MessageListener" />
 
-        <comn_view:ButtonTest x:Key="ButtonTest" />
-
         <converter:BoolToVisiblityConverter x:Key="BoolToVisibilityConverter" />
-
-        <DataTemplate DataType="{x:Type comn_vm:ButtonTestViewModel}">
-            <comn_view:ButtonTest />
-        </DataTemplate>
 
     </Application.Resources>
 </Application>
