@@ -81,18 +81,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commons\Interfaces\IProgram.cs" />
+    <Compile Include="Commons\Interfaces\IMainViewModel.cs" />
+    <Compile Include="Commons\Interfaces\IMainWindow.cs" />
     <Compile Include="Commons\Models\MessageWindowConfiguration.cs" />
     <Compile Include="Commons\Models\ObservableObject.cs" />
     <Compile Include="Commons\ViewModels\MessageWindowViewModel.cs" />
-    <Compile Include="StartupViewModel.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="ProgramConfig.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Characters\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

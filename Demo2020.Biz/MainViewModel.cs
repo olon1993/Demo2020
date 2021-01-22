@@ -1,4 +1,5 @@
 ﻿using Demo2020.Biz.Commons.Interfaces;
+using Demo2020.Biz.Commons.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz
 {
-    public class Program : IProgram
+    public class MainViewModel : ObservableObject, IMainViewModel
     {
-        public void Run()
-        {
-            throw new NotImplementedException();
-        }
+        public string Test { get; set; } = "Testing View Model";
     }
 }

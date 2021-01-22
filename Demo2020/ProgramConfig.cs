@@ -14,7 +14,8 @@ namespace Demo2020.Biz
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<Program>().As<IProgram>();
+            builder.RegisterType<MainWindow>().As<IMainWindow>();
+            builder.RegisterType<MainViewModel>().As<IMainViewModel>();
 
             return builder.Build();
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo2020.Biz.Commons.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Demo2020
@@ -18,20 +18,12 @@ namespace Demo2020
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class StartupWindow : Window
+    public partial class MainWindow : Window, IMainWindow
     {
-        public StartupWindow()
+        public MainWindow(IMainViewModel vm)
         {
             InitializeComponent();
-
-        }
-
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-
-            // Begin dragging the window
-            this.DragMove();
+            DataContext = vm;
         }
     }
 }

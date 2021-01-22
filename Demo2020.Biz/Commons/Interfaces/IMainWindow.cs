@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.Commons.Interfaces
 {
-    public interface IProgram
+    public interface IMainWindow
     {
-        void Run();
     }
 }

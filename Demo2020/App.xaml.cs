@@ -22,7 +22,7 @@ namespace Demo2020
         protected override void OnStartup(StartupEventArgs e)
         {
             SplashScreen splash = new SplashScreen("Resources/Images/Splash.jpg");
-            splash.Show(true);
+            splash.Show(true, true);
 
             base.OnStartup(e);
 
@@ -30,8 +30,8 @@ namespace Demo2020
 
             using (var scope = container.BeginLifetimeScope())
             {
-                var app = scope.Resolve<IProgram>();
-                app.Run();
+                var app = scope.Resolve<IMainWindow>();
+                (app as Window).Show();
             }
         }
 

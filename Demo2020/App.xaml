@@ -6,14 +6,12 @@
     xmlns:converter="clr-namespace:Demo2020.Converters"
     xmlns:local="clr-namespace:Demo2020"
     xmlns:vm="clr-namespace:Demo2020.Biz;assembly=Demo2020.Biz"
-    StartupUri="Application_Startup">
+    Startup="Application_Startup">
     <Application.Resources>
 
         <local:MessageListener x:Key="MessageListener" />
 
         <converter:BoolToVisiblityConverter x:Key="BoolToVisibilityConverter" />
-
-        <vm:StartupViewModel x:Key="StartupViewModel" />
 
     </Application.Resources>
 </Application>
