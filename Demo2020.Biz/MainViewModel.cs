@@ -1,5 +1,6 @@
 ﻿using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
+using Demo2020.Biz.Commons.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,25 @@ namespace Demo2020.Biz
     {
         private IDataAccessService _dataAccessService;
 
+        private ObservableObject _currentViewModel;
+
         public MainViewModel(IDataAccessService dataAccessService)
         {
             _dataAccessService = dataAccessService;
+            CurrentViewModel = new ButtonTestViewModel();
         }
 
-        public string Test { get; set; } = "Testing View Model";
+        public ObservableObject CurrentViewModel
+        {
+            get { return _currentViewModel; }
+            set
+            {
+                if(_currentViewModel != value)
+                {
+                    _currentViewModel = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
     }
 }

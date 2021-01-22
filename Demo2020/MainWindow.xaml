@@ -8,10 +8,10 @@
     Title="Demo 2020"
     Width="800"
     Height="450"
-    IsEnabled="{Binding messageListener.BindableProperty}"
+    IsEnabled="{Binding Source={StaticResource MessageListener}, Path=BindableProperty}"
     WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="{Binding Test}" />
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

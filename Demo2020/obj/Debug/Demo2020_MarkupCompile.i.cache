@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\sbatey\source\repos\Demo2020\Demo2020\App.xaml
-2-1838854823
+3-1668458496
 
-10-297220616
+111207492805
 132283641541
-Commons\Windows\MessageWindow.xaml;MainWindow.xaml;
+Commons\Views\ButtonTest.xaml;Commons\Windows\MessageWindow.xaml;MainWindow.xaml;
 
 True
 
