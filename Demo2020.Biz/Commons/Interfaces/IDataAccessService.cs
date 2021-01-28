@@ -10,8 +10,8 @@ namespace Demo2020.Biz.Commons.Interfaces
 {
     public interface IDataAccessService
     {
-        DataTable ExecuteDataTable(string storedProcedure, params SqlParameter[] parameters);
-        DataTable ExecuteDataTable(string storedProcedure);
+        DataSet ExecuteDataSet(string storedProcedure, params SqlParameter[] parameters);
+        DataSet ExecuteDataSet(string storedProcedure);
         bool ExecuteNonQuery(string storedProcedure, params SqlParameter[] parameters);
         bool ExecuteNonQuery(string storedProcedure);
     }

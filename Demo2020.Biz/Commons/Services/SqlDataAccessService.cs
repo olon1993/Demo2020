@@ -14,14 +14,14 @@ namespace Demo2020.Biz.Commons.Services
     {
         private SqlDataAccess _sqlDataAccess;
 
-        public DataTable ExecuteDataTable(string storedProcedure, params SqlParameter[] parameters)
+        public DataSet ExecuteDataSet(string storedProcedure, params SqlParameter[] parameters)
         {
-            return _sqlDataAccess.ExecuteDataTable(storedProcedure, parameters);
+            return _sqlDataAccess.ExecuteDataSet(storedProcedure, parameters);
         }
 
-        public DataTable ExecuteDataTable(string storedProcedure)
+        public DataSet ExecuteDataSet(string storedProcedure)
         {
-            return _sqlDataAccess.ExecuteDataTable(storedProcedure);
+            return _sqlDataAccess.ExecuteDataSet(storedProcedure);
         }
 
         public bool ExecuteNonQuery(string storedProcedure, params SqlParameter[] parameters)

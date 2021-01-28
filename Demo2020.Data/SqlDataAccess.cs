@@ -10,12 +10,12 @@ namespace Demo2020.Data
 {
     public class SqlDataAccess
     {
-        public DataTable ExecuteDataTable(string storedProcedure, params SqlParameter[] parameters)
+        public DataSet ExecuteDataSet(string storedProcedure, params SqlParameter[] parameters)
         {
             throw new NotImplementedException();
         }
 
-        public DataTable ExecuteDataTable(string storedProcedure)
+        public DataSet ExecuteDataSet(string storedProcedure)
         {
             throw new NotImplementedException();
         }
