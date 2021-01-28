@@ -1,4 +1,5 @@
 ﻿using Demo2020.Biz.Commons.Models;
+using Demo2020.Biz.MonsterManual.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,37 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.MonsterManual.Models
 {
-    public class Monster : ObservableObject
+    public class Monster : ObservableObject, IMonster
     {
-
+        //**************************************************\\
+        //********************* Fields *********************\\
+        //**************************************************\\
         private string _name;
+        private string _size;
+        private string _monsterType;
+        private string _monsterSubtype;
+        private string _alignment;
+        private int _armorClass;
+        private string _armorType;
+        private int _hitPoints;
+        private string _hitPointsCalculation;
+        private IList<ISpeed> _speed;
+        private int _strength;
+        private int _strengthModifier;
+        private int _dexterity;
+        private int _dexterityModifier;
+        private int _constitution;
+        private int _constitutionModifier;
+        private int _intellect;
+        private int _intellectModifier;
+        private int _wisdom;
+        private int _wisdomModifier;
+        private int _charisma;
+        private int _charismaModifier;
+
+        //**************************************************\\
+        //******************* Properties *******************\\
+        //**************************************************\\
         public string Name
         {
             get { return _name; }
@@ -24,7 +52,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private string _size;
         public string Size
         {
             get { return _size; }
@@ -38,7 +65,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private string _monsterType;
         public string MonsterType
         {
             get { return _monsterType; }
@@ -52,7 +78,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private string _monsterSubtype;
         public string MonsterSubtype
         {
             get { return _monsterSubtype; }
@@ -66,7 +91,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private string _alignment;
         public string Alignment
         {
             get { return _alignment; }
@@ -80,7 +104,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _armorClass;
         public int ArmorClass
         {
             get { return _armorClass; }
@@ -94,7 +117,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private string _armorType;
         public string ArmorType
         {
             get { return _armorType; }
@@ -108,7 +130,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _hitPoints;
         public int HitPoints
         {
             get { return _hitPoints; }
@@ -122,7 +143,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private string _hitPointsCalculation;
         public string HitPointsCalculation
         {
             get { return _hitPointsCalculation; }
@@ -136,63 +156,19 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _groundSpeed;
-        public int GroundSpeed
+        public IList<ISpeed> Speed
         {
-            get { return _groundSpeed; }
+            get { return _speed; }
             set
             {
-                if (_groundSpeed != value)
+                if (_speed != value)
                 {
-                    _groundSpeed = value;
+                    _speed = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private int _swimSpeed;
-        public int SwimSpeed
-        {
-            get { return _swimSpeed; }
-            set
-            {
-                if (_swimSpeed != value)
-                {
-                    _swimSpeed = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _climbSpeed;
-        public int ClimbSpeed
-        {
-            get { return _climbSpeed; }
-            set
-            {
-                if (_climbSpeed != value)
-                {
-                    _climbSpeed = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _flySpeed;
-        public int FlySpeed
-        {
-            get { return _flySpeed; }
-            set
-            {
-                if (_flySpeed != value)
-                {
-                    _flySpeed = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        private int _strength;
         public int Strength
         {
             get { return _strength; }
@@ -206,7 +182,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _strengthModifier;
         public int StrengthModifier
         {
             get { return _strengthModifier; }
@@ -220,7 +195,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _dexterity;
         public int Dexterity
         {
             get { return _dexterity; }
@@ -234,7 +208,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _dexterityModifier;
         public int DexterityModifier
         {
             get { return _dexterityModifier; }
@@ -248,7 +221,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _constitution;
         public int Constitution
         {
             get { return _constitution; }
@@ -262,7 +234,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _constitutionModifier;
         public int ConstitutionModifier
         {
             get { return _constitutionModifier; }
@@ -276,7 +247,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _intellect;
         public int Intellect
         {
             get { return _intellect; }
@@ -290,7 +260,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _intellectModifier;
         public int IntellectModifier
         {
             get { return _intellectModifier; }
@@ -304,7 +273,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _wisdom;
         public int Wisdom
         {
             get { return _wisdom; }
@@ -318,7 +286,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _wisdomModifier;
         public int WisdomModifier
         {
             get { return _wisdomModifier; }
@@ -332,7 +299,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _charisma;
         public int Charisma
         {
             get { return _charisma; }
@@ -346,7 +312,6 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private int _charismaModifier;
         public int CharismaModifier
         {
             get { return _charismaModifier; }

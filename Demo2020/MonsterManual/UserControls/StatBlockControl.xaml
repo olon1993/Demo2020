@@ -81,19 +81,44 @@
                 </TextBlock>
 
                 <!--  Row 2 : Speed  -->
-                <TextBlock
-                    Grid.Row="2"
-                    FontSize="12"
-                    Foreground="DarkRed">
-                    <Run FontWeight="Bold" Text="Speed" />
-                    <Run Text="{Binding GroundSpeed, FallbackValue=GroundSpeed}" />
-                    <Run Text="," />
-                    <Run Text="{Binding SwimSpeed, FallbackValue=SwimSpeed}" />
-                    <Run Text="," />
-                    <Run Text="{Binding ClimbSpeed, FallbackValue=ClimbSpeed}" />
-                    <Run Text="," />
-                    <Run Text="{Binding SwimSpeed, FallbackValue=SwimSpeed}" />
-                </TextBlock>
+                <DockPanel Grid.Row="2">
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Speed" />
+
+                    <ItemsControl DockPanel.Dock="Left" ItemsSource="{Binding Speed}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="12" Foreground="DarkRed">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Type.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
+                                                        <Setter Property="Text" Value=", " />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock FontSize="12" Foreground="DarkRed">
+                                        <Run Text="{Binding Type}" />
+                                        <Run Text="{Binding Value}" />
+                                        <Run Text="ft." />
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DockPanel>
 
             </Grid>
         </Border>

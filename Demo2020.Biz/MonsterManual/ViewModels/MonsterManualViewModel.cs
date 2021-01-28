@@ -1,4 +1,5 @@
 ﻿using Demo2020.Biz.Commons.Models;
+using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.Models;
 using System;
 using System.Collections.Generic;
@@ -10,37 +11,23 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
 {
     public class MonsterManualViewModel : ObservableObject
     {
-        public MonsterManualViewModel()
+        //**************************************************\\
+        //********************* Fields *********************\\
+        //**************************************************\\
+        private IMonsterFactory _monsterFactory;
+        private IMonster _currentMonster;
+
+        public MonsterManualViewModel(IMonsterFactory monsterFactory)
         {
-            CurrentMonster = new Monster 
-            {
-                Name = "Test",
-                Size = "Medium",
-                MonsterType = "Bug",
-                MonsterSubtype = "(Software Bug)",
-                Alignment = "Lawful Evil",
-                ArmorClass = 15,
-                ArmorType = "Natural Armor",
-                HitPoints = 58,
-                HitPointsCalculation = "(10 d12 + 5)",
-                GroundSpeed = 30,
-                Strength = 8,
-                StrengthModifier = -1,
-                Dexterity = 10,
-                DexterityModifier = 0,
-                Constitution = 13,
-                ConstitutionModifier = 1,
-                Intellect = 9,
-                IntellectModifier = -1,
-                Wisdom = 11,
-                WisdomModifier = 0,
-                Charisma = 10,
-                CharismaModifier = 0
-            };
+            _monsterFactory = monsterFactory;
+
+            CurrentMonster = _monsterFactory.GetMonster();
         }
 
-        private Monster _currentMonster;
-        public Monster CurrentMonster
+        //**************************************************\\
+        //******************* Properties *******************\\
+        //**************************************************\\
+        public IMonster CurrentMonster
         {
             get { return _currentMonster; }
             set

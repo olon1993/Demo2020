@@ -8,11 +8,6 @@ namespace Demo2020.Biz.Commons.Models
 {
     public class MessageWindowConfiguration
     {
-        public string Title { get; set; } = string.Empty;
-        public string Message { get; set; } = string.Empty;
-        public bool IsTrueFalseVisible { get; set; } = false;
-        public bool IsOkVisible { get; set; } = true;
-
         public static MessageWindowConfiguration DefaultConfig(string message)
         {
             return new MessageWindowConfiguration
@@ -23,5 +18,10 @@ namespace Demo2020.Biz.Commons.Models
                 IsTrueFalseVisible = false
             };
         }
+
+        public string Title { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+        public bool IsTrueFalseVisible { get; set; } = false;
+        public bool IsOkVisible { get; set; } = true;
     }
 }

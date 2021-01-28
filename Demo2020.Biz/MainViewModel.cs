@@ -1,6 +1,7 @@
 ﻿using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Commons.ViewModels;
+using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,17 @@ namespace Demo2020.Biz
         //********************* Fields *********************\\
         //**************************************************\\
         private IDataAccessService _dataAccessService;
+        private IMonsterFactory _monsterFactory;
 
         private ObservableObject _currentViewModel;
 
-        public MainViewModel(IDataAccessService dataAccessService)
+        // Pass in IMonsterManuelViewModel as dependency
+        public MainViewModel(IDataAccessService dataAccessService, IMonsterFactory monsterFactory)
         {
             _dataAccessService = dataAccessService;
-            CurrentViewModel = new MonsterManualViewModel();
+            _monsterFactory = monsterFactory;
+
+            CurrentViewModel = new MonsterManualViewModel(_monsterFactory);
         }
 
         //**************************************************\\

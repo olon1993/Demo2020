@@ -33,8 +33,6 @@ C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.csproj.CoreComp
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.csproj.CopyComplete
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.exe
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.pdb
-C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\StartupWindow.g.cs
-C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\StartupWindow.baml
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\Commons\Windows\MessageWindow.g.cs
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\Commons\Windows\MessageWindow.baml
@@ -106,3 +104,11 @@ C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserContr
 C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserControls\StatBlockControl.baml
 C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\MonsterManualView.g.cs
 C:\Users\sbatey\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\MonsterManualView.baml
+C:\Users\Scott\source\repos\Demo2020\Demo2020\bin\Debug\Demo2020.Data.dll
+C:\Users\Scott\source\repos\Demo2020\Demo2020\bin\Debug\Demo2020.Data.pdb
+C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MainWindow.g.cs
+C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserControls\StatBlockControl.g.cs
+C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\MonsterManualView.g.cs
+C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MainWindow.baml
+C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserControls\StatBlockControl.baml
+C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\MonsterManualView.baml

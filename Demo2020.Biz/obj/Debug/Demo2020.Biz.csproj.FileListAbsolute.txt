@@ -72,3 +72,5 @@ C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.dll
 C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.pdb
 C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\bin\Debug\Demo2020.Data.dll
 C:\Users\sbatey\source\repos\Demo2020\Demo2020.Biz\bin\Debug\Demo2020.Data.pdb
+C:\Users\Scott\source\repos\Demo2020\Demo2020.Biz\bin\Debug\Demo2020.Data.dll
+C:\Users\Scott\source\repos\Demo2020\Demo2020.Biz\bin\Debug\Demo2020.Data.pdb
