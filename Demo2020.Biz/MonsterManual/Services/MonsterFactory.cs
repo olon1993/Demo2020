@@ -12,11 +12,12 @@ namespace Demo2020.Biz.MonsterManual.Services
     public class MonsterFactory : IMonsterFactory
     {
         private ILifetimeScope _scope;
+        private ISpeedFactory _speedFactory;
 
-        // Pass in ISpeedFactory as depency
-        public MonsterFactory(ILifetimeScope scope)
+        public MonsterFactory(ILifetimeScope scope, ISpeedFactory speedFactory)
         {
             _scope = scope;
+            _speedFactory = speedFactory;
         }
 
         public IMonster GetMonster()
@@ -32,11 +33,6 @@ namespace Demo2020.Biz.MonsterManual.Services
             monster.ArmorClass = 15;
             monster.HitPoints = 58;
             monster.HitPointsCalculation = "(10 d12 + 5)";
-            // Replace with ISpeedFactory
-            monster.Speed = new List<ISpeed>
-            {
-                new Speed{ Type = "", Value = 30 }
-            };
             monster.Strength = 8;
             monster.StrengthModifier = -1;
             monster.Dexterity = 10;
@@ -49,6 +45,13 @@ namespace Demo2020.Biz.MonsterManual.Services
             monster.WisdomModifier = 0;
             monster.Charisma = 10;
             monster.CharismaModifier = 0;
+
+            monster.Speed = new List<ISpeed>();
+
+            ISpeed speed = _speedFactory.GetSpeed();
+            speed.Type = "";
+            speed.Value = 30;
+            monster.Speed.Add(speed);
 
             return monster;
         }
