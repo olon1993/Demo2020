@@ -18,18 +18,14 @@ namespace Demo2020.Biz
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
-        private IMonsterFactory _monsterFactory;
-        private IMonsterApi _monsterApi;
-
         private ObservableObject _currentViewModel;
+        private IMonsterManualViewModel _monsterManualViewModel;
 
-        // Pass in IMonsterManuelViewModel as dependency
-        public MainViewModel(IMonsterFactory monsterFactory, IMonsterApi monsterApi)
+        public MainViewModel(IMonsterManualViewModel monsterManualViewModel)
         {
-            _monsterFactory = monsterFactory;
-            _monsterApi = monsterApi;
+            _monsterManualViewModel = monsterManualViewModel;
 
-            CurrentViewModel = new MonsterManualViewModel(_monsterFactory, _monsterApi);
+            CurrentViewModel = (ObservableObject)_monsterManualViewModel;
         }
 
         //**************************************************\\
@@ -47,7 +43,5 @@ namespace Demo2020.Biz
                 }
             }
         }
-
-        public IContractResolver ContractResolver { get; set; }
     }
 }

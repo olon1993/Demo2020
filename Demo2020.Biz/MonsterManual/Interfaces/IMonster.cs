@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Demo2020.Biz.MonsterManual.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,15 @@ namespace Demo2020.Biz.MonsterManual.Interfaces
         int ArmorClass { get; set; }
         int HitPoints { get; set; }
         string HitPointsCalculation { get; set; }
-        IList<ISpeed> Speed { get; set; }
+        Speed Speed { get; set; }
         int Strength { get; set; }
         int StrengthModifier { get; set; }
         int Dexterity { get; set; }
         int DexterityModifier { get; set; }
         int Constitution { get; set; }
         int ConstitutionModifier { get; set; }
-        int Intellect { get; set; }
-        int IntellectModifier { get; set; }
+        int Intelligence { get; set; }
+        int IntelligenceModifier { get; set; }
         int Wisdom { get; set; }
         int WisdomModifier { get; set; }
         int Charisma { get; set; }

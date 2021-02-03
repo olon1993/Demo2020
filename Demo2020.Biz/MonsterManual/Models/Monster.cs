@@ -23,19 +23,34 @@ namespace Demo2020.Biz.MonsterManual.Models
         private string _armorType;
         private int _hitPoints;
         private string _hitPointsCalculation;
-        private IList<ISpeed> _speed;
+        private Speed _speed;
         private int _strength;
         private int _strengthModifier;
         private int _dexterity;
         private int _dexterityModifier;
         private int _constitution;
         private int _constitutionModifier;
-        private int _intellect;
-        private int _intellectModifier;
+        private int _intelligence;
+        private int _intelligenceModifier;
         private int _wisdom;
         private int _wisdomModifier;
         private int _charisma;
         private int _charismaModifier;
+
+        public Monster()
+        {
+            Speed = new Speed();
+        }
+
+        private int CalculateModifier(int score)
+        {
+            int modifier = (score - 10) / 2;
+            if (score < 10 && score % 2 == 1)
+            {
+                modifier--;
+            }
+            return modifier;
+        }
 
         //**************************************************\\
         //******************* Properties *******************\\
@@ -67,6 +82,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        [JsonProperty("type")]
         public string MonsterType
         {
             get { return _monsterType; }
@@ -80,6 +96,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        [JsonProperty("subtype")]
         public string MonsterSubtype
         {
             get { return _monsterSubtype; }
@@ -106,6 +123,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        [JsonProperty("armor_class")]
         public int ArmorClass
         {
             get { return _armorClass; }
@@ -119,6 +137,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        [JsonProperty("armor_type")]
         public string ArmorType
         {
             get { return _armorType; }
@@ -132,6 +151,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        [JsonProperty("hit_points")]
         public int HitPoints
         {
             get { return _hitPoints; }
@@ -145,6 +165,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        [JsonProperty("hit_dice")]
         public string HitPointsCalculation
         {
             get { return _hitPointsCalculation; }
@@ -158,7 +179,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        public IList<ISpeed> Speed
+        public Speed Speed
         {
             get { return _speed; }
             set
@@ -179,6 +200,7 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_strength != value)
                 {
                     _strength = value;
+                    StrengthModifier = CalculateModifier(_strength);
                     OnPropertyChanged();
                 }
             }
@@ -205,6 +227,7 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_dexterity != value)
                 {
                     _dexterity = value;
+                    DexterityModifier = CalculateModifier(_dexterity);
                     OnPropertyChanged();
                 }
             }
@@ -231,6 +254,7 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_constitution != value)
                 {
                     _constitution = value;
+                    ConstitutionModifier = CalculateModifier(_constitution);
                     OnPropertyChanged();
                 }
             }
@@ -249,27 +273,28 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        public int Intellect
+        public int Intelligence
         {
-            get { return _intellect; }
+            get { return _intelligence; }
             set
             {
-                if (_intellect != value)
+                if (_intelligence != value)
                 {
-                    _intellect = value;
+                    _intelligence = value;
+                    IntelligenceModifier = CalculateModifier(_intelligence);
                     OnPropertyChanged();
                 }
             }
         }
 
-        public int IntellectModifier
+        public int IntelligenceModifier
         {
-            get { return _intellectModifier; }
+            get { return _intelligenceModifier; }
             set
             {
-                if (_intellectModifier != value)
+                if (_intelligenceModifier != value)
                 {
-                    _intellectModifier = value;
+                    _intelligenceModifier = value;
                     OnPropertyChanged();
                 }
             }
@@ -283,6 +308,7 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_wisdom != value)
                 {
                     _wisdom = value;
+                    WisdomModifier = CalculateModifier(_wisdom);
                     OnPropertyChanged();
                 }
             }
@@ -309,6 +335,7 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_charisma != value)
                 {
                     _charisma = value;
+                    CharismaModifier = CalculateModifier(_charisma);
                     OnPropertyChanged();
                 }
             }

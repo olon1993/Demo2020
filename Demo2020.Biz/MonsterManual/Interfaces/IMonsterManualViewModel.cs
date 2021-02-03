@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.MonsterManual.Interfaces
 {
-    public interface ISpeed
+    public interface IMonsterManualViewModel
     {
-        string Walk { get; set; }
-        string Fly { get; set; }
-        string Swim { get; set; }
+        IMonster CurrentMonster { get; set; }
+        IList<IMonster> Monsters { get; set; }
     }
 }

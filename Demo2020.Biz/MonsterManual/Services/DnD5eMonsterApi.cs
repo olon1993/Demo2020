@@ -14,35 +14,6 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.MonsterManual.Services
 {
-    //**************************************************\\
-    //********************* Notes **********************\\
-    //**************************************************\\\
-    /* I anticipate there could be a pain point here in the
-     * future due to the hard dependency on the Monster class.
-     * 
-     * The difficulty I am encountering is due to the
-     * conflicting nature of serialization and dependency
-     * injection with AutoFac. JSON wants a concrete object
-     * to deserialize into. With AutoFac I would like to
-     * eliminate as many concrete dependencies as possible.
-     * 
-     * One solution was to create a custom IContractResolver
-     * and pass it into the JsonDeserializer.JsonSerializerSettings.
-     * 
-     * The problem with this approach then becomes the custom
-     * IContractResolver has a dependency on the container to
-     * resolve the interface into a concrete object, effectively
-     * punting the problem to a new class.
-     * 
-     * Instead of spening any more time discovering a better
-     * solution I will move on for now and commit these notes
-     * so my future self can solve this problem if it comes
-     * up again.
-     * 
-     * Effectively, I am punting this problem to future me.
-     * Good luck.
-     */
-
     public class DnD5eMonsterApi : IMonsterApi
     {
         //**************************************************\\
@@ -66,10 +37,6 @@ namespace Demo2020.Biz.MonsterManual.Services
                     {
                         string rawJSON = await response.Content.ReadAsStringAsync();
                         var data = JsonConvert.DeserializeObject<MonsterContainer>(rawJSON);
-                        //var data = JsonConvert.DeserializeObject<IMonster>(rawJSON, new JsonSerializerSettings 
-                        //{
-                        //    ContractResolver = // ??
-                        //});
                         return data.Results;
                     }
                 }
@@ -93,7 +60,7 @@ namespace Demo2020.Biz.MonsterManual.Services
                     // Add an Accept header for JSON format.
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    HttpResponseMessage response = await client.GetAsync("/api/monsters/" + name);
+                    HttpResponseMessage response = await client.GetAsync("/api/monsters/" + name.ToLower().Replace(" ", "-"));
                     if (response.IsSuccessStatusCode)
                     {
                         string rawJSON = await response.Content.ReadAsStringAsync();
@@ -109,12 +76,6 @@ namespace Demo2020.Biz.MonsterManual.Services
 
             return default(Monster);
         }
-
-
-        //**************************************************\\
-        //******************* Properties *******************\\
-        //**************************************************\\
-        public IContractResolver ContractResolver { get; set; }
 
 
         //**************************************************\\

@@ -28,12 +28,10 @@ namespace Demo2020
             base.OnStartup(e);
 
             var container = ProgramConfig.Configure();
-            //var contractResolver = new AutofacContractResolver(container);
 
             using (var scope = container.BeginLifetimeScope())
             {
                 var vm = scope.Resolve<IMainViewModel>();
-                //vm.ContractResolver = contractResolver;
                 MainWindow window = new MainWindow(vm);
                 window.Show();
             }

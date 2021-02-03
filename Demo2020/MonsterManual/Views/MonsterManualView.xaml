@@ -10,15 +10,17 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding Monsters}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
-        <!--<uc:StatBlockControl DataContext="{Binding CurrentMonster}" />-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding Monsters}" SelectedIndex="{Binding SelectedMonsterIndex}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <uc:StatBlockControl Grid.Column="1" DataContext="{Binding CurrentMonster}" />
     </Grid>
 </UserControl>

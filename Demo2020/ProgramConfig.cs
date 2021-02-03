@@ -4,6 +4,7 @@ using Demo2020.Biz.Commons.Services;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.Models;
 using Demo2020.Biz.MonsterManual.Services;
+using Demo2020.Biz.MonsterManual.ViewModels;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
@@ -18,15 +19,10 @@ namespace Demo2020.Biz
         public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
-
-            builder.RegisterType<AutofacContractResolver>().As<IContractResolver>();
-
-            // Windows
-            //builder.RegisterType<MainWindow>().As<IMainWindow>();
             
             // View Models
             builder.RegisterType<MainViewModel>().As<IMainViewModel>();
-            // builder.RegisterType<MonsterManualViewModel>().As<IMonsterManualViewModel>();
+            builder.RegisterType<MonsterManualViewModel>().As<IMonsterManualViewModel>();
 
             // Models
             builder.RegisterType<Monster>().As<IMonster>();

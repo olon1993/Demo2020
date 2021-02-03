@@ -22,38 +22,7 @@ namespace Demo2020.Biz.MonsterManual.Services
 
         public IMonster GetMonster()
         {
-            IMonster monster = _scope.Resolve<IMonster>();
-
-            // Replace hard coded data assignments with API call 
-            monster.Name = "Test";
-            monster.Size = "Medium";
-            monster.MonsterType = "Bug";
-            monster.MonsterSubtype = "(Software Bug)";
-            monster.Alignment = "Lawful Evil";
-            monster.ArmorClass = 15;
-            monster.HitPoints = 58;
-            monster.HitPointsCalculation = "(10 d12 + 5)";
-            monster.Strength = 8;
-            monster.StrengthModifier = -1;
-            monster.Dexterity = 10;
-            monster.DexterityModifier = 0;
-            monster.Constitution = 13;
-            monster.ConstitutionModifier = 1;
-            monster.Intellect = 9;
-            monster.IntellectModifier = -1;
-            monster.Wisdom = 11;
-            monster.WisdomModifier = 0;
-            monster.Charisma = 10;
-            monster.CharismaModifier = 0;
-
-            monster.Speed = new List<ISpeed>();
-
-            ISpeed speed = _speedFactory.GetSpeed();
-            speed.Type = "";
-            speed.Value = 30;
-            monster.Speed.Add(speed);
-
-            return monster;
+            return _scope.Resolve<IMonster>();
         }
     }
 }
