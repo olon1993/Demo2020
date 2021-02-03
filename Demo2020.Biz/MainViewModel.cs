@@ -1,8 +1,10 @@
 ﻿using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
+using Demo2020.Biz.Commons.Services;
 using Demo2020.Biz.Commons.ViewModels;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.ViewModels;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +18,18 @@ namespace Demo2020.Biz
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
-        private IDataAccessService _dataAccessService;
         private IMonsterFactory _monsterFactory;
+        private IMonsterApi _monsterApi;
 
         private ObservableObject _currentViewModel;
 
         // Pass in IMonsterManuelViewModel as dependency
-        public MainViewModel(IDataAccessService dataAccessService, IMonsterFactory monsterFactory)
+        public MainViewModel(IMonsterFactory monsterFactory, IMonsterApi monsterApi)
         {
-            _dataAccessService = dataAccessService;
             _monsterFactory = monsterFactory;
+            _monsterApi = monsterApi;
 
-            CurrentViewModel = new MonsterManualViewModel(_monsterFactory);
+            CurrentViewModel = new MonsterManualViewModel(_monsterFactory, _monsterApi);
         }
 
         //**************************************************\\
@@ -45,5 +47,7 @@ namespace Demo2020.Biz
                 }
             }
         }
+
+        public IContractResolver ContractResolver { get; set; }
     }
 }

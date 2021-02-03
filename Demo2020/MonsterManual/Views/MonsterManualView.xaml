@@ -10,6 +10,15 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Grid>
-        <uc:StatBlockControl DataContext="{Binding CurrentMonster}" />
+        <ScrollViewer>
+            <ItemsControl ItemsSource="{Binding Monsters}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <!--<uc:StatBlockControl DataContext="{Binding CurrentMonster}" />-->
     </Grid>
 </UserControl>

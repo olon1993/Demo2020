@@ -112,3 +112,5 @@ C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\Mons
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MainWindow.baml
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserControls\StatBlockControl.baml
 C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\Views\MonsterManualView.baml
+C:\Users\Scott\source\repos\Demo2020\Demo2020\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Scott\source\repos\Demo2020\Demo2020\bin\Debug\Newtonsoft.Json.xml

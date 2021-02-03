@@ -2,6 +2,7 @@
 using Demo2020.Biz;
 using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
+using Demo2020.Biz.Commons.Services;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
@@ -27,11 +28,14 @@ namespace Demo2020
             base.OnStartup(e);
 
             var container = ProgramConfig.Configure();
+            //var contractResolver = new AutofacContractResolver(container);
 
             using (var scope = container.BeginLifetimeScope())
             {
-                var app = scope.Resolve<IMainWindow>();
-                (app as Window).Show();
+                var vm = scope.Resolve<IMainViewModel>();
+                //vm.ContractResolver = contractResolver;
+                MainWindow window = new MainWindow(vm);
+                window.Show();
             }
         }
 

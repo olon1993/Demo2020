@@ -1,5 +1,6 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.MonsterManual.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,7 @@ namespace Demo2020.Biz.MonsterManual.Models
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
+
         public string Name
         {
             get { return _name; }
