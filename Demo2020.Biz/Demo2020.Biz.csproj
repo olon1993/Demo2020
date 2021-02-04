@@ -93,6 +93,8 @@
     <Compile Include="Commons\Models\ObservableObject.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterApi.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterManualViewModel.cs" />
+    <Compile Include="MonsterManual\Models\Proficiency.cs" />
+    <Compile Include="MonsterManual\Models\ProficiencyElement.cs" />
     <Compile Include="MonsterManual\Services\DnD5eMonsterApi.cs" />
     <Compile Include="Commons\Services\SqlDataAccessService.cs" />
     <Compile Include="Commons\ViewModels\MessageWindowViewModel.cs" />

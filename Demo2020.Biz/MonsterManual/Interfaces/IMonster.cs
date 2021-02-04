@@ -32,5 +32,6 @@ namespace Demo2020.Biz.MonsterManual.Interfaces
         int Charisma { get; set; }
         int CharismaModifier { get; set; }
         bool IsDataComplete { get; set; }
+        List<Proficiency> Proficiencies { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Demo2020.Biz.MonsterManual.Models
 {
@@ -31,6 +32,8 @@ namespace Demo2020.Biz.MonsterManual.Models
         private int _wisdomModifier;
         private int _charisma;
         private int _charismaModifier;
+        private bool _isDataComplete;
+        private List<Proficiency> _proficiencies;
 
         public Monster()
         {
@@ -349,13 +352,25 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
-        private bool _isDataComplete;
-
         public bool IsDataComplete
         {
             get { return _isDataComplete; }
             set { _isDataComplete = value; }
         }
+
+        public List<Proficiency> Proficiencies
+        {
+            get { return _proficiencies; }
+            set 
+            {
+                if(_proficiencies != value)
+                {
+                    _proficiencies = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
     }
 }
