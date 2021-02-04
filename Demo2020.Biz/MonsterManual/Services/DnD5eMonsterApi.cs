@@ -1,15 +1,10 @@
-﻿using Autofac;
-using Demo2020.Biz.Commons.Services;
-using Demo2020.Biz.MonsterManual.Interfaces;
+﻿using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Demo2020.Biz.MonsterManual.Services

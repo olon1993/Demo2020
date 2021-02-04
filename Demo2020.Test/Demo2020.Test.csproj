@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MonsterManual\DnD5eMonsterApi_Tests.cs" />
+    <Compile Include="MonsterManual\Monster_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
