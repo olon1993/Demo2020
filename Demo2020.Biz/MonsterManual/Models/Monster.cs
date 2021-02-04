@@ -34,6 +34,8 @@ namespace Demo2020.Biz.MonsterManual.Models
         private int _charismaModifier;
         private bool _isDataComplete;
         private List<Proficiency> _proficiencies;
+        private double _challengeRating;
+        private int _xp;
 
         public Monster()
         {
@@ -371,6 +373,33 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        [JsonProperty("challenge_rating")]
+        public double ChallengeRating
+        {
+            get { return _challengeRating; }
+            set
+            {
+                if (_challengeRating != value)
+                {
+                    _challengeRating = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        [JsonProperty("xp")]
+        public int Xp
+        {
+            get { return _xp; }
+            set
+            {
+                if (_xp != value)
+                {
+                    _xp = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
     }
 }

@@ -83,6 +83,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
@@ -227,6 +228,33 @@
                         </TextBlock.Style>
                         <Run Text=", Climb" />
                         <Run Text="{Binding Speed.Climb}" />
+                    </TextBlock>
+
+                </DockPanel>
+
+                <!--  Row 3 : Speed  -->
+                <DockPanel Grid.Row="3">
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Challenge " />
+
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding ChallengeRating, FallbackValue=0}" />
+
+                    <TextBlock
+                        Margin="3,0,0,0"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed">
+                        <Run Text="(" />
+                        <Run Text="{Binding Xp, FallbackValue=0}" />
+                        <Run Text=" XP)" />
                     </TextBlock>
 
                 </DockPanel>
