@@ -89,6 +89,7 @@
     <Compile Include="Commons\Interfaces\IMainWindow.cs" />
     <Compile Include="Commons\Models\CloseWindowMessage.cs" />
     <Compile Include="Commons\Models\MessageWindowConfiguration.cs" />
+    <Compile Include="Commons\Models\MessageWindowResponse.cs" />
     <Compile Include="Commons\Models\ObservableObject.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterApi.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterManualViewModel.cs" />

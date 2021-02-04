@@ -31,5 +31,6 @@ namespace Demo2020.Biz.MonsterManual.Interfaces
         int WisdomModifier { get; set; }
         int Charisma { get; set; }
         int CharismaModifier { get; set; }
+        bool IsDataComplete { get; set; }
     }
 }

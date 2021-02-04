@@ -41,6 +41,7 @@ namespace Demo2020
                     if(window.DataContext == msg.DataContext)
                     {
                         window.Close();
+                        break;
                     }
                 }
             });

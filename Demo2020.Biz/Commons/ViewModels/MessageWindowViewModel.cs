@@ -28,6 +28,7 @@ namespace Demo2020.Biz.Commons.ViewModels
             Message = config.Message;
             IsTrueFalseVisible = config.IsTrueFalseVisible;
             IsOkVisible = config.IsOkVisible;
+            Token = config.Token;
 
             OkCommand = new RelayCommand(Ok);
             TrueCommand = new RelayCommand(True);
@@ -46,12 +47,22 @@ namespace Demo2020.Biz.Commons.ViewModels
         private void True()
         {
             // Send true message
+            Messenger.Default.Send(new MessageWindowResponse 
+            {
+                Response = true,
+                Token = Token
+            });
             Close();
         }
 
         private void False()
         {
             // Send false message
+            Messenger.Default.Send(new MessageWindowResponse
+            {
+                Response = false,
+                Token = Token
+            });
             Close();
         }
 
@@ -120,6 +131,8 @@ namespace Demo2020.Biz.Commons.ViewModels
                 }
             }
         }
+
+        public object Token { get; set; }
         #endregion
     }
 }

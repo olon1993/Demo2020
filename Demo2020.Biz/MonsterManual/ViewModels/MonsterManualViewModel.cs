@@ -1,6 +1,7 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.Models;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,21 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
         private IMonsterApi _monsterApi;
         private IMonster _currentMonster;
         private IList<IMonster> _monsters;
-        private int _selectedMonsterIndex;
+        private int _selectedMonsterIndex = -1;
 
         public MonsterManualViewModel(IMonsterFactory monsterFactory, IMonsterApi monsterApi)
         {
             _monsterFactory = monsterFactory;
             _monsterApi = monsterApi;
+
+            Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg => 
+            {
+                if (msg.Response)
+                {
+                    GetMonsterDetails();
+                }
+            });
+
             GetMonsters();
         }
 
@@ -35,11 +45,39 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
             Monsters = (await _monsterApi.GetAllMonsters())
                 .Cast<IMonster>()
                 .ToList() as IList<IMonster>;
+
+            foreach(Monster monster in Monsters)
+            {
+                Console.WriteLine(monster.Name);
+            }
         }
 
         private async void GetMonsterDetails()
         {
-            CurrentMonster = (await _monsterApi.GetMonster(Monsters[SelectedMonsterIndex].Name)) as IMonster;
+            CurrentMonster = Monsters[SelectedMonsterIndex];
+            if (CurrentMonster.IsDataComplete == false)
+            {
+                Monsters[SelectedMonsterIndex] = (await _monsterApi.GetMonster(Monsters[SelectedMonsterIndex].Name)) as IMonster;
+
+                // The monster api failed and returned null
+                if (Monsters[SelectedMonsterIndex] == null)
+                {
+                    Monsters[SelectedMonsterIndex] = CurrentMonster;
+                    Messenger.Default.Send(new MessageWindowConfiguration
+                    {
+                        Message = "An error occurred while getting " + CurrentMonster.Name + " data. Would you like to try again? " +
+                        "Check you internet connection if you continue to see this message.",
+                        IsOkVisible = false,
+                        IsTrueFalseVisible = true,
+                        Token = "ReloadMonster"
+                    });
+                }
+                else
+                {
+                    Monsters[SelectedMonsterIndex].IsDataComplete = true;
+                    CurrentMonster = Monsters[SelectedMonsterIndex];
+                }
+            }
         }
 
         //**************************************************\\
@@ -87,5 +125,6 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
                 }
             }
         }
+
     }
 }

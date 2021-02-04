@@ -353,5 +353,14 @@ namespace Demo2020.Biz.MonsterManual.Models
                 }
             }
         }
+
+        private bool _isDataComplete;
+
+        public bool IsDataComplete
+        {
+            get { return _isDataComplete; }
+            set { _isDataComplete = value; }
+        }
+
     }
 }

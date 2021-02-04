@@ -60,7 +60,15 @@ namespace Demo2020.Biz.MonsterManual.Services
                     // Add an Accept header for JSON format.
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    HttpResponseMessage response = await client.GetAsync("/api/monsters/" + name.ToLower().Replace(" ", "-"));
+                    name = name.ToLower()
+                        .Replace(" form", "")
+                        .Replace(" ", "-")
+                        .Replace("/", "-")
+                        .Replace("(", "")
+                        .Replace(")", "")
+                        .Replace("'", "")
+                        .Replace(",", "");
+                    HttpResponseMessage response = await client.GetAsync("/api/monsters/" + name);
                     if (response.IsSuccessStatusCode)
                     {
                         string rawJSON = await response.Content.ReadAsStringAsync();

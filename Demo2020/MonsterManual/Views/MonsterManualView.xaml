@@ -8,19 +8,28 @@
     xmlns:uc="clr-namespace:Demo2020.MonsterManual.UserControls"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Background="White"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListBox ItemsSource="{Binding Monsters}" SelectedIndex="{Binding SelectedMonsterIndex}">
+
+        <ListBox
+            Grid.Row="1"
+            ItemsSource="{Binding Monsters, UpdateSourceTrigger=PropertyChanged}"
+            SelectedIndex="{Binding SelectedMonsterIndex}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <uc:StatBlockControl Grid.Column="1" DataContext="{Binding CurrentMonster}" />
+
+        <uc:StatBlockControl
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            DataContext="{Binding CurrentMonster}" />
     </Grid>
 </UserControl>
