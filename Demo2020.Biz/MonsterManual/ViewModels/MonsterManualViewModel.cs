@@ -45,11 +45,6 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
             Monsters = (await _monsterApi.GetAllMonsters())
                 .Cast<IMonster>()
                 .ToList() as IList<IMonster>;
-
-            foreach(Monster monster in Monsters)
-            {
-                Console.WriteLine(monster.Name);
-            }
         }
 
         private async void GetMonsterDetails()

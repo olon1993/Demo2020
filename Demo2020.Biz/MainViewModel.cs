@@ -2,6 +2,7 @@
 using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Commons.Services;
 using Demo2020.Biz.Commons.ViewModels;
+using Demo2020.Biz.Equipment.Interfaces;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.ViewModels;
 using Newtonsoft.Json.Serialization;
@@ -20,10 +21,12 @@ namespace Demo2020.Biz
         //**************************************************\\
         private ObservableObject _currentViewModel;
         private IMonsterManualViewModel _monsterManualViewModel;
+        private IEquipmentViewModel _equipmentViewModel;
 
-        public MainViewModel(IMonsterManualViewModel monsterManualViewModel)
+        public MainViewModel(IMonsterManualViewModel monsterManualViewModel, IEquipmentViewModel equipmentViewModel)
         {
             _monsterManualViewModel = monsterManualViewModel;
+            _equipmentViewModel = equipmentViewModel;
 
             CurrentViewModel = (ObservableObject)_monsterManualViewModel;
         }

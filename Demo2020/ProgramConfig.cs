@@ -1,16 +1,13 @@
 ﻿using Autofac;
 using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Services;
+using Demo2020.Biz.Equipment.Interfaces;
+using Demo2020.Biz.Equipment.Services;
+using Demo2020.Biz.Equipment.ViewModels;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.Models;
 using Demo2020.Biz.MonsterManual.Services;
 using Demo2020.Biz.MonsterManual.ViewModels;
-using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Demo2020.Biz
 {
@@ -23,16 +20,22 @@ namespace Demo2020.Biz
             // View Models
             builder.RegisterType<MainViewModel>().As<IMainViewModel>();
             builder.RegisterType<MonsterManualViewModel>().As<IMonsterManualViewModel>();
+            builder.RegisterType<EquipmentViewModel>().As<IEquipmentViewModel>();
 
             // Models
             builder.RegisterType<Monster>().As<IMonster>();
             builder.RegisterType<Speed>().As<ISpeed>();
+            builder.RegisterType<Equipment.Models.Equipment>().As<IEquipment>();
 
             // Services
             builder.RegisterType<SqlDataAccessService>().As<IDataAccessService>();
             builder.RegisterType<MonsterFactory>().As<IMonsterFactory>();
             builder.RegisterType<SpeedFactory>().As<ISpeedFactory>();
             builder.RegisterType<DnD5eMonsterApi>().As<IMonsterApi>();
+            builder.RegisterType<EquipmentFactory>().As<IEquipmentFactory>();
+            //builder.RegisterType<CategoryFactory>().As<ICategoryFactory>();
+            //builder.RegisterType<CostFactory>().As<ICostFactory>();
+            builder.RegisterType<DnD5eEquipmentApi>().As<IEquipmentApi>();
 
             return builder.Build();
         }
