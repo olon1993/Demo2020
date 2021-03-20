@@ -64,6 +64,7 @@ namespace Demo2020.Biz.Equipment.Services
                         .Replace("(", "")
                         .Replace(")", "")
                         .Replace("'", "")
+                        .Replace(":", "")
                         .Replace(",", "");
                     HttpResponseMessage response = await client.GetAsync("/api/equipment/" + name);
                     if (response.IsSuccessStatusCode)
