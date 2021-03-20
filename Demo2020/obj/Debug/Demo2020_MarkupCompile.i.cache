@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Scott\source\repos\Demo2020\Demo2020\obj\Debug\
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\
 Demo2020
 none
 false
 DEBUG;TRACE
-C:\Users\Scott\source\repos\Demo2020\Demo2020\App.xaml
-41950718551
+C:\Users\olon1\source\repos\Demo2020\Demo2020\App.xaml
+5-511746726
 
-13330867359
-133-1892433266
-Commons\Windows\MessageWindow.xaml;MainWindow.xaml;MonsterManual\UserControls\StatBlockControl.xaml;MonsterManual\Views\MonsterManualView.xaml;
+141523970327
+133-1452134836
+Commons\Windows\MessageWindow.xaml;Equipment\Views\EquipmentView.xaml;MainWindow.xaml;MonsterManual\UserControls\StatBlockControl.xaml;MonsterManual\Views\MonsterManualView.xaml;
 
 True
 

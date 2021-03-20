@@ -77,6 +77,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                     CurrentEquipment = Equipment[SelectedEquipmentIndex];
                 }
             }
+
+            Console.Write(CurrentEquipment.EquipmentCategory.Name + " " + CurrentEquipment.GearCategory.Name);
         }
 
         //**************************************************\\
@@ -99,7 +101,30 @@ namespace Demo2020.Biz.Equipment.ViewModels
             }
         }
 
-        public IEquipment CurrentEquipment { get; set; }
-        public IList<IEquipment> Equipment { get; set; }
+        public IEquipment CurrentEquipment
+        {
+            get { return _currentEquipment; }
+            set
+            {
+                if (_currentEquipment != value)
+                {
+                    _currentEquipment = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public IList<IEquipment> Equipment
+        {
+            get { return _equipment; }
+            set
+            {
+                if (_equipment != value)
+                {
+                    _equipment = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
     }
 }

@@ -56,7 +56,15 @@ namespace Demo2020.Biz.Equipment.Services
 
                     // Add an Accept header for JSON format.
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
+                    
+                    name = name.ToLower()
+                        .Replace(" form", "")
+                        .Replace(" ", "-")
+                        .Replace("/", "-")
+                        .Replace("(", "")
+                        .Replace(")", "")
+                        .Replace("'", "")
+                        .Replace(",", "");
                     HttpResponseMessage response = await client.GetAsync("/api/equipment/" + name);
                     if (response.IsSuccessStatusCode)
                     {

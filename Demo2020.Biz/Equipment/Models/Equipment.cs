@@ -44,6 +44,9 @@ namespace Demo2020.Biz.Equipment.Models
         [JsonProperty("weight")]
         public long Weight { get; set; }
 
+        [JsonProperty("desc")]
+        public string[] Description { get; set; }
+
         [JsonProperty("url")]
         public string Url { get; set; }
 

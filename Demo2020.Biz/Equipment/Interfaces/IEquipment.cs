@@ -20,6 +20,8 @@ namespace Demo2020.Biz.Equipment.Interfaces
 
         long Weight { get; set; }
 
+        string[] Description { get; set; }
+
         string Url { get; set; }
 
         bool IsDataComplete { get; set; }

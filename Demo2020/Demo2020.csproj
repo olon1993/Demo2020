@@ -111,6 +111,9 @@
     </Compile>
     <Compile Include="Converters\BoolToVisiblityConverter.cs" />
     <Compile Include="Converters\IsGreaterThanValueConverter.cs" />
+    <Compile Include="Equipment\Views\EquipmentView.xaml.cs">
+      <DependentUpon>EquipmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,10 @@
       <DependentUpon>MonsterManualView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgramConfig.cs" />
+    <Page Include="Equipment\Views\EquipmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commons\Views\" />
+    <Folder Include="Equipment\UserControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
