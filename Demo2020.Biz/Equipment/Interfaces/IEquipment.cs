@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo2020.Biz.Equipment.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +9,37 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipment
     {
-        string Index { get; set; }
-
+        
         string Name { get; set; }
+        
+        double Weight { get; set; }
 
-        ICategory EquipmentCategory { get; set; }
-
-        ICategory GearCategory { get; set; }
+        IList<string> Description { get; set; }
 
         ICost Cost { get; set; }
 
-        long Weight { get; set; }
+        IDamage TwoHandedDamage { get; set; }
 
-        string[] Description { get; set; }
+        // NetonSoft JSON Deserializer is having trouble with IEquipmentProperty. This needs to be resolved 
+        IList<EquipmentProperty> Properties { get; set; }
 
-        string Url { get; set; }
+        IRange Range { get; set; }
+
+        IDamage Damage { get; set; }
+
+        string CategoryRange { get; set; }
+
+        string WeaponRange { get; set; }
+
+        string WeaponCategory { get; set; }
+
+        string ToolCategory { get; set; }
+
+        string VehicleCategory { get; set; }
+
+        ICategory GearCategory { get; set; }
+
+        ICategory EquipmentCategory { get; set; }
 
         bool IsDataComplete { get; set; }
     }

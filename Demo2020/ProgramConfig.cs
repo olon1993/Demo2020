@@ -2,6 +2,7 @@
 using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Services;
 using Demo2020.Biz.Equipment.Interfaces;
+using Demo2020.Biz.Equipment.Models;
 using Demo2020.Biz.Equipment.Services;
 using Demo2020.Biz.Equipment.ViewModels;
 using Demo2020.Biz.MonsterManual.Interfaces;
@@ -26,6 +27,12 @@ namespace Demo2020.Biz
             builder.RegisterType<Monster>().As<IMonster>();
             builder.RegisterType<Speed>().As<ISpeed>();
             builder.RegisterType<Equipment.Models.Equipment>().As<IEquipment>();
+            builder.RegisterType<ArmorClass>().As<IArmorClass>();
+            builder.RegisterType<Category>().As<ICategory>();
+            builder.RegisterType<Cost>().As<ICost>();
+            builder.RegisterType<Damage>().As<IDamage>();
+            builder.RegisterType<EquipmentProperty>().As<IEquipmentProperty>();
+            builder.RegisterType<Range>().As<IRange>();
 
             // Services
             builder.RegisterType<SqlDataAccessService>().As<IDataAccessService>();
