@@ -18,7 +18,7 @@ namespace Demo2020.Test.Equipment
             List<Biz.Equipment.Models.Equipment> equipments = await equipmentApi.GetAllEquipment();
 
             Assert.NotNull(equipments);
-            Assert.Equal(231, equipments.Count);
+            Assert.Equal(238, equipments.Count);
 
             foreach (Biz.Equipment.Models.Equipment equipment in equipments)
             {
@@ -35,7 +35,7 @@ namespace Demo2020.Test.Equipment
             List<Biz.Equipment.Models.Equipment> equipments = await equipmentApi.GetAllEquipment();
 
             Assert.NotNull(equipments);
-            Assert.Equal(231, equipments.Count);
+            Assert.Equal(238, equipments.Count);
 
             Biz.Equipment.Models.Equipment container = null;
             foreach (Biz.Equipment.Models.Equipment equipment in equipments)
@@ -60,10 +60,10 @@ namespace Demo2020.Test.Equipment
         new List<object[]>
         {
             new object[] { "Abacus" },
-            new object[] { "Abacus" },
             new object[] { "Acid (vial)" },
             new object[] { "Alchemist's fire (flask)" },
             new object[] { "Alchemist's supplies" },
+            new object[] { "Alms box" },
             new object[] { "Amulet" },
             new object[] { "Animal Feed (1 day)" },
             new object[] { "Antitoxin (vial)" },
@@ -91,6 +91,7 @@ namespace Demo2020.Test.Equipment
             new object[] { "Bit and bridle" },
             new object[] { "Blanket" },
             new object[] { "Block and tackle" },
+            new object[] { "Block of incense" },
             new object[] { "Blowgun" },
             new object[] { "Blowgun needle" },
             new object[] { "Book" },
@@ -109,6 +110,7 @@ namespace Demo2020.Test.Equipment
             new object[] { "Cartographer's tools" },
             new object[] { "Case, crossbow bolt" },
             new object[] { "Case, map or scroll" },
+            new object[] { "Censer" },
             new object[] { "Chain (10 feet)" },
             new object[] { "Chain Mail" },
             new object[] { "Chain Shirt" },
@@ -183,6 +185,7 @@ namespace Demo2020.Test.Equipment
             new object[] { "Leather" },
             new object[] { "Leatherworker's tools" },
             new object[] { "Light hammer" },
+            new object[] { "Little bag of sand" },
             new object[] { "Lock" },
             new object[] { "Longbow" },
             new object[] { "Longship" },
@@ -229,7 +232,6 @@ namespace Demo2020.Test.Equipment
             new object[] { "Rapier" },
             new object[] { "Rations (1 day)" },
             new object[] { "Reliquary" },
-            new object[] { "Riding" },
             new object[] { "Ring Mail" },
             new object[] { "Robes" },
             new object[] { "Rod" },
@@ -240,6 +242,7 @@ namespace Demo2020.Test.Equipment
             new object[] { "Saddle, Exotic" },
             new object[] { "Saddle, Military" },
             new object[] { "Saddle, Pack" },
+            new object[] { "Saddle, Riding" },
             new object[] { "Saddlebags" },
             new object[] { "Sailing ship" },
             new object[] { "Scale Mail" },
@@ -258,6 +261,7 @@ namespace Demo2020.Test.Equipment
             new object[] { "Sled" },
             new object[] { "Sling" },
             new object[] { "Sling bullet" },
+            new object[] { "Small knife" },
             new object[] { "Smith's tools" },
             new object[] { "Soap" },
             new object[] { "Spear" },
@@ -268,6 +272,7 @@ namespace Demo2020.Test.Equipment
             new object[] { "Spyglass" },
             new object[] { "Stabling (1 day)" },
             new object[] { "Staff" },
+            new object[] { "String (10 feet)" },
             new object[] { "Studded Leather" },
             new object[] { "Tent, two-person" },
             new object[] { "Thieves' tools" },
@@ -276,6 +281,7 @@ namespace Demo2020.Test.Equipment
             new object[] { "Torch" },
             new object[] { "Totem" },
             new object[] { "Trident" },
+            new object[] { "Vestments" },
             new object[] { "Vial" },
             new object[] { "Viol" },
             new object[] { "Wagon" },
