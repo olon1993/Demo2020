@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Demo2020.Test.Equipment
 {
-    public class DnD5eEquipmentApi_Tests
+    public class DnD5eEquipmentDataAccessObject_Tests
     {
         [Fact]
         public async void GetAllEquipment_Test()

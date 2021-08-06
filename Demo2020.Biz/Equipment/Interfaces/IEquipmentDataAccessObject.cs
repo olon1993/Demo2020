@@ -7,7 +7,7 @@ using Demo2020.Biz.Equipment.Models;
 
 namespace Demo2020.Biz.Equipment.Interfaces
 {
-    public interface IEquipmentApi
+    public interface IEquipmentDataAccessObject
     {
         Task<List<Models.Equipment>> GetAllEquipment();
         Task<Models.Equipment> GetEquipment(string name);

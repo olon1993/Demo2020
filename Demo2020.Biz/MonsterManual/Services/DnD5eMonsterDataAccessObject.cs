@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.MonsterManual.Services
 {
-    public class DnD5eMonsterApi : IMonsterApi
+    public class DnD5eMonsterDataAccessObject : IMonsterDataAccessObject
     {
         //**************************************************\\
         //********************* Fields *********************\\
@@ -35,7 +35,7 @@ namespace Demo2020.Biz.MonsterManual.Services
                         return data.Results;
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -71,7 +71,7 @@ namespace Demo2020.Biz.MonsterManual.Services
                         return data;
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }

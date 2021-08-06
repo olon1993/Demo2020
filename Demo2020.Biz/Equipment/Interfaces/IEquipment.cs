@@ -20,7 +20,6 @@ namespace Demo2020.Biz.Equipment.Interfaces
 
         IDamage TwoHandedDamage { get; set; }
 
-        // NetonSoft JSON Deserializer is having trouble with IEquipmentProperty. This needs to be resolved 
         IList<EquipmentProperty> Properties { get; set; }
 
         IRange Range { get; set; }

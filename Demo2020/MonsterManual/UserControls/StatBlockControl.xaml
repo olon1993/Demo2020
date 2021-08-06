@@ -6,19 +6,22 @@
     xmlns:local="clr-namespace:Demo2020.MonsterManual.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignWidth="600"
     mc:Ignorable="d">
 
     <Grid Background="LightGoldenrodYellow">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <Image Grid.Column="1" Source="/Demo2020;component/Resources/Images/BeholderIcon.png" 
+               Grid.Row="0" Height="240" Grid.RowSpan="3"/>
 
         <!--  Row 0  -->
         <Border
@@ -296,6 +299,7 @@
                     <Run FontWeight="Bold" Text="STR" />
                     <LineBreak />
                     <Run Text="{Binding Strength, FallbackValue=STR}" />
+                    <LineBreak />
                     <Run Text="(+" />
                     <Run Text="{Binding StrengthModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -318,6 +322,7 @@
                     <Run FontWeight="Bold" Text="STR" />
                     <LineBreak />
                     <Run Text="{Binding Strength, FallbackValue=STR}" />
+                    <LineBreak />
                     <Run Text="(" />
                     <Run Text="{Binding StrengthModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -342,6 +347,7 @@
                     <Run FontWeight="Bold" Text="DEX" />
                     <LineBreak />
                     <Run Text="{Binding Dexterity, FallbackValue=DEX}" />
+                    <LineBreak />
                     <Run Text="(+" />
                     <Run Text="{Binding DexterityModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -365,6 +371,7 @@
                     <Run FontWeight="Bold" Text="DEX" />
                     <LineBreak />
                     <Run Text="{Binding Dexterity, FallbackValue=DEX}" />
+                    <LineBreak />
                     <Run Text="(" />
                     <Run Text="{Binding DexterityModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -389,6 +396,7 @@
                     <Run FontWeight="Bold" Text="CON" />
                     <LineBreak />
                     <Run Text="{Binding Constitution, FallbackValue=CON}" />
+                    <LineBreak />
                     <Run Text="(+" />
                     <Run Text="{Binding ConstitutionModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -412,6 +420,7 @@
                     <Run FontWeight="Bold" Text="CON" />
                     <LineBreak />
                     <Run Text="{Binding Constitution, FallbackValue=CON}" />
+                    <LineBreak />
                     <Run Text="(" />
                     <Run Text="{Binding ConstitutionModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -436,6 +445,7 @@
                     <Run FontWeight="Bold" Text="INT" />
                     <LineBreak />
                     <Run Text="{Binding Intelligence, FallbackValue=INT}" />
+                    <LineBreak />
                     <Run Text="(+" />
                     <Run Text="{Binding IntelligenceModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -459,6 +469,7 @@
                     <Run FontWeight="Bold" Text="INT" />
                     <LineBreak />
                     <Run Text="{Binding Intelligence, FallbackValue=INT}" />
+                    <LineBreak />
                     <Run Text="(" />
                     <Run Text="{Binding IntelligenceModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -483,6 +494,7 @@
                     <Run FontWeight="Bold" Text="WIS" />
                     <LineBreak />
                     <Run Text="{Binding Wisdom, FallbackValue=WIS}" />
+                    <LineBreak />
                     <Run Text="(+" />
                     <Run Text="{Binding WisdomModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -506,6 +518,7 @@
                     <Run FontWeight="Bold" Text="WIS" />
                     <LineBreak />
                     <Run Text="{Binding Wisdom, FallbackValue=WIS}" />
+                    <LineBreak />
                     <Run Text="(" />
                     <Run Text="{Binding WisdomModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -530,6 +543,7 @@
                     <Run FontWeight="Bold" Text="CHA" />
                     <LineBreak />
                     <Run Text="{Binding Charisma, FallbackValue=CHA}" />
+                    <LineBreak />
                     <Run Text="(+" />
                     <Run Text="{Binding CharismaModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -553,6 +567,7 @@
                     <Run FontWeight="Bold" Text="CHA" />
                     <LineBreak />
                     <Run Text="{Binding Charisma, FallbackValue=CHA}" />
+                    <LineBreak />
                     <Run Text="(" />
                     <Run Text="{Binding CharismaModifier, FallbackValue=0}" />
                     <Run Text=")" />
@@ -560,304 +575,6 @@
 
             </Grid>
         </Border>
-
-        <!--  Row 3  -->
-        <!--<Border
-            Grid.Row="3"
-            Margin="10"
-            BorderBrush="DarkRed"
-            BorderThickness="0,0,0,3">
-            <Grid Margin="0,0,0,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-        -->
-        <!--  Row 0 : Armor Class  -->
-        <!--
-                <TextBlock FontSize="12" Foreground="DarkRed">
-                    <Run FontWeight="Bold" Text="Saving Throws" />
-                    <Run Text="Con +6," />
-                    <Run Text="Int +8," />
-                    <Run Text="Wis +6" />
-                </TextBlock>
-
-        -->
-        <!--  Row 1 : Armor Class  -->
-        <!--
-                <TextBlock
-                    Grid.Row="1"
-                    FontSize="12"
-                    Foreground="DarkRed">
-                    <Run FontWeight="Bold" Text="Skills" />
-                    <Run Text="History +12," />
-                    <Run Text="Perception +10" />
-                </TextBlock>
-
-        -->
-        <!--  Row 2 : Armor Class  -->
-        <!--
-                <TextBlock
-                    Grid.Row="2"
-                    FontSize="12"
-                    Foreground="DarkRed">
-                    <Run FontWeight="Bold" Text="Senses" />
-                    <Run Text="Darkvision 120 ft.," />
-                    <Run Text="Passive Perception 20" />
-                </TextBlock>
-
-        -->
-        <!--  Row 3 : Hit Points  -->
-        <!--
-                <TextBlock
-                    Grid.Row="3"
-                    FontSize="12"
-                    Foreground="DarkRed">
-                    <Run FontWeight="Bold" Text="Languages" />
-                    <Run Text="Deep Speech," />
-                    <Run Text="Telepathy 120 ft." />
-                </TextBlock>
-
-        -->
-        <!--  Row 4 : Speed  -->
-        <!--
-                <TextBlock
-                    Grid.Row="4"
-                    FontSize="12"
-                    Foreground="DarkRed">
-                    <Run FontWeight="Bold" Text="Challenge" />
-                    <Run Text="10" />
-                    <Run Text="(5,900 xp)" />
-                </TextBlock>
-
-            </Grid>
-        </Border>-->
-
-        <!--  Row 4  -->
-        <!--<Border
-            Grid.Row="4"
-            Margin="10"
-            BorderBrush="DarkRed"
-            BorderThickness="0,0,0,3">
-            <Grid Margin="0,0,0,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-        -->
-        <!--  Row 0  -->
-        <!--
-                <TextBlock Margin="0,0,0,5">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Amphibious." />
-                    <Run Text="The aboleth can breathe air and water." />
-                </TextBlock>
-
-        -->
-        <!--  Row 1  -->
-        <!--
-                <TextBlock
-                    Grid.Row="1"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Mucous Cloud" />
-                    <Run Text="While underwater, the aboleth is surrounded by transformative mucus. A creature that touches the aboleth or that hits it with a melee attack while within 5 ft. of it must make a DC 14 Construction saving throw. On a failure, the creature is diseased for 1d4 hours. The diseased creature can breathe only underwater." />
-                </TextBlock>
-
-        -->
-        <!--  Row 2  -->
-        <!--
-                <TextBlock
-                    Grid.Row="2"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Probing Telepathy" />
-                    <Run Text="If a creature communicates telepathically with the aboleth, the aboleth learns the creature's greatest desires if the aboleth can see the creature." />
-                </TextBlock>
-
-            </Grid>
-        </Border>-->
-
-        <!--  Row 5  -->
-        <!--<Border
-            Grid.Row="5"
-            Margin="10"
-            BorderBrush="DarkRed"
-            BorderThickness="0,0,0,3">
-            <Grid Margin="0,0,0,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-        -->
-        <!--  Row 0  -->
-        <!--
-                <Border BorderBrush="DarkRed" BorderThickness="0,0,0,1">
-                    <TextBlock
-                        Margin="0,0,0,5"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Foreground="DarkRed"
-                        Text="Actions" />
-                </Border>
-
-        -->
-        <!--  Row 1  -->
-        <!--
-                <TextBlock
-                    Grid.Row="1"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Multiattack." />
-                    <Run Text="The aboleth can breathe air and water." />
-                </TextBlock>
-
-        -->
-        <!--  Row 2  -->
-        <!--
-                <TextBlock
-                    Grid.Row="2"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Tentacle." />
-                    <Run Text="Melee Weapon Attack: +9 to hit, reach 10 ft., one target. Hit: (2d6 + 5) bludgeoning damage. If the target is a creature, it must succeed on a DC 14 Constitution saving throw or become diseased. The disease has no effect for 1 minute and can be removed by any magic that cures disease. After 1 minute, the diseased creatur's skin becomes translucent and slimy, the creature can't regain hit points unless it is underwater, and the disease can be removed only by heal or another disease-curing spell of 6th level or higher. When the creature is outside a body of water, it takes 6 (1d12) acid damage every 10 minutes unless moisture is applied to the skin before 10 minutes have passed." />
-                </TextBlock>
-
-        -->
-        <!--  Row 3  -->
-        <!--
-                <TextBlock
-                    Grid.Row="3"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Tail." />
-                    <Run Text="Melee Weapon Attack: +9 to hit, reach 10 ft., one target. Hit: (3d6 + 5) bludgeoning damage." />
-                </TextBlock>
-
-        -->
-        <!--  Row 4  -->
-        <!--
-                <TextBlock
-                    Grid.Row="4"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Enslave (3/day)" />
-                    <Run Text="The aboleth targets one creature it can see within 30 ft. of it. The target must succeed on a DC 14 Wisdom saving throw or be magically charmed by the aboleth until the aboleth dies or until it is on a different plane of existence from the target. The charmed target is under the aboleth's control and can't take reactions, and the aboleth and the target can communicate telepathically with each other over any distance. Whenever the charmed target takes damage, the target can repeat the saving throw. On a success, the effect ends. No more than once every 24 hours, the target can also repeat the saving throw when it is at least 1 mile away from the aboleth." />
-                </TextBlock>
-
-            </Grid>
-        </Border>-->
-
-        <!--  Row 6  -->
-        <!--<Border
-            Grid.Row="6"
-            Margin="10"
-            BorderBrush="DarkRed"
-            BorderThickness="0,0,0,3">
-            <Grid Margin="0,0,0,10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-        -->
-        <!--  Row 0  -->
-        <!--
-                <Border BorderBrush="DarkRed" BorderThickness="0,0,0,1">
-                    <TextBlock
-                        Margin="0,0,0,5"
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Foreground="DarkRed"
-                        Text="Legendary Actions" />
-                </Border>
-
-        -->
-        <!--  Row 1  -->
-        <!--
-                <TextBlock
-                    Grid.Row="1"
-                    Margin="0,0,0,5"
-                    Text="Aboleth can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time and only at the end of another creature's turn. Aboleth regains spent legendary actions at the start of their turn."
-                    TextWrapping="Wrap" />
-
-        -->
-        <!--  Row 2  -->
-        <!--
-                <TextBlock
-                    Grid.Row="2"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Detect." />
-                    <Run Text="The aboleth makes a Wisdom (Preception) check." />
-                </TextBlock>
-
-        -->
-        <!--  Row 3  -->
-        <!--
-                <TextBlock
-                    Grid.Row="3"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Tail Swipe." />
-                    <Run Text="The aboleth makes one tail attack." />
-                </TextBlock>
-
-        -->
-        <!--  Row 4  -->
-        <!--
-                <TextBlock
-                    Grid.Row="4"
-                    Margin="0,0,0,5"
-                    TextWrapping="Wrap">
-                    <Run
-                        FontSize="14"
-                        FontWeight="Bold"
-                        Text="Psychic Drain (Costs 2 Actions)." />
-                    <Run Text="One creature charmed by the aboleth takes 10 (3d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes." />
-                </TextBlock>
-
-            </Grid>
-        </Border>-->
 
     </Grid>
 </UserControl>

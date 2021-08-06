@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
+    "",
     "\\MonsterManual",
     "\\MonsterManual\\UserControls"
   ],
+  "SelectedNode": "\\MonsterManual\\UserControls\\StatBlockControl.xaml",
   "PreviewInSolutionExplorer": false
 }

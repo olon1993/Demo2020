@@ -28,7 +28,7 @@ namespace Demo2020.Biz
             _monsterManualViewModel = monsterManualViewModel;
             _equipmentViewModel = equipmentViewModel;
 
-            CurrentViewModel = (ObservableObject)_equipmentViewModel;
+            CurrentViewModel = (ObservableObject)_monsterManualViewModel;
         }
 
         //**************************************************\\

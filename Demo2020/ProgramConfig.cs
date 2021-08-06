@@ -38,7 +38,7 @@ namespace Demo2020.Biz
             builder.RegisterType<SqlDataAccessService>().As<IDataAccessService>();
             builder.RegisterType<MonsterFactory>().As<IMonsterFactory>();
             builder.RegisterType<SpeedFactory>().As<ISpeedFactory>();
-            builder.RegisterType<DnD5eMonsterApi>().As<IMonsterApi>();
+            builder.RegisterType<DnD5eMonsterDataAccessObject>().As<IMonsterDataAccessObject>();
             builder.RegisterType<EquipmentFactory>().As<IEquipmentFactory>();
             //builder.RegisterType<CategoryFactory>().As<ICategoryFactory>();
             //builder.RegisterType<CostFactory>().As<ICostFactory>();

@@ -5,13 +5,13 @@ using Xunit;
 
 namespace Demo2020.Test.MonsterManual
 {
-    public class DnD5eMonsterApi_Tests
+    public class DnD5eMonsterDataAccessObject_Tests
     {
         [Fact]
         public async void GetAllMonsters_Test()
         {
-            DnD5eMonsterApi monsterApi = new DnD5eMonsterApi();
-            List<Monster> monsters = await monsterApi.GetAllMonsters();
+            DnD5eMonsterDataAccessObject monsterDataObject = new DnD5eMonsterDataAccessObject();
+            List<Monster> monsters = await monsterDataObject.GetAllMonsters();
 
             Assert.NotNull(monsters);
             Assert.Equal(332, monsters.Count);
@@ -27,8 +27,8 @@ namespace Demo2020.Test.MonsterManual
         [Fact]
         public async void GetMonster_Test()
         {
-            DnD5eMonsterApi monsterApi = new DnD5eMonsterApi();
-            List<Monster> monsters = await monsterApi.GetAllMonsters();
+            DnD5eMonsterDataAccessObject monsterDataObject = new DnD5eMonsterDataAccessObject();
+            List<Monster> monsters = await monsterDataObject.GetAllMonsters();
 
             Assert.NotNull(monsters);
             Assert.Equal(332, monsters.Count);
@@ -36,7 +36,7 @@ namespace Demo2020.Test.MonsterManual
             Monster container = null;
             foreach (Monster monster in monsters)
             {
-                container = await monsterApi.GetMonster(monster.Name);
+                container = await monsterDataObject.GetMonster(monster.Name);
 
                 Assert.NotNull(container);
             }
@@ -46,8 +46,8 @@ namespace Demo2020.Test.MonsterManual
         [MemberData(nameof(Data))]
         public async void GetMonsterIndividual_Test(string name)
         {
-            DnD5eMonsterApi monsterApi = new DnD5eMonsterApi();
-            Monster monster = await monsterApi.GetMonster(name);
+            DnD5eMonsterDataAccessObject monsterDataObject = new DnD5eMonsterDataAccessObject();
+            Monster monster = await monsterDataObject.GetMonster(name);
 
             Assert.NotNull(monster);
         }

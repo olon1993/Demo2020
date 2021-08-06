@@ -16,15 +16,15 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
         //********************* Fields *********************\\
         //**************************************************\\
         private IMonsterFactory _monsterFactory;
-        private IMonsterApi _monsterApi;
+        private IMonsterDataAccessObject _monsterDataAccessObject;
         private IMonster _currentMonster;
         private IList<IMonster> _monsters;
         private int _selectedMonsterIndex = -1;
 
-        public MonsterManualViewModel(IMonsterFactory monsterFactory, IMonsterApi monsterApi)
+        public MonsterManualViewModel(IMonsterFactory monsterFactory, IMonsterDataAccessObject monsterDataAccessObject)
         {
             _monsterFactory = monsterFactory;
-            _monsterApi = monsterApi;
+            _monsterDataAccessObject = monsterDataAccessObject;
 
             Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg => 
             {
@@ -42,7 +42,7 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
         //**************************************************\\
         private async void GetMonsters()
         {
-            Monsters = (await _monsterApi.GetAllMonsters())
+            Monsters = (await _monsterDataAccessObject.GetAllMonsters())
                 .Cast<IMonster>()
                 .ToList() as IList<IMonster>;
         }
@@ -52,7 +52,7 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
             CurrentMonster = Monsters[SelectedMonsterIndex];
             if (CurrentMonster.IsDataComplete == false)
             {
-                Monsters[SelectedMonsterIndex] = (await _monsterApi.GetMonster(Monsters[SelectedMonsterIndex].Name)) as IMonster;
+                Monsters[SelectedMonsterIndex] = (await _monsterDataAccessObject.GetMonster(Monsters[SelectedMonsterIndex].Name)) as IMonster;
 
                 // The monster api failed and returned null
                 if (Monsters[SelectedMonsterIndex] == null)

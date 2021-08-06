@@ -15,12 +15,12 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //********************* Fields *********************\\
         //**************************************************\\
         private IEquipmentFactory _equipmentFactory;
-        private IEquipmentApi _equipmentApi;
+        private IEquipmentDataAccessObject _equipmentApi;
         private IEquipment _currentEquipment;
         private IList<IEquipment> _equipment;
         private int _selectedEquipmentIndex = -1;
 
-        public EquipmentViewModel(IEquipmentFactory equipmentFactory, IEquipmentApi equipmentApi)
+        public EquipmentViewModel(IEquipmentFactory equipmentFactory, IEquipmentDataAccessObject equipmentApi)
         {
             _equipmentFactory = equipmentFactory;
             _equipmentApi = equipmentApi;
