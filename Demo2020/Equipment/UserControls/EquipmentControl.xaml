@@ -1,13 +1,136 @@
-﻿<UserControl x:Class="Demo2020.Equipment.UserControls.EquipmentControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Demo2020.Equipment.UserControls"
-             mc:Ignorable="d" 
+﻿<UserControl
+    x:Class="Demo2020.Equipment.UserControls.EquipmentControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Demo2020.Equipment.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
-    d:DesignWidth="600">
+    d:DesignWidth="600"
+    mc:Ignorable="d">
     <Grid Background="LightGoldenrodYellow">
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="1"
+            Height="240"
+            Source="/Demo2020;component/Resources/Images/SwordIcon.png" />
+
+        <!--  Row 0  -->
+        <Border
+            Margin="10"
+            BorderBrush="DarkRed"
+            BorderThickness="0,0,0,3">
+            <Grid Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!--  Row 0 : Name  -->
+                <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="DarkRed"
+                    Text="{Binding Name, FallbackValue=Name}" />
+
+                <!--  Row 1 : Type and Alignment  -->
+                <DockPanel Grid.Row="1">
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Text="{Binding EquipmentCategory.Name, FallbackValue=EquipmentCategory}" />
+                    <TextBlock Margin="3,0,0,0" Text="(" />
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Text="{Binding GearCategory.Name}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Text" Value="{Binding GearCategory.Name}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding GearCategory.Name.Length}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Text="{Binding ToolCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Text" Value="{Binding ToolCategory}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ToolCategory.Length}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Text="{Binding WeaponCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Text" Value="{Binding WeaponCategory}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding WeaponCategory.Length}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Text="{Binding ArmorCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Text" Value="{Binding ArmorCategory}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ArmorCategory.Length}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Text="{Binding VehicleCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Text" Value="{Binding VehicleCategory}" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding VehicleCategory.Length}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <TextBlock Margin="0" Text=")" />
+                </DockPanel>
+
+            </Grid>
+        </Border>
+
     </Grid>
 </UserControl>

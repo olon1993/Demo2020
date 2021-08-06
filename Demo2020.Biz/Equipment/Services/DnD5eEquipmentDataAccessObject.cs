@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.Equipment.Services
 {
-    public class DnD5eEquipmentApi : IEquipmentApi
+    public class DnD5eEquipmentDataAccessObject : IEquipmentDataAccessObject
     {
         //**************************************************\\
         //********************* Fields *********************\\

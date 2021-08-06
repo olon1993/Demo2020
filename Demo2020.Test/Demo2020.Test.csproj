@@ -58,8 +58,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Equipment\DnD5eEquipmentApi_Tests.cs" />
-    <Compile Include="MonsterManual\DnD5eMonsterApi_Tests.cs" />
+    <Compile Include="Equipment\DnD5eEquipmentDataAccessObject_Tests.cs" />
+    <Compile Include="MonsterManual\DnD5eMonsterDataAccessObject_Tests.cs" />
     <Compile Include="MonsterManual\Monster_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

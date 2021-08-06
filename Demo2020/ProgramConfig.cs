@@ -42,7 +42,7 @@ namespace Demo2020.Biz
             builder.RegisterType<EquipmentFactory>().As<IEquipmentFactory>();
             //builder.RegisterType<CategoryFactory>().As<ICategoryFactory>();
             //builder.RegisterType<CostFactory>().As<ICostFactory>();
-            builder.RegisterType<DnD5eEquipmentApi>().As<IEquipmentApi>();
+            builder.RegisterType<DnD5eEquipmentDataAccessObject>().As<IEquipmentDataAccessObject>();
 
             return builder.Build();
         }
