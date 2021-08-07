@@ -35,6 +35,12 @@ namespace Demo2020.Biz.Equipment.Models
         private IArmorClass _armorClass;
         private string _armorCategory;
 
+        private string _swordIconPath = "/Demo2020;component/Resources/Images/SwordIcon.png";
+        private string _bowIconPath = "/Demo2020;component/Resources/Images/BowIcon.png";
+        private string _armorIconPath = "/Demo2020;component/Resources/Images/ArmorIcon.png";
+        private string _shieldIconPath = "/Demo2020;component/Resources/Images/ShieldIcon.png";
+        private string _potionIconPath = "/Demo2020;component/Resources/Images/PotionIcon.png";
+
         public Equipment()
         {
             Description = new List<string>();
@@ -314,6 +320,33 @@ namespace Demo2020.Biz.Equipment.Models
                 {
                     _description = value;
                     OnPropertyChanged();
+                }
+            }
+        }
+
+        public string ImageSource
+        {
+            get 
+            {
+                if (EquipmentCategory.Name == "Armor" && ArmorCategory == "Shield")
+                {
+                    return _shieldIconPath;
+                }
+                else if (EquipmentCategory.Name == "Armor")
+                {
+                    return _armorIconPath;
+                }
+                else if (EquipmentCategory.Name == "Weapon" && WeaponRange == "Ranged")
+                {
+                    return _bowIconPath;
+                }
+                else if (EquipmentCategory.Name == "Weapon")
+                {
+                    return _swordIconPath;
+                }
+                else
+                {
+                    return _potionIconPath;
                 }
             }
         }

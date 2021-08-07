@@ -17,22 +17,25 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
+        <!--  Row 0  -->
         <Image
             Grid.Row="0"
-            Grid.RowSpan="3"
+            Grid.RowSpan="4"
             Grid.Column="1"
             Height="240"
-            Source="/Demo2020;component/Resources/Images/SwordIcon.png" />
+            VerticalAlignment="Top"
+            Source="{Binding ImageSource}" />
 
-        <!--  Row 0  -->
         <Border
             Margin="10"
             BorderBrush="DarkRed"
             BorderThickness="0,0,0,3">
             <Grid Margin="0,0,0,10">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
@@ -54,80 +57,187 @@
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding GearCategory.Name}">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding GearCategory.Name}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding GearCategory.Name.Length}" Value="0">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                        Text="{Binding GearCategory.Name}" />
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding ToolCategory}">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding ToolCategory}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ToolCategory.Length}" Value="0">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                        Text="{Binding ToolCategory}" />
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding WeaponCategory}">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding WeaponCategory}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding WeaponCategory.Length}" Value="0">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                        Text="{Binding WeaponCategory}" />
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding ArmorCategory}">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding ArmorCategory}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ArmorCategory.Length}" Value="0">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                        Text="{Binding ArmorCategory}" />
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding VehicleCategory}">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value="{Binding VehicleCategory}" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding VehicleCategory.Length}" Value="0">
-                                        <Setter Property="Visibility" Value="Collapsed" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                        Text="{Binding VehicleCategory}" />
                     <TextBlock Margin="0" Text=")" />
                 </DockPanel>
+
+            </Grid>
+        </Border>
+
+        <!--  Row 1  -->
+        <Border
+            Grid.Row="1"
+            Margin="10"
+            BorderBrush="DarkRed"
+            BorderThickness="0,0,0,3">
+            <Grid Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!--  Row 0 : Damage  -->
+                <DockPanel>
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
+                                        <Setter Property="Text" Value="Damage" />
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock
+                        Margin="3,0,0,0"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        <Run Text="{Binding Damage.DamageDice}" />
+                        <Run Text="{Binding Damage.DamageType.Name}" />
+                    </TextBlock>
+                </DockPanel>
+
+                <!--  Row 1 : Armor Class  -->
+                <DockPanel Grid.Row="1">
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Armor">
+                                        <Setter Property="Text" Value="Armor Class" />
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock
+                        Margin="3,0,0,0"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Armor">
+                                        <Setter Property="Text" Value="{Binding ArmorClass.Base}" />
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </DockPanel>
+
+                <!--  Row 2 : Weight  -->
+                <DockPanel Grid.Row="2">
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Weight" />
+
+                    <TextBlock
+                        Margin="3,0,0,0"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed">
+                        <Run Text="{Binding Weight}" />
+                        <Run Text="lbs" />
+                    </TextBlock>
+                </DockPanel>
+
+                <!--  Row 3 : Value  -->
+                <DockPanel Grid.Row="3">
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Cost" />
+
+                    <TextBlock
+                        Margin="3,0,0,0"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed">
+                        <Run Text="{Binding Cost.Quantity}" />
+                        <Run Text="{Binding Cost.Unit}" />
+                    </TextBlock>
+                </DockPanel>
+
+            </Grid>
+        </Border>
+
+        <!--  Row 2  -->
+        <Border
+            Grid.Row="2"
+            Margin="10"
+            BorderBrush="DarkRed"
+            BorderThickness="0,0,0,3">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Description.Count}" Value="0">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid Margin="0,0,0,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!--  Row 0 : Name  -->
+                <ItemsControl ItemsSource="{Binding Description}" />
 
             </Grid>
         </Border>
