@@ -10,7 +10,7 @@ namespace Demo2020.Test.MonsterManual
         [Fact]
         public async void GetAllMonsters_Test()
         {
-            DnD5eMonsterDataAccessObject monsterDataObject = new DnD5eMonsterDataAccessObject();
+            MonsterDataAccessObject monsterDataObject = new MonsterDataAccessObject();
             List<Monster> monsters = await monsterDataObject.GetAllMonsters();
 
             Assert.NotNull(monsters);
@@ -27,7 +27,7 @@ namespace Demo2020.Test.MonsterManual
         [Fact]
         public async void GetMonster_Test()
         {
-            DnD5eMonsterDataAccessObject monsterDataObject = new DnD5eMonsterDataAccessObject();
+            MonsterDataAccessObject monsterDataObject = new MonsterDataAccessObject();
             List<Monster> monsters = await monsterDataObject.GetAllMonsters();
 
             Assert.NotNull(monsters);
@@ -46,7 +46,7 @@ namespace Demo2020.Test.MonsterManual
         [MemberData(nameof(Data))]
         public async void GetMonsterIndividual_Test(string name)
         {
-            DnD5eMonsterDataAccessObject monsterDataObject = new DnD5eMonsterDataAccessObject();
+            MonsterDataAccessObject monsterDataObject = new MonsterDataAccessObject();
             Monster monster = await monsterDataObject.GetMonster(name);
 
             Assert.NotNull(monster);

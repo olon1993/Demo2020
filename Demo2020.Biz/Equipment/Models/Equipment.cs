@@ -35,11 +35,19 @@ namespace Demo2020.Biz.Equipment.Models
         private IArmorClass _armorClass;
         private string _armorCategory;
 
-        private string _swordIconPath = "/Demo2020;component/Resources/Images/SwordIcon.png";
-        private string _bowIconPath = "/Demo2020;component/Resources/Images/BowIcon.png";
         private string _armorIconPath = "/Demo2020;component/Resources/Images/ArmorIcon.png";
-        private string _shieldIconPath = "/Demo2020;component/Resources/Images/ShieldIcon.png";
+        private string _arrowsIconPath = "/Demo2020;component/Resources/Images/ArrowsIcon.png";
+        private string _battleAxeIconPath = "/Demo2020;component/Resources/Images/BattleAxeIcon.png";
+        private string _bowIconPath = "/Demo2020;component/Resources/Images/BowIcon.png";
+        private string _crossbowIconPath = "/Demo2020;component/Resources/Images/CrossbowIcon.png";
+        private string _daggerIconPath = "/Demo2020;component/Resources/Images/DaggerIcon.png";
+        private string _hatchetIconPath = "/Demo2020;component/Resources/Images/HatchetIcon.png";
         private string _potionIconPath = "/Demo2020;component/Resources/Images/PotionIcon.png";
+        private string _shieldIconPath = "/Demo2020;component/Resources/Images/ShieldIcon.png";
+        private string _spearIconPath = "/Demo2020;component/Resources/Images/SpearIcon.png";
+        private string _swordIconPath = "/Demo2020;component/Resources/Images/SwordIcon.png";
+        private string _wandIconPath = "/Demo2020;component/Resources/Images/WandIcon.png";
+        private string _warhammerIconPath = "/Demo2020;component/Resources/Images/WarhammerIcon.png";
 
         public Equipment()
         {
@@ -343,6 +351,10 @@ namespace Demo2020.Biz.Equipment.Models
                 else if (EquipmentCategory.Name == "Weapon")
                 {
                     return _swordIconPath;
+                }
+                else if(EquipmentCategory.Name == "Adventuring Gear" && GearCategory.Name == "Ammunition")
+                {
+                    return _arrowsIconPath;
                 }
                 else
                 {

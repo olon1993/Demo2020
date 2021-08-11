@@ -33,7 +33,7 @@
             Margin="10"
             BorderBrush="DarkRed"
             BorderThickness="0,0,0,3">
-            <Grid Margin="0,0,0,10">
+            <Grid Margin="0,0,0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -86,7 +86,7 @@
             Margin="10"
             BorderBrush="DarkRed"
             BorderThickness="0,0,0,3">
-            <Grid Margin="0,0,0,10">
+            <Grid Margin="0,0,0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -230,14 +230,32 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-            <Grid Margin="0,0,0,10">
+            <Grid Margin="0,0,0,5">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <!--  Row 0 : Name  -->
-                <ItemsControl ItemsSource="{Binding Description}" />
+                <!--  Row 0 : Subtitle  -->
+                <TextBlock
+                    DockPanel.Dock="Left"
+                    FontSize="12"
+                    FontWeight="Bold"
+                    Foreground="DarkRed"
+                    Text="Description" />
+
+                <!--  Row 1 : Description  -->
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Description}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                Margin="0,0,0,3"
+                                Text="{Binding}"
+                                TextWrapping="Wrap" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
             </Grid>
         </Border>

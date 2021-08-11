@@ -1,24 +1,22 @@
-﻿using Demo2020.Biz.Equipment.Interfaces;
-using Demo2020.Biz.Equipment.Models;
+﻿using Demo2020.Biz.MonsterManual.Interfaces;
+using Demo2020.Biz.MonsterManual.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo2020.Biz.Equipment.Services
+namespace Demo2020.Biz.MonsterManual.Services
 {
-    public class DnD5eEquipmentDataAccessObject : IEquipmentDataAccessObject
+    public class MonsterDataAccessObject : IMonsterDataAccessObject
     {
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
         private const string _baseUrl = "http://www.dnd5eapi.co";
 
-        public async Task<List<Models.Equipment>> GetAllEquipment()
+        public async Task<List<Monster>> GetAllMonsters()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -29,11 +27,11 @@ namespace Demo2020.Biz.Equipment.Services
                     // Add an Accept header for JSON format.
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                    HttpResponseMessage response = await client.GetAsync("/api/equipment");
+                    HttpResponseMessage response = await client.GetAsync("/api/monsters");
                     if (response.IsSuccessStatusCode)
                     {
                         string rawJSON = await response.Content.ReadAsStringAsync();
-                        var data = JsonConvert.DeserializeObject<EquipmentContainer>(rawJSON);
+                        var data = JsonConvert.DeserializeObject<MonsterContainer>(rawJSON);
                         return data.Results;
                     }
                 }
@@ -46,7 +44,7 @@ namespace Demo2020.Biz.Equipment.Services
             return null;
         }
 
-        public async Task<Models.Equipment> GetEquipment(string name)
+        public async Task<Monster> GetMonster(string name)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -56,7 +54,7 @@ namespace Demo2020.Biz.Equipment.Services
 
                     // Add an Accept header for JSON format.
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    
+
                     name = name.ToLower()
                         .Replace(" form", "")
                         .Replace(" ", "-")
@@ -64,13 +62,12 @@ namespace Demo2020.Biz.Equipment.Services
                         .Replace("(", "")
                         .Replace(")", "")
                         .Replace("'", "")
-                        .Replace(":", "")
                         .Replace(",", "");
-                    HttpResponseMessage response = await client.GetAsync("/api/equipment/" + name);
+                    HttpResponseMessage response = await client.GetAsync("/api/monsters/" + name);
                     if (response.IsSuccessStatusCode)
                     {
                         string rawJSON = await response.Content.ReadAsStringAsync();
-                        var data = JsonConvert.DeserializeObject<Models.Equipment>(rawJSON);
+                        var data = JsonConvert.DeserializeObject<Monster>(rawJSON);
                         return data;
                     }
                 }
@@ -80,23 +77,23 @@ namespace Demo2020.Biz.Equipment.Services
                 }
             }
 
-            return default(Models.Equipment);
+            return default(Monster);
         }
 
 
         //**************************************************\\
         //****************** Nested Class ******************\\
         //**************************************************\\
-        private class EquipmentContainer
+        private class MonsterContainer
         {
-            public EquipmentContainer(int count, List<Models.Equipment> results)
+            public MonsterContainer(int count, List<Monster> results)
             {
                 Count = count;
                 Results = results;
             }
 
             public int Count { get; set; }
-            public List<Models.Equipment> Results { get; set; }
+            public List<Monster> Results { get; set; }
         }
     }
 }

@@ -201,5 +201,15 @@
     <Resource Include="Resources\Images\PotionIcon.png" />
     <Resource Include="Resources\Images\ShieldIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ArrowsIcon.png" />
+    <Resource Include="Resources\Images\BattleAxeIcon.png" />
+    <Resource Include="Resources\Images\CrossbowIcon.png" />
+    <Resource Include="Resources\Images\DaggerIcon.png" />
+    <Resource Include="Resources\Images\HatchetIcon.png" />
+    <Resource Include="Resources\Images\SpearIcon.png" />
+    <Resource Include="Resources\Images\WandIcon.png" />
+    <Resource Include="Resources\Images\WarhammerIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,7 +14,7 @@ namespace Demo2020.Test.Equipment
         [Fact]
         public async void GetAllEquipment_Test()
         {
-            DnD5eEquipmentDataAccessObject equipmentApi = new DnD5eEquipmentDataAccessObject();
+            EquipmentDataAccessObject equipmentApi = new EquipmentDataAccessObject();
             List<Biz.Equipment.Models.Equipment> equipments = await equipmentApi.GetAllEquipment();
 
             Assert.NotNull(equipments);
@@ -31,7 +31,7 @@ namespace Demo2020.Test.Equipment
         [Fact]
         public async void GetEquipment_Test()
         {
-            DnD5eEquipmentDataAccessObject equipmentApi = new DnD5eEquipmentDataAccessObject();
+            EquipmentDataAccessObject equipmentApi = new EquipmentDataAccessObject();
             List<Biz.Equipment.Models.Equipment> equipments = await equipmentApi.GetAllEquipment();
 
             Assert.NotNull(equipments);
@@ -50,7 +50,7 @@ namespace Demo2020.Test.Equipment
         [MemberData(nameof(Data))]
         public async void GetEquipmentIndividual_Test(string name)
         {
-            DnD5eEquipmentDataAccessObject equipmentApi = new DnD5eEquipmentDataAccessObject();
+            EquipmentDataAccessObject equipmentApi = new EquipmentDataAccessObject();
             Biz.Equipment.Models.Equipment equipment = await equipmentApi.GetEquipment(name);
 
             Assert.NotNull(equipment);
