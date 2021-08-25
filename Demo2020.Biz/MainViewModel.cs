@@ -22,13 +22,15 @@ namespace Demo2020.Biz
         private ObservableObject _currentViewModel;
         private IMonsterManualViewModel _monsterManualViewModel;
         private IEquipmentViewModel _equipmentViewModel;
+        private ILootTableViewModel _lootTableViewModel;
 
-        public MainViewModel(IMonsterManualViewModel monsterManualViewModel, IEquipmentViewModel equipmentViewModel)
+        public MainViewModel(IMonsterManualViewModel monsterManualViewModel, IEquipmentViewModel equipmentViewModel, ILootTableViewModel lootTableViewModel)
         {
             _monsterManualViewModel = monsterManualViewModel;
             _equipmentViewModel = equipmentViewModel;
+            _lootTableViewModel = lootTableViewModel;
 
-            CurrentViewModel = (ObservableObject)_equipmentViewModel;
+            CurrentViewModel = (ObservableObject)_lootTableViewModel;
         }
 
         //**************************************************\\

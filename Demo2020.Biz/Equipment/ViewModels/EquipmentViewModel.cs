@@ -14,16 +14,18 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
+        private bool _isDebugOn = false;
+
         private IEquipmentFactory _equipmentFactory;
-        private IEquipmentDataAccessObject _equipmentApi;
+        private IEquipmentDataAccessObject _equipmentDataAccessObject;
         private IEquipment _currentEquipment;
         private IList<IEquipment> _equipment;
         private int _selectedEquipmentIndex = -1;
 
-        public EquipmentViewModel(IEquipmentFactory equipmentFactory, IEquipmentDataAccessObject equipmentApi)
+        public EquipmentViewModel(IEquipmentFactory equipmentFactory, IEquipmentDataAccessObject equipmentDataAccessObject)
         {
             _equipmentFactory = equipmentFactory;
-            _equipmentApi = equipmentApi;
+            _equipmentDataAccessObject = equipmentDataAccessObject;
 
             Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg =>
             {
@@ -41,13 +43,16 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         private async void GetEquipment()
         {
-            Equipment = (await _equipmentApi.GetAllEquipment())
+            Equipment = (await _equipmentDataAccessObject.GetAllEquipment())
                 .Cast<IEquipment>()
                 .ToList() as IList<IEquipment>;
 
-            foreach (IEquipment equipment in Equipment)
+            if (_isDebugOn)
             {
-                Console.WriteLine(equipment.Name);
+                foreach (IEquipment equipment in Equipment)
+                {
+                    Console.WriteLine(equipment.Name);
+                }
             }
         }
 
@@ -56,7 +61,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
             CurrentEquipment = Equipment[SelectedEquipmentIndex];
             if (CurrentEquipment.IsDataComplete == false)
             {
-                Equipment[SelectedEquipmentIndex] = (await _equipmentApi.GetEquipment(Equipment[SelectedEquipmentIndex].Name)) as IEquipment;
+                Equipment[SelectedEquipmentIndex] = (await _equipmentDataAccessObject.GetEquipment(Equipment[SelectedEquipmentIndex].Name)) as IEquipment;
 
                 // The monster api failed and returned null
                 if (Equipment[SelectedEquipmentIndex] == null)
@@ -78,7 +83,10 @@ namespace Demo2020.Biz.Equipment.ViewModels
                 }
             }
 
-            Console.Write(CurrentEquipment.EquipmentCategory.Name + " " + CurrentEquipment.GearCategory.Name);
+            if (_isDebugOn)
+            {
+                Console.Write(CurrentEquipment.EquipmentCategory.Name + " " + CurrentEquipment.GearCategory.Name);
+            }
         }
 
         //**************************************************\\

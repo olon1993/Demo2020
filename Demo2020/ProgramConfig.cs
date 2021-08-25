@@ -22,27 +22,32 @@ namespace Demo2020.Biz
             builder.RegisterType<MainViewModel>().As<IMainViewModel>();
             builder.RegisterType<MonsterManualViewModel>().As<IMonsterManualViewModel>();
             builder.RegisterType<EquipmentViewModel>().As<IEquipmentViewModel>();
+            builder.RegisterType<LootTableViewModel>().As<ILootTableViewModel>();
 
             // Models
             builder.RegisterType<Monster>().As<IMonster>();
             builder.RegisterType<Speed>().As<ISpeed>();
-            builder.RegisterType<Equipment.Models.Equipment>().As<IEquipment>();
             builder.RegisterType<ArmorClass>().As<IArmorClass>();
+            builder.RegisterType<Equipment.Models.Equipment>().As<IEquipment>();
             builder.RegisterType<Category>().As<ICategory>();
             builder.RegisterType<Cost>().As<ICost>();
             builder.RegisterType<Damage>().As<IDamage>();
             builder.RegisterType<EquipmentProperty>().As<IEquipmentProperty>();
             builder.RegisterType<Range>().As<IRange>();
+            builder.RegisterType<LootTable>().As<ILootTable>();
 
             // Services
             builder.RegisterType<SqlDataAccessService>().As<IDataAccessService>();
+
             builder.RegisterType<MonsterFactory>().As<IMonsterFactory>();
-            builder.RegisterType<SpeedFactory>().As<ISpeedFactory>();
             builder.RegisterType<MonsterDataAccessObject>().As<IMonsterDataAccessObject>();
+            builder.RegisterType<SpeedFactory>().As<ISpeedFactory>();
+
             builder.RegisterType<EquipmentFactory>().As<IEquipmentFactory>();
-            //builder.RegisterType<CategoryFactory>().As<ICategoryFactory>();
-            //builder.RegisterType<CostFactory>().As<ICostFactory>();
             builder.RegisterType<EquipmentDataAccessObject>().As<IEquipmentDataAccessObject>();
+
+            builder.RegisterType<LootTableFactory>().As<ILootTableFactory>();
+            builder.RegisterType<LootTableDataAccessObject>().As<ILootTableDataAccessObject>();
 
             return builder.Build();
         }

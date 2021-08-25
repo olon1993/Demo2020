@@ -177,3 +177,7 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\Equipmen
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\EquipmentView.baml
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EquipmentControl.g.cs
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EquipmentControl.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\LootTableControl.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\LootTableControl.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\LootTableView.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\LootTableView.baml

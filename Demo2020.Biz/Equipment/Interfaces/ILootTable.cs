@@ -11,9 +11,8 @@ namespace Demo2020.Biz.Equipment.Interfaces
         int Id { get; set; }
         string Name { get; set; }
         string Description { get; set; }
-        string ImagePath { get; set; }
-        int EquipmentSlots { get; set; }
-        IList<IEquipment> Equipment { get; set; }
+        string ImageSource { get; set; }
+        IList<IEquipmentSlot> EquipmentSlots { get; set; }
 
     }
 }

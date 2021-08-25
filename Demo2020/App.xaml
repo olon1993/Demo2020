@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="clr-namespace:Demo2020.Converters"
     xmlns:local="clr-namespace:Demo2020"
-    xmlns:view_mon="clr-namespace:Demo2020.MonsterManual.Views"
     xmlns:view_equ="clr-namespace:Demo2020.Equipment.Views"
+    xmlns:view_mon="clr-namespace:Demo2020.MonsterManual.Views"
     xmlns:vm="clr-namespace:Demo2020.Biz;assembly=Demo2020.Biz"
-    xmlns:vm_mon="clr-namespace:Demo2020.Biz.MonsterManual.ViewModels;assembly=Demo2020.Biz"
     xmlns:vm_equ="clr-namespace:Demo2020.Biz.Equipment.ViewModels;assembly=Demo2020.Biz"
+    xmlns:vm_mon="clr-namespace:Demo2020.Biz.MonsterManual.ViewModels;assembly=Demo2020.Biz"
     Startup="Application_Startup">
     <Application.Resources>
 
@@ -23,6 +23,10 @@
 
         <DataTemplate DataType="{x:Type vm_equ:EquipmentViewModel}">
             <view_equ:EquipmentView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm_equ:LootTableViewModel}">
+            <view_equ:LootTableView />
         </DataTemplate>
 
     </Application.Resources>

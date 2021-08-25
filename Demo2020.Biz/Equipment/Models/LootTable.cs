@@ -10,13 +10,18 @@ namespace Demo2020.Biz.Equipment.Models
 {
     public class LootTable : ObservableObject, ILootTable
     {
+        //**************************************************\\
+        //********************* Fields *********************\\
+        //**************************************************\\
         private int _id;
         private string _name;
         private string _description;
-        private string _imagePath;
-        private int _equipmentSlots;
-        private IList<IEquipment> _equipment;
+        private string _imageSource;
+        private IList<IEquipmentSlot> _equipmentSlots;
 
+        //**************************************************\\
+        //******************* Properties *******************\\
+        //**************************************************\\
         public int Id
         {
             get { return _id; }
@@ -56,20 +61,20 @@ namespace Demo2020.Biz.Equipment.Models
             }
         }
 
-        public string ImagePath
+        public string ImageSource
         {
-            get { return _imagePath; }
+            get { return _imageSource; }
             set
             {
-                if (_imagePath != value)
+                if (_imageSource != value)
                 {
-                    _imagePath = value;
+                    _imageSource = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public int EquipmentSlots
+        public IList<IEquipmentSlot> EquipmentSlots
         {
             get { return _equipmentSlots; }
             set
@@ -77,19 +82,6 @@ namespace Demo2020.Biz.Equipment.Models
                 if (_equipmentSlots != value)
                 {
                     _equipmentSlots = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public IList<IEquipment> Equipment
-        {
-            get { return _equipment; }
-            set
-            {
-                if (_equipment != value)
-                {
-                    _equipment = value;
                     OnPropertyChanged();
                 }
             }
