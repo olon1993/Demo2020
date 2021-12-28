@@ -12,6 +12,41 @@
     WindowState="Maximized"
     mc:Ignorable="d">
     <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!--  Column : 0  -->
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            Command="{Binding MonsterManualCommand}">
+            <Image Height="64" Source="/Demo2020;component/Resources/Images/BeholderIcon.png" />
+        </Button>
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Command="{Binding EquipmentCommand}">
+            <Image Height="64" Source="/Demo2020;component/Resources/Images/SwordIcon.png" />
+        </Button>
+        <Button
+            Grid.Row="2"
+            Grid.Column="0"
+            Command="{Binding LootCommand}">
+            <Image Height="64" Source="/Demo2020;component/Resources/Images/ArrowsIcon.png" />
+        </Button>
+
+        <!--  Column : 1  -->
+        <ContentControl
+            Grid.RowSpan="4"
+            Grid.Column="1"
+            Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

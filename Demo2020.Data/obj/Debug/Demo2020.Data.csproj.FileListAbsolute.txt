@@ -15,3 +15,6 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.cspro
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.csproj.CoreCompileInputs.cache
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.dll
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.pdb
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Data\bin\Debug\Newtonsoft.Json.dll
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Data\bin\Debug\Newtonsoft.Json.xml
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Data\obj\Debug\Demo2020.Data.csproj.CopyComplete

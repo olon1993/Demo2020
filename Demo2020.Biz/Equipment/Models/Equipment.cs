@@ -18,6 +18,7 @@ namespace Demo2020.Biz.Equipment.Models
         private string _name;
         private double _weight;
         private IList<Description> _description;
+        private IList<string> _stringdescription;
         private ICost _cost;
         private IDamage _twoHandedDamage;
         private IList<EquipmentProperty> _properties;
@@ -318,7 +319,6 @@ namespace Demo2020.Biz.Equipment.Models
             }
         }
 
-        [JsonProperty("desc")]
         public IList<Description> Description
         {
             get { return _description; }
@@ -327,6 +327,27 @@ namespace Demo2020.Biz.Equipment.Models
                 if (_description != value)
                 {
                     _description = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        // This implementation is messy. I want to clean this up in the near future. 
+        [JsonProperty("desc")]
+        public IList<string> StringDescription
+        {
+            get { return _stringdescription; }
+            set
+            {
+                if (_stringdescription != value)
+                {
+                    _stringdescription = value;
+                    List<Description> buffer = new List<Description>();
+                    foreach(string s in _stringdescription)
+                    {
+                        buffer.Add(new Models.Description(s));
+                    }
+                    Description = buffer;
                     OnPropertyChanged();
                 }
             }

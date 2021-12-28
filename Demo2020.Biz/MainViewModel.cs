@@ -5,12 +5,14 @@ using Demo2020.Biz.Commons.ViewModels;
 using Demo2020.Biz.Equipment.Interfaces;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.ViewModels;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Demo2020.Biz
 {
@@ -30,7 +32,16 @@ namespace Demo2020.Biz
             _equipmentViewModel = equipmentViewModel;
             _lootTableViewModel = lootTableViewModel;
 
+            MonsterManualCommand = new RelayCommand<ObservableObject>(x => ChangeView((ObservableObject)_monsterManualViewModel));
+            EquipmentCommand = new RelayCommand<ObservableObject>(x => ChangeView((ObservableObject)_equipmentViewModel));
+            LootCommand = new RelayCommand<ObservableObject>(x => ChangeView((ObservableObject)_lootTableViewModel));
+
             CurrentViewModel = (ObservableObject)_lootTableViewModel;
+        }
+
+        private void ChangeView(ObservableObject newView)
+        {
+            CurrentViewModel = newView;
         }
 
         //**************************************************\\
@@ -48,5 +59,10 @@ namespace Demo2020.Biz
                 }
             }
         }
+
+        public ICommand MonsterManualCommand { get; set; }
+
+        public ICommand EquipmentCommand { get; set; }
+        public ICommand LootCommand { get; set; }
     }
 }
