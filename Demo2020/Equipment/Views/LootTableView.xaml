@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:Demo2020.Equipment.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:uc="clr-namespace:Demo2020.Equipment.UserControls"
+    xmlns:vm="clr-namespace:Demo2020.Biz.Equipment.ViewModels;assembly=Demo2020.Biz"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -15,10 +16,7 @@
             <ColumnDefinition Width="640" />
         </Grid.ColumnDefinitions>
 
-        <ListBox
-            Grid.Row="1"
-            ItemsSource="{Binding LootTables, UpdateSourceTrigger=PropertyChanged}"
-            SelectedIndex="{Binding SelectedLootTableIndex}">
+        <ListBox ItemsSource="{Binding LootTables, UpdateSourceTrigger=PropertyChanged}" SelectedIndex="{Binding SelectedLootTableIndex}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
@@ -26,13 +24,39 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <uc:LootTableControl
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            DataContext="{Binding CurrentLootTable}" />
+        <Border Grid.Column="1" Visibility="{Binding IsEditEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ReverseBoolToVisibilityConverter}, FallbackValue=Visible}">
+            <uc:LootTableControl DataContext="{Binding CurrentLootTable}" />
+        </Border>
+
+        <Border Grid.Column="1" Visibility="{Binding IsEditEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+            <Grid Background="LightGoldenrodYellow">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <uc:EditLootTableControl DataContext="{Binding CurrentLootTable}" />
+
+                <DockPanel Grid.Row="1" Margin="3">
+                    <Button
+                        Height="20"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Command="{Binding AddLootSlotCommand}"
+                        DockPanel.Dock="Left">
+                        <Image Source="/Demo2020;component/Resources/Images/Add.png" />
+                    </Button>
+                    <TextBlock
+                        Margin="3,0,0,0"
+                        DockPanel.Dock="Left"
+                        FontWeight="Bold"
+                        Text="Add Equipment Slot" />
+                </DockPanel>
+            </Grid>
+        </Border>
 
         <Button
-            Grid.Row="0"
             Grid.Column="1"
             Width="36"
             Height="36"

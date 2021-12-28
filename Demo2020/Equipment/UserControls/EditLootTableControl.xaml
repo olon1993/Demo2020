@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="Demo2020.Equipment.UserControls.LootTableControl"
+    x:Class="Demo2020.Equipment.UserControls.EditLootTableControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -90,10 +90,14 @@
                                 <ColumnDefinition Width="3*" />
                                 <ColumnDefinition Width="6*" />
                             </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-                            <TextBlock Margin="3" Text="{Binding Index}" />
+                            <TextBox Margin="3" Text="{Binding Index}" />
 
-                            <TextBlock
+                            <TextBox
                                 Grid.Column="1"
                                 Margin="3"
                                 Text="{Binding Equipment.Name}" />
@@ -104,11 +108,31 @@
                                 ItemsSource="{Binding Equipment.Description}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+                                        <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextWrapping="Wrap" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
+                            <DockPanel
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Margin="3,0,0,10">
+                                <Button
+                                    Height="20"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Command="{Binding AddDescriptionCommand}"
+                                    DockPanel.Dock="Left">
+                                    <Image Source="/Demo2020;component/Resources/Images/Add.png" />
+                                </Button>
+                                <TextBlock
+                                    Margin="3,0,0,0"
+                                    DockPanel.Dock="Right"
+                                    FontWeight="Bold"
+                                    Text="Add Description" />
+                            </DockPanel>
                         </Grid>
                         <DataTemplate.Triggers>
                             <Trigger Property="ItemsControl.AlternationIndex" Value="0">

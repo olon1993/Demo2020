@@ -181,3 +181,5 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\L
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\LootTableControl.baml
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\LootTableView.g.cs
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\LootTableView.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditLootTableControl.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditLootTableControl.baml

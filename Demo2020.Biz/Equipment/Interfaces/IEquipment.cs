@@ -14,7 +14,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
         
         double Weight { get; set; }
 
-        IList<string> Description { get; set; }
+        IList<Description> Description { get; set; }
 
         ICost Cost { get; set; }
 

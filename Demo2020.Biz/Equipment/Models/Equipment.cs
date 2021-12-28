@@ -17,7 +17,7 @@ namespace Demo2020.Biz.Equipment.Models
         private bool _isDataComplete;
         private string _name;
         private double _weight;
-        private IList<string> _description;
+        private IList<Description> _description;
         private ICost _cost;
         private IDamage _twoHandedDamage;
         private IList<EquipmentProperty> _properties;
@@ -51,7 +51,7 @@ namespace Demo2020.Biz.Equipment.Models
 
         public Equipment()
         {
-            Description = new List<string>();
+            Description = new List<Description>();
             TwoHandedDamage = new Damage();
             Properties = new List<EquipmentProperty>();
             Range = new Range();
@@ -319,7 +319,7 @@ namespace Demo2020.Biz.Equipment.Models
         }
 
         [JsonProperty("desc")]
-        public IList<string> Description
+        public IList<Description> Description
         {
             get { return _description; }
             set

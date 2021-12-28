@@ -116,6 +116,7 @@
     <Compile Include="Equipment\Models\Category.cs" />
     <Compile Include="Equipment\Models\Cost.cs" />
     <Compile Include="Equipment\Models\Damage.cs" />
+    <Compile Include="Equipment\Models\Description.cs" />
     <Compile Include="Equipment\Models\Equipment.cs" />
     <Compile Include="Equipment\Models\EquipmentProperty.cs" />
     <Compile Include="Equipment\Models\EquipmentSlot.cs" />

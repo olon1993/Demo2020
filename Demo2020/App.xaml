@@ -15,6 +15,7 @@
         <local:MessageListener x:Key="MessageListener" />
 
         <converter:BoolToVisiblityConverter x:Key="BoolToVisibilityConverter" />
+        <converter:ReverseBoolToVisiblityConverter x:Key="ReverseBoolToVisibilityConverter" />
         <converter:IsGreaterThanValueConverter x:Key="IsGreaterThanValueConverter" />
 
         <DataTemplate DataType="{x:Type vm_mon:MonsterManualViewModel}">

@@ -109,8 +109,12 @@
     <Compile Include="Commons\Windows\MessageWindow.xaml.cs">
       <DependentUpon>MessageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\ReverseBoolToVisiblityConverter.cs" />
     <Compile Include="Converters\BoolToVisiblityConverter.cs" />
     <Compile Include="Converters\IsGreaterThanValueConverter.cs" />
+    <Compile Include="Equipment\UserControls\EditLootTableControl.xaml.cs">
+      <DependentUpon>EditLootTableControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\UserControls\EquipmentControl.xaml.cs">
       <DependentUpon>EquipmentControl.xaml</DependentUpon>
     </Compile>
@@ -134,6 +138,10 @@
       <DependentUpon>MonsterManualView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgramConfig.cs" />
+    <Page Include="Equipment\UserControls\EditLootTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Equipment\UserControls\EquipmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,6 +236,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\LockIcon.png" />
     <Resource Include="Resources\Images\UnlockIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

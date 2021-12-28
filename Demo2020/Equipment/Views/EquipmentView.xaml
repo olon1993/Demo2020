@@ -32,5 +32,19 @@
             Grid.Column="1"
             DataContext="{Binding CurrentEquipment}" />
 
+        <Button
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="36"
+            Height="36"
+            Margin="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Command="{Binding ToggleEditCommand}">
+            <Image Source="/Demo2020;component/Resources/Images/LockIcon.png" />
+        </Button>
+
     </Grid>
 </UserControl>
