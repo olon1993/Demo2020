@@ -105,11 +105,13 @@
     <Compile Include="Equipment\Interfaces\IEquipmentDataAccessObject.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentFactory.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentProperty.cs" />
+    <Compile Include="Equipment\Interfaces\IEquipmentSearchAndFilter.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentSlot.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentViewModel.cs" />
     <Compile Include="Equipment\Interfaces\ILootTable.cs" />
     <Compile Include="Equipment\Interfaces\ILootTableDataAccessObject.cs" />
     <Compile Include="Equipment\Interfaces\ILootTableFactory.cs" />
+    <Compile Include="Equipment\Interfaces\ILootTableSearchAndFilter.cs" />
     <Compile Include="Equipment\Interfaces\ILootTableViewModel.cs" />
     <Compile Include="Equipment\Interfaces\IRange.cs" />
     <Compile Include="Equipment\Models\ArmorClass.cs" />
@@ -124,12 +126,15 @@
     <Compile Include="Equipment\Models\Range.cs" />
     <Compile Include="Equipment\Services\EquipmentDataAccessObject.cs" />
     <Compile Include="Equipment\Services\EquipmentFactory.cs" />
+    <Compile Include="Equipment\Services\EquipmentSearchAndFilterService.cs" />
     <Compile Include="Equipment\Services\LootTableDataAccessObject.cs" />
     <Compile Include="Equipment\Services\LootTableFactory.cs" />
+    <Compile Include="Equipment\Services\LootTableSearchAndFilterService.cs" />
     <Compile Include="Equipment\ViewModels\EquipmentViewModel.cs" />
     <Compile Include="Equipment\ViewModels\LootTableViewModel.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterDataAccessObject.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterManualViewModel.cs" />
+    <Compile Include="MonsterManual\Interfaces\ISearchAndFilterService.cs" />
     <Compile Include="MonsterManual\Models\Proficiency.cs" />
     <Compile Include="MonsterManual\Models\ProficiencyElement.cs" />
     <Compile Include="Commons\Services\SqlDataAccessService.cs" />
@@ -143,6 +148,7 @@
     <Compile Include="MonsterManual\Models\Speed.cs" />
     <Compile Include="MonsterManual\Services\MonsterDataAccessObject.cs" />
     <Compile Include="MonsterManual\Services\MonsterFactory.cs" />
+    <Compile Include="MonsterManual\Services\MonsterSearchAndFilterService.cs" />
     <Compile Include="MonsterManual\Services\SpeedFactory.cs" />
     <Compile Include="MonsterManual\ViewModels\MonsterManualViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

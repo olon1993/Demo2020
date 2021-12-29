@@ -16,19 +16,23 @@ namespace Demo2020.Biz.Equipment.ViewModels
     {
         private ILootTableFactory _lootTableFactory;
         private ILootTableDataAccessObject _lootTableDataAccessObject;
+        private ILootTableSearchAndFilter _lootTableSearchAndFilter;
         private ILootTable _currentLootTable;
         private IList<ILootTable> _lootTables;
+        private IList<ILootTable> _lootTablesRaw;
         private int _selectedLootTableIndex = -1;
+        private string _filter = "";
         private bool _isEditEnabled;
         private string _editIconSource;
 
         private const string UNLOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/UnlockIcon.png";
         private const string LOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/LockIcon.png";
 
-        public LootTableViewModel(ILootTableFactory lootTableFactory, ILootTableDataAccessObject lootTableDataAccessObject)
+        public LootTableViewModel(ILootTableFactory lootTableFactory, ILootTableDataAccessObject lootTableDataAccessObject, ILootTableSearchAndFilter lootTableSearchAndFilter)
         {
             _lootTableFactory = lootTableFactory;
             _lootTableDataAccessObject = lootTableDataAccessObject;
+            _lootTableSearchAndFilter = lootTableSearchAndFilter;
 
             ToggleEditCommand = new RelayCommand(ToggleEdit);
             AddLootSlotCommand = new RelayCommand(AddLootSlot);
@@ -42,7 +46,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         private async void GetLootTables()
         {
-            LootTables = new List<ILootTable>() 
+            _lootTablesRaw = LootTables = new List<ILootTable>() 
             { 
                 new LootTable() 
                 { 
@@ -484,6 +488,20 @@ namespace Demo2020.Biz.Equipment.ViewModels
                 if(_editIconSource != value)
                 {
                     _editIconSource = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string Filter 
+        { 
+            get { return _filter; }
+            set
+            {
+                if(_filter != value)
+                {
+                    _filter = value;
+                    LootTables = _lootTableSearchAndFilter.Filter(_lootTablesRaw, _filter);
                     OnPropertyChanged();
                 }
             }

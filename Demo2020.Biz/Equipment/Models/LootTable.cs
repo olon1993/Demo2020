@@ -20,46 +20,10 @@ namespace Demo2020.Biz.Equipment.Models
         private string _imageSource;
         private int _lootTableSize;
         private IList<IEquipmentSlot> _equipmentSlots;
-        private int[] _validLootTableSizes = { 4, 6, 8, 10, 12, 20 };
 
         public LootTable()
         {
             EquipmentSlots = new List<IEquipmentSlot>();
-        }
-
-
-        private void UpdateLootTableSize()
-        {
-            if (LootTableSize == EquipmentSlots.Count)
-            {
-                return;
-            }
-
-            if (_validLootTableSizes.Contains(LootTableSize) == false)
-            {
-                // Alert the user that the value is invalid
-                LootTableSize = EquipmentSlots.Count;
-                return;
-            }
-
-            // NEED TO RETHINK THIS
-            //IList<IEquipmentSlot> buffer = EquipmentSlots;
-            if (LootTableSize > EquipmentSlots.Count)
-            {
-                for (int i = EquipmentSlots.Count; i < LootTableSize; i++)
-                {
-                    EquipmentSlots.Add(new EquipmentSlot());
-                }
-            }
-            else
-            {
-                for (int i = LootTableSize; EquipmentSlots.Count > i;)
-                {
-                    EquipmentSlots.RemoveAt(EquipmentSlots.Count - 1);
-                }
-            }
-            //EquipmentSlots = buffer;
-
         }
 
         //**************************************************\\
@@ -125,7 +89,6 @@ namespace Demo2020.Biz.Equipment.Models
                 if (_lootTableSize != value)
                 {
                     _lootTableSize = value;
-                    //UpdateLootTableSize();
                     OnPropertyChanged();
                 }
             }

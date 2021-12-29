@@ -1,9 +1,10 @@
-﻿using Demo2020.Biz.MonsterManual.Models;
+﻿using Demo2020.Biz.Commons.Interfaces;
+using Demo2020.Biz.MonsterManual.Models;
 using System.Collections.Generic;
 
 namespace Demo2020.Biz.MonsterManual.Interfaces
 {
-    public interface IMonster
+    public interface IMonster 
     {
         string Name { get; set; }
         string Size { get; set; }

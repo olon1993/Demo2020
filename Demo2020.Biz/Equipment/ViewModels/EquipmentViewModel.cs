@@ -18,14 +18,18 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
         private IEquipmentFactory _equipmentFactory;
         private IEquipmentDataAccessObject _equipmentDataAccessObject;
+        private IEquipmentSearchAndFilter _equipmentSearchAndFilter;
         private IEquipment _currentEquipment;
         private IList<IEquipment> _equipment;
+        private IList<IEquipment> _equipmentRaw;
+        private string _filter = "";
         private int _selectedEquipmentIndex = -1;
 
-        public EquipmentViewModel(IEquipmentFactory equipmentFactory, IEquipmentDataAccessObject equipmentDataAccessObject)
+        public EquipmentViewModel(IEquipmentFactory equipmentFactory, IEquipmentDataAccessObject equipmentDataAccessObject, IEquipmentSearchAndFilter equipmentSearchAndFilter)
         {
             _equipmentFactory = equipmentFactory;
             _equipmentDataAccessObject = equipmentDataAccessObject;
+            _equipmentSearchAndFilter = equipmentSearchAndFilter;
 
             Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg =>
             {
@@ -43,7 +47,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         private async void GetEquipment()
         {
-            Equipment = (await _equipmentDataAccessObject.GetAllEquipment())
+            _equipmentRaw = Equipment = (await _equipmentDataAccessObject.GetAllEquipment())
                 .Cast<IEquipment>()
                 .ToList() as IList<IEquipment>;
 
@@ -130,6 +134,20 @@ namespace Demo2020.Biz.Equipment.ViewModels
                 if (_equipment != value)
                 {
                     _equipment = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                if (_filter != value)
+                {
+                    _filter = value;
+                    Equipment = _equipmentSearchAndFilter.Filter(_equipmentRaw, _filter);
                     OnPropertyChanged();
                 }
             }

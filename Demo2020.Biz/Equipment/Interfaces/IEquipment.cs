@@ -1,17 +1,13 @@
-﻿using Demo2020.Biz.Equipment.Models;
-using System;
+﻿using Demo2020.Biz.Commons.Interfaces;
+using Demo2020.Biz.Equipment.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipment
     {
-        
         string Name { get; set; }
-        
+
         double Weight { get; set; }
 
         IList<Description> Description { get; set; }

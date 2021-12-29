@@ -1,4 +1,5 @@
-﻿using Demo2020.Biz.Commons.Models;
+﻿using Demo2020.Biz.Commons.Interfaces;
+using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.MonsterManual.Models;
 using GalaSoft.MvvmLight.Messaging;
@@ -17,14 +18,18 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
         //**************************************************\\
         private IMonsterFactory _monsterFactory;
         private IMonsterDataAccessObject _monsterDataAccessObject;
+        private ISearchAndFilterService _searchAndFilterService;
         private IMonster _currentMonster;
         private IList<IMonster> _monsters;
+        private IList<IMonster> _monstersRaw;
         private int _selectedMonsterIndex = -1;
+        private string _filter = "";
 
-        public MonsterManualViewModel(IMonsterFactory monsterFactory, IMonsterDataAccessObject monsterDataAccessObject)
+        public MonsterManualViewModel(IMonsterFactory monsterFactory, IMonsterDataAccessObject monsterDataAccessObject, ISearchAndFilterService searchAndFilterService)
         {
             _monsterFactory = monsterFactory;
             _monsterDataAccessObject = monsterDataAccessObject;
+            _searchAndFilterService = searchAndFilterService;
 
             Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg => 
             {
@@ -42,7 +47,7 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
         //**************************************************\\
         private async void GetMonsters()
         {
-            Monsters = (await _monsterDataAccessObject.GetAllMonsters())
+            _monstersRaw = Monsters = (await _monsterDataAccessObject.GetAllMonsters())
                 .Cast<IMonster>()
                 .ToList() as IList<IMonster>;
         }
@@ -120,6 +125,20 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
                 }
             }
         }
+
+        public string Filter 
+        {
+            get { return _filter; }
+            set
+            {
+                if(_filter != value)
+                {
+                    _filter = value;
+                    Monsters = _searchAndFilterService.Filter(_monstersRaw, _filter);
+                    OnPropertyChanged();
+                }
+            }
+        } 
 
     }
 }

@@ -16,16 +16,44 @@
             <ColumnDefinition Width="640" />
         </Grid.ColumnDefinitions>
 
-        <ListBox
-            Grid.Row="1"
-            ItemsSource="{Binding Monsters, UpdateSourceTrigger=PropertyChanged}"
-            SelectedIndex="{Binding SelectedMonsterIndex}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <!--  Column : 0  -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Margin="3,0,0,0"
+                Panel.ZIndex="10"
+                Focusable="False"
+                Foreground="LightGray"
+                IsHitTestVisible="False"
+                Text="Search...">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Filter.Length}" Value="0">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <ListBox
+                Grid.Row="1"
+                ItemsSource="{Binding Monsters, UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding SelectedMonsterIndex}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
 
         <uc:StatBlockControl
             Grid.RowSpan="2"

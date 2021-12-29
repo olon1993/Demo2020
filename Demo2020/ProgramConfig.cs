@@ -41,13 +41,16 @@ namespace Demo2020.Biz
 
             builder.RegisterType<MonsterFactory>().As<IMonsterFactory>();
             builder.RegisterType<MonsterDataAccessObject>().As<IMonsterDataAccessObject>();
+            builder.RegisterType<MonsterSearchAndFilterService>().As<ISearchAndFilterService>();
             builder.RegisterType<SpeedFactory>().As<ISpeedFactory>();
 
             builder.RegisterType<EquipmentFactory>().As<IEquipmentFactory>();
             builder.RegisterType<EquipmentDataAccessObject>().As<IEquipmentDataAccessObject>();
+            builder.RegisterType<EquipmentSearchAndFilterService>().As<IEquipmentSearchAndFilter>();
 
             builder.RegisterType<LootTableFactory>().As<ILootTableFactory>();
             builder.RegisterType<LootTableDataAccessObject>().As<ILootTableDataAccessObject>();
+            builder.RegisterType<LootTableSearchAndFilterService>().As<ILootTableSearchAndFilter>();
 
             return builder.Build();
         }
