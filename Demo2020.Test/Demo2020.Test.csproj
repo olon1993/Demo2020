@@ -59,7 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Equipment\DnD5eEquipmentDataAccessObject_Tests.cs" />
+    <Compile Include="Equipment\EquipmentSearchAndFilter_Tests.cs" />
+    <Compile Include="Equipment\LootTableSearchAndFilter_Tests.cs" />
     <Compile Include="MonsterManual\DnD5eMonsterDataAccessObject_Tests.cs" />
+    <Compile Include="MonsterManual\MonsterSearchAndFilter_Tests.cs" />
     <Compile Include="MonsterManual\Monster_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
