@@ -1,4 +1,5 @@
-﻿using Demo2020.Biz.Commons.Interfaces;
+﻿using Demo2020.Biz.ActorCatalog.Interfaces;
+using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Commons.Services;
 using Demo2020.Biz.Commons.ViewModels;
@@ -25,16 +26,20 @@ namespace Demo2020.Biz
         private IMonsterManualViewModel _monsterManualViewModel;
         private IEquipmentViewModel _equipmentViewModel;
         private ILootTableViewModel _lootTableViewModel;
+        private IActorCatalogViewModel _actorCatalogViewModel;
 
-        public MainViewModel(IMonsterManualViewModel monsterManualViewModel, IEquipmentViewModel equipmentViewModel, ILootTableViewModel lootTableViewModel)
+        public MainViewModel(IMonsterManualViewModel monsterManualViewModel, IEquipmentViewModel equipmentViewModel, ILootTableViewModel lootTableViewModel, 
+            IActorCatalogViewModel actorCatalogViewModel)
         {
             _monsterManualViewModel = monsterManualViewModel;
             _equipmentViewModel = equipmentViewModel;
             _lootTableViewModel = lootTableViewModel;
+            _actorCatalogViewModel = actorCatalogViewModel;
 
             MonsterManualCommand = new RelayCommand<ObservableObject>(x => ChangeView((ObservableObject)_monsterManualViewModel));
             EquipmentCommand = new RelayCommand<ObservableObject>(x => ChangeView((ObservableObject)_equipmentViewModel));
             LootCommand = new RelayCommand<ObservableObject>(x => ChangeView((ObservableObject)_lootTableViewModel));
+            ActorCatalogCommand = new RelayCommand<ObservableObject>(x => ChangeView((ObservableObject)_actorCatalogViewModel));
 
             CurrentViewModel = (ObservableObject)_lootTableViewModel;
         }
@@ -64,5 +69,6 @@ namespace Demo2020.Biz
 
         public ICommand EquipmentCommand { get; set; }
         public ICommand LootCommand { get; set; }
+        public ICommand ActorCatalogCommand { get; set; }
     }
 }

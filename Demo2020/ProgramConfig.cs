@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Demo2020.Biz.ActorCatalog.Interfaces;
+using Demo2020.Biz.ActorCatalog.ViewModels;
 using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Services;
 using Demo2020.Biz.Equipment.Interfaces;
@@ -23,6 +25,7 @@ namespace Demo2020.Biz
             builder.RegisterType<MonsterManualViewModel>().As<IMonsterManualViewModel>();
             builder.RegisterType<EquipmentViewModel>().As<IEquipmentViewModel>();
             builder.RegisterType<LootTableViewModel>().As<ILootTableViewModel>();
+            builder.RegisterType<ActorCatalogViewModel>().As<IActorCatalogViewModel>();
 
             // Models
             builder.RegisterType<Monster>().As<IMonster>();

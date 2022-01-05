@@ -17,8 +17,35 @@ namespace Demo2020.Biz.ActorCatalog.ViewModels
         //private IActorDataAccessObject _monsterDataAccessObject;
         private IActor _currentActor;
         private IList<IActor> _actors;
-        private int _selectedMonsterIndex = -1;
+        private int _selectedActorIndex = -1;
 
+        //**************************************************\\
+        //******************** Methods *********************\\
+        //**************************************************\\
+        private void GetActorDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        //**************************************************\\
+        //******************* Properties *******************\\
+        //**************************************************\\
+        public int SelectedActorIndex
+        {
+            get { return _selectedActorIndex; }
+            set
+            {
+                if (_selectedActorIndex != value)
+                {
+                    _selectedActorIndex = value;
+                    if (_selectedActorIndex > -1)
+                    {
+                        GetActorDetails();
+                    }
+                    OnPropertyChanged();
+                }
+            }
+        }
         public IActor CurrentActor 
         { 
             get { return _currentActor; }

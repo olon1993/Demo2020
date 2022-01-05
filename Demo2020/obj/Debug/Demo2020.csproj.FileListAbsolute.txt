@@ -183,3 +183,7 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\LootTabl
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\LootTableView.baml
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditLootTableControl.g.cs
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditLootTableControl.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\UserControls\ActorDescriptionControl.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\Views\ActorCatalogView.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\UserControls\ActorDescriptionControl.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\Views\ActorCatalogView.baml

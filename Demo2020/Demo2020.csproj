@@ -98,10 +98,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ActorCatalog\UserControls\ActorDescriptionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActorCatalog\Views\ActorCatalogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Commons\Windows\MessageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="ActorCatalog\UserControls\ActorDescriptionControl.xaml.cs">
+      <DependentUpon>ActorDescriptionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActorCatalog\Views\ActorCatalogView.xaml.cs">
+      <DependentUpon>ActorCatalogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -208,7 +222,6 @@
     <Resource Include="Resources\Images\Splash.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ActorCatalog\" />
     <Folder Include="Commons\Views\" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +252,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\KnightIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

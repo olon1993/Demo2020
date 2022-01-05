@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -30,12 +31,14 @@
             Command="{Binding MonsterManualCommand}">
             <Image Height="64" Source="/Demo2020;component/Resources/Images/BeholderIcon.png" />
         </Button>
+
         <Button
             Grid.Row="1"
             Grid.Column="0"
             Command="{Binding EquipmentCommand}">
             <Image Height="64" Source="/Demo2020;component/Resources/Images/SwordIcon.png" />
         </Button>
+
         <Button
             Grid.Row="2"
             Grid.Column="0"
@@ -43,9 +46,16 @@
             <Image Height="64" Source="/Demo2020;component/Resources/Images/ArrowsIcon.png" />
         </Button>
 
+        <Button
+            Grid.Row="3"
+            Grid.Column="0"
+            Command="{Binding ActorCatalogCommand}">
+            <Image Height="64" Source="/Demo2020;component/Resources/Images/KnightIcon.png" />
+        </Button>
+
         <!--  Column : 1  -->
         <ContentControl
-            Grid.RowSpan="4"
+            Grid.RowSpan="5"
             Grid.Column="1"
             Content="{Binding CurrentViewModel}" />
     </Grid>
