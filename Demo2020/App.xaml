@@ -28,6 +28,10 @@
             <view_equ:EquipmentView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vm_equ:MagicItemViewModel}">
+            <view_equ:MagicItemView />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type vm_equ:LootTableViewModel}">
             <view_equ:LootTableView />
         </DataTemplate>

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Demo2020.Test.Equipment
 {
-    public class DnD5eEquipmentDataAccessService_Tests
+    public class EquipmentDataAccessService_Tests
     {
         [Fact]
         public async void GetAllEquipment_Test()

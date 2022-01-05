@@ -3,10 +3,8 @@ using Demo2020.Biz.Equipment.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Demo2020.Biz.Equipment.Services
@@ -18,7 +16,7 @@ namespace Demo2020.Biz.Equipment.Services
         //**************************************************\\
         private const string _baseUrl = "http://www.dnd5eapi.co";
 
-        public async Task<List<Models.EquipmentModel>> GetAllEquipment()
+        public async Task<List<EquipmentModel>> GetAllEquipment()
         {
             using (HttpClient client = new HttpClient())
             {
@@ -46,7 +44,7 @@ namespace Demo2020.Biz.Equipment.Services
             return null;
         }
 
-        public async Task<Models.EquipmentModel> GetEquipment(string name)
+        public async Task<EquipmentModel> GetEquipment(string name)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -70,7 +68,7 @@ namespace Demo2020.Biz.Equipment.Services
                     if (response.IsSuccessStatusCode)
                     {
                         string rawJSON = await response.Content.ReadAsStringAsync();
-                        var data = JsonConvert.DeserializeObject<Models.EquipmentModel>(rawJSON);
+                        var data = JsonConvert.DeserializeObject<EquipmentModel>(rawJSON);
                         return data;
                     }
                 }
@@ -80,7 +78,7 @@ namespace Demo2020.Biz.Equipment.Services
                 }
             }
 
-            return default(Models.EquipmentModel);
+            return default(EquipmentModel);
         }
 
 
@@ -89,14 +87,14 @@ namespace Demo2020.Biz.Equipment.Services
         //**************************************************\\
         private class EquipmentContainer
         {
-            public EquipmentContainer(int count, List<Models.EquipmentModel> results)
+            public EquipmentContainer(int count, List<EquipmentModel> results)
             {
                 Count = count;
                 Results = results;
             }
 
             public int Count { get; set; }
-            public List<Models.EquipmentModel> Results { get; set; }
+            public List<EquipmentModel> Results { get; set; }
         }
     }
 }

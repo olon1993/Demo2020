@@ -14,11 +14,11 @@ namespace Demo2020.Test.Equipment
             EquipmentSearchAndFilterService equipmentFilterService = new EquipmentSearchAndFilterService();
             IList<IEquipmentModel> equipment = new List<IEquipmentModel>
             {
-                new Biz.Equipment.Models.EquipmentModel { Name = "Small Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Hand Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Throwing Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Large Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Great Axe" },
+                new EquipmentModel { Name = "Small Axe" },
+                new EquipmentModel { Name = "Hand Axe" },
+                new EquipmentModel { Name = "Throwing Axe" },
+                new EquipmentModel { Name = "Large Axe" },
+                new EquipmentModel { Name = "Great Axe" },
             };
             string filter = "Throwing";
 
@@ -33,11 +33,11 @@ namespace Demo2020.Test.Equipment
             EquipmentSearchAndFilterService equipmentFilterService = new EquipmentSearchAndFilterService();
             IList<IEquipmentModel> equipment = new List<IEquipmentModel>
             {
-                new Biz.Equipment.Models.EquipmentModel { Name = "Small Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Hand Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Throwing Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Large Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Great Axe" },
+                new EquipmentModel { Name = "Small Axe" },
+                new EquipmentModel { Name = "Hand Axe" },
+                new EquipmentModel { Name = "Throwing Axe" },
+                new EquipmentModel { Name = "Large Axe" },
+                new EquipmentModel { Name = "Great Axe" },
             };
             string filter = "Axe";
 
@@ -52,11 +52,11 @@ namespace Demo2020.Test.Equipment
             EquipmentSearchAndFilterService equipmentFilterService = new EquipmentSearchAndFilterService();
             IList<IEquipmentModel> equipment = new List<IEquipmentModel>
             {
-                new Biz.Equipment.Models.EquipmentModel { Name = "Small Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Hand Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Throwing Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Large Axe" },
-                new Biz.Equipment.Models.EquipmentModel { Name = "Great Axe" },
+                new EquipmentModel { Name = "Small Axe" },
+                new EquipmentModel { Name = "Hand Axe" },
+                new EquipmentModel { Name = "Throwing Axe" },
+                new EquipmentModel { Name = "Large Axe" },
+                new EquipmentModel { Name = "Great Axe" },
             };
             string filter = "Sword";
 

@@ -135,11 +135,17 @@
     <Compile Include="Equipment\UserControls\LootTableControl.xaml.cs">
       <DependentUpon>LootTableControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Equipment\UserControls\MagicItemControl.xaml.cs">
+      <DependentUpon>MagicItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\Views\EquipmentView.xaml.cs">
       <DependentUpon>EquipmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Equipment\Views\LootTableView.xaml.cs">
       <DependentUpon>LootTableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment\Views\MagicItemView.xaml.cs">
+      <DependentUpon>MagicItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -164,11 +170,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Equipment\UserControls\MagicItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Equipment\Views\EquipmentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Equipment\Views\LootTableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Equipment\Views\MagicItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

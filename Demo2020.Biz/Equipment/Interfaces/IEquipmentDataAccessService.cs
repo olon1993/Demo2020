@@ -9,7 +9,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipmentDataAccessService
     {
-        Task<List<Models.EquipmentModel>> GetAllEquipment();
-        Task<Models.EquipmentModel> GetEquipment(string name);
+        Task<List<EquipmentModel>> GetAllEquipment();
+        Task<EquipmentModel> GetEquipment(string name);
     }
 }

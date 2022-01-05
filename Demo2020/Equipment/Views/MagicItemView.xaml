@@ -1,0 +1,78 @@
+﻿<UserControl
+    x:Class="Demo2020.Equipment.Views.MagicItemView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Demo2020.Equipment.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="clr-namespace:Demo2020.Equipment.UserControls"
+    d:DesignHeight="450"
+    d:DesignWidth="900"
+    Background="White"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="640" />
+        </Grid.ColumnDefinitions>
+
+        <!--  Column : 0  -->
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Margin="3,0,0,0"
+                Panel.ZIndex="10"
+                Focusable="False"
+                Foreground="LightGray"
+                IsHitTestVisible="False"
+                Text="Search...">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Filter.Length}" Value="0">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+
+            <ListBox
+                Grid.Row="1"
+                ItemsSource="{Binding MagicItems, UpdateSourceTrigger=PropertyChanged}"
+                SelectedIndex="{Binding SelectedMagicItemIndex}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <uc:MagicItemControl
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            DataContext="{Binding CurrentMagicItem}" />
+
+        <Button
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="36"
+            Height="36"
+            Margin="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            Command="{Binding ToggleEditCommand}">
+            <Image Source="/Demo2020;component/Resources/Images/LockIcon.png" />
+        </Button>
+
+    </Grid>
+</UserControl>

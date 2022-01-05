@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\olon1\source\repos\Demo2020\Demo2020\App.xaml
-11503883885
+131155298751
 
-201229215366
+22373261582
 133-1452134836
-ActorCatalog\UserControls\ActorDescriptionControl.xaml;ActorCatalog\Views\ActorCatalogView.xaml;Commons\Windows\MessageWindow.xaml;Equipment\UserControls\EditLootTableControl.xaml;Equipment\UserControls\EquipmentControl.xaml;Equipment\UserControls\LootTableControl.xaml;Equipment\Views\EquipmentView.xaml;Equipment\Views\LootTableView.xaml;MainWindow.xaml;MonsterManual\UserControls\StatBlockControl.xaml;MonsterManual\Views\MonsterManualView.xaml;
+ActorCatalog\UserControls\ActorDescriptionControl.xaml;ActorCatalog\Views\ActorCatalogView.xaml;Commons\Windows\MessageWindow.xaml;Equipment\UserControls\EditLootTableControl.xaml;Equipment\UserControls\EquipmentControl.xaml;Equipment\UserControls\LootTableControl.xaml;Equipment\UserControls\MagicItemControl.xaml;Equipment\Views\EquipmentView.xaml;Equipment\Views\LootTableView.xaml;Equipment\Views\MagicItemView.xaml;MainWindow.xaml;MonsterManual\UserControls\StatBlockControl.xaml;MonsterManual\Views\MonsterManualView.xaml;
 
 False
 

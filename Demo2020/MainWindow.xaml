@@ -21,6 +21,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -44,13 +45,21 @@
         <Button
             Grid.Row="2"
             Grid.Column="0"
-            Command="{Binding LootCommand}"
-            ToolTip="Loot Tables">
-            <Image Height="64" Source="/Demo2020;component/Resources/Images/ArrowsIcon.png" />
+            Command="{Binding MagicItemCommand}"
+            ToolTip="Magic Items">
+            <Image Height="64" Source="/Demo2020;component/Resources/Images/WandIcon.png" />
         </Button>
 
         <Button
             Grid.Row="3"
+            Grid.Column="0"
+            Command="{Binding LootCommand}"
+            ToolTip="Loot Tables">
+            <Image Height="64" Source="/Demo2020;component/Resources/Images/BowIcon.png" />
+        </Button>
+
+        <Button
+            Grid.Row="4"
             Grid.Column="0"
             Command="{Binding ActorCatalogCommand}"
             ToolTip="Characters">
@@ -59,7 +68,7 @@
 
         <!--  Column : 1  -->
         <ContentControl
-            Grid.RowSpan="5"
+            Grid.RowSpan="6"
             Grid.Column="1"
             Content="{Binding CurrentViewModel}" />
     </Grid>

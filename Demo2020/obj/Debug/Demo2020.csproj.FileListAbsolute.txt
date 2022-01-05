@@ -187,3 +187,7 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\UserControl
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\Views\ActorCatalogView.g.cs
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\UserControls\ActorDescriptionControl.baml
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\ActorCatalog\Views\ActorCatalogView.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\MagicItemControl.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\MagicItemView.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\MagicItemControl.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\Views\MagicItemView.baml

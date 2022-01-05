@@ -25,6 +25,7 @@ namespace Demo2020.Biz
             builder.RegisterType<MainViewModel>().As<IMainViewModel>();
             builder.RegisterType<MonsterManualViewModel>().As<IMonsterManualViewModel>();
             builder.RegisterType<EquipmentViewModel>().As<IEquipmentViewModel>();
+            builder.RegisterType<MagicItemViewModel>().As<IMagicItemViewModel>();
             builder.RegisterType<LootTableViewModel>().As<ILootTableViewModel>();
             builder.RegisterType<ActorCatalogViewModel>().As<IActorCatalogViewModel>();
 
@@ -32,12 +33,13 @@ namespace Demo2020.Biz
             builder.RegisterType<MonsterModel>().As<IMonsterModel>();
             builder.RegisterType<SpeedModel>().As<ISpeedModel>();
             builder.RegisterType<ArmorClassModel>().As<IArmorClassModel>();
-            builder.RegisterType<Equipment.Models.EquipmentModel>().As<IEquipmentModel>();
+            builder.RegisterType<EquipmentModel>().As<IEquipmentModel>();
             builder.RegisterType<CategoryModel>().As<ICategoryModel>();
             builder.RegisterType<CostModel>().As<ICostModel>();
             builder.RegisterType<DamageModel>().As<IDamageModel>();
             builder.RegisterType<EquipmentPropertyModel>().As<IEquipmentPropertyModel>();
             builder.RegisterType<RangeModel>().As<IRangeModel>();
+            builder.RegisterType<MagicItemModel>().As<IMagicItemModel>();
             builder.RegisterType<LootTableModel>().As<ILootTableModel>();
 
             // Services
@@ -51,6 +53,10 @@ namespace Demo2020.Biz
             builder.RegisterType<EquipmentFactoryService>().As<IEquipmentFactoryService>();
             builder.RegisterType<EquipmentDataAccessService>().As<IEquipmentDataAccessService>();
             builder.RegisterType<EquipmentSearchAndFilterService>().As<IEquipmentSearchAndFilterService>();
+
+            builder.RegisterType<MagicItemFactoryService>().As<IMagicItemFactoryService>();
+            builder.RegisterType<MagicItemDataAccessService>().As<IMagicItemDataAccessService>();
+            builder.RegisterType<MagicItemSearchAndFilterService>().As<IMagicItemSearchAndFilterService>();
 
             builder.RegisterType<LootTableFactoryService>().As<ILootTableFactoryService>();
             builder.RegisterType<LootTableDataAccessService>().As<ILootTableDataAccessService>();

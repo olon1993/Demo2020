@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Demo2020.Test.MonsterManual
 {
-    public class DnD5eMonsterDataAccessService_Tests
+    public class MonsterDataAccessService_Tests
     {
         [Fact]
         public async void GetAllMonsters_Test()
