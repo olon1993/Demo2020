@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.Equipment.Services
 {
-    public class EquipmentSearchAndFilterService : IEquipmentSearchAndFilter
+    public class EquipmentSearchAndFilterService : IEquipmentSearchAndFilterService
     {
-        public IList<IEquipment> Filter(IList<IEquipment> list, string filter)
+        public IList<IEquipmentModel> Filter(IList<IEquipmentModel> list, string filter)
         {
-            IList<IEquipment> results = new List<IEquipment>();
-            foreach (IEquipment equipment in list)
+            IList<IEquipmentModel> results = new List<IEquipmentModel>();
+            foreach (IEquipmentModel equipment in list)
             {
                 string buffer = equipment.Name.ToLower();
                 if (buffer.Contains(filter.ToLower()))

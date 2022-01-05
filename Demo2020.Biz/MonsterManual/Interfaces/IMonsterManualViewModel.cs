@@ -4,7 +4,7 @@ namespace Demo2020.Biz.MonsterManual.Interfaces
 {
     public interface IMonsterManualViewModel
     {
-        IMonster CurrentMonster { get; set; }
-        IList<IMonster> Monsters { get; set; }
+        IMonsterModel CurrentMonster { get; set; }
+        IList<IMonsterModel> Monsters { get; set; }
     }
 }

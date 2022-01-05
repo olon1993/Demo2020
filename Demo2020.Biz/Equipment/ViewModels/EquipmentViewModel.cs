@@ -16,16 +16,16 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         private bool _isDebugOn = false;
 
-        private IEquipmentFactory _equipmentFactory;
-        private IEquipmentDataAccessObject _equipmentDataAccessObject;
-        private IEquipmentSearchAndFilter _equipmentSearchAndFilter;
-        private IEquipment _currentEquipment;
-        private IList<IEquipment> _equipment;
-        private IList<IEquipment> _equipmentRaw;
+        private IEquipmentFactoryService _equipmentFactory;
+        private IEquipmentDataAccessService _equipmentDataAccessObject;
+        private IEquipmentSearchAndFilterService _equipmentSearchAndFilter;
+        private IEquipmentModel _currentEquipment;
+        private IList<IEquipmentModel> _equipment;
+        private IList<IEquipmentModel> _equipmentRaw;
         private string _filter = "";
         private int _selectedEquipmentIndex = -1;
 
-        public EquipmentViewModel(IEquipmentFactory equipmentFactory, IEquipmentDataAccessObject equipmentDataAccessObject, IEquipmentSearchAndFilter equipmentSearchAndFilter)
+        public EquipmentViewModel(IEquipmentFactoryService equipmentFactory, IEquipmentDataAccessService equipmentDataAccessObject, IEquipmentSearchAndFilterService equipmentSearchAndFilter)
         {
             _equipmentFactory = equipmentFactory;
             _equipmentDataAccessObject = equipmentDataAccessObject;
@@ -48,12 +48,12 @@ namespace Demo2020.Biz.Equipment.ViewModels
         private async void GetEquipment()
         {
             _equipmentRaw = Equipment = (await _equipmentDataAccessObject.GetAllEquipment())
-                .Cast<IEquipment>()
-                .ToList() as IList<IEquipment>;
+                .Cast<IEquipmentModel>()
+                .ToList() as IList<IEquipmentModel>;
 
             if (_isDebugOn)
             {
-                foreach (IEquipment equipment in Equipment)
+                foreach (IEquipmentModel equipment in Equipment)
                 {
                     Console.WriteLine(equipment.Name);
                 }
@@ -65,7 +65,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
             CurrentEquipment = Equipment[SelectedEquipmentIndex];
             if (CurrentEquipment.IsDataComplete == false)
             {
-                Equipment[SelectedEquipmentIndex] = (await _equipmentDataAccessObject.GetEquipment(Equipment[SelectedEquipmentIndex].Name)) as IEquipment;
+                Equipment[SelectedEquipmentIndex] = (await _equipmentDataAccessObject.GetEquipment(Equipment[SelectedEquipmentIndex].Name)) as IEquipmentModel;
 
                 // The monster api failed and returned null
                 if (Equipment[SelectedEquipmentIndex] == null)
@@ -113,7 +113,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
             }
         }
 
-        public IEquipment CurrentEquipment
+        public IEquipmentModel CurrentEquipment
         {
             get { return _currentEquipment; }
             set
@@ -126,7 +126,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
             }
         }
 
-        public IList<IEquipment> Equipment
+        public IList<IEquipmentModel> Equipment
         {
             get { return _equipment; }
             set

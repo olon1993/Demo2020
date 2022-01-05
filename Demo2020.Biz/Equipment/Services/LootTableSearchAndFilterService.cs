@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Demo2020.Biz.Equipment.Services
 {
-    public class LootTableSearchAndFilterService : ILootTableSearchAndFilter
+    public class LootTableSearchAndFilterService : ILootTableSearchAndFilterService
     {
-        public IList<ILootTable> Filter(IList<ILootTable> list, string filter)
+        public IList<ILootTableModel> Filter(IList<ILootTableModel> list, string filter)
         {
-            IList<ILootTable> results = new List<ILootTable>();
-            foreach (ILootTable lootTable in list)
+            IList<ILootTableModel> results = new List<ILootTableModel>();
+            foreach (ILootTableModel lootTable in list)
             {
                 string buffer = lootTable.Name.ToLower();
                 if (buffer.Contains(filter.ToLower()))

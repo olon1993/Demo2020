@@ -8,7 +8,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface ILootTableViewModel
     {
-        ILootTable CurrentLootTable { get; set; }
-        IList<ILootTable> LootTables { get; set; }
+        ILootTableModel CurrentLootTable { get; set; }
+        IList<ILootTableModel> LootTables { get; set; }
     }
 }

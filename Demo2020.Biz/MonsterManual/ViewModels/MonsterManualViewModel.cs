@@ -16,16 +16,16 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
-        private IMonsterFactory _monsterFactory;
-        private IMonsterDataAccessObject _monsterDataAccessObject;
-        private ISearchAndFilterService _searchAndFilterService;
-        private IMonster _currentMonster;
-        private IList<IMonster> _monsters;
-        private IList<IMonster> _monstersRaw;
+        private IMonsterFactoryService _monsterFactory;
+        private IMonsterDataAccessService _monsterDataAccessObject;
+        private IMonsterSearchAndFilterService _searchAndFilterService;
+        private IMonsterModel _currentMonster;
+        private IList<IMonsterModel> _monsters;
+        private IList<IMonsterModel> _monstersRaw;
         private int _selectedMonsterIndex = -1;
         private string _filter = "";
 
-        public MonsterManualViewModel(IMonsterFactory monsterFactory, IMonsterDataAccessObject monsterDataAccessObject, ISearchAndFilterService searchAndFilterService)
+        public MonsterManualViewModel(IMonsterFactoryService monsterFactory, IMonsterDataAccessService monsterDataAccessObject, IMonsterSearchAndFilterService searchAndFilterService)
         {
             _monsterFactory = monsterFactory;
             _monsterDataAccessObject = monsterDataAccessObject;
@@ -48,8 +48,8 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
         private async void GetMonsters()
         {
             _monstersRaw = Monsters = (await _monsterDataAccessObject.GetAllMonsters())
-                .Cast<IMonster>()
-                .ToList() as IList<IMonster>;
+                .Cast<IMonsterModel>()
+                .ToList() as IList<IMonsterModel>;
         }
 
         private async void GetMonsterDetails()
@@ -57,7 +57,7 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
             CurrentMonster = Monsters[SelectedMonsterIndex];
             if (CurrentMonster.IsDataComplete == false)
             {
-                Monsters[SelectedMonsterIndex] = (await _monsterDataAccessObject.GetMonster(Monsters[SelectedMonsterIndex].Name)) as IMonster;
+                Monsters[SelectedMonsterIndex] = (await _monsterDataAccessObject.GetMonster(Monsters[SelectedMonsterIndex].Name)) as IMonsterModel;
 
                 // The monster api failed and returned null
                 if (Monsters[SelectedMonsterIndex] == null)
@@ -100,7 +100,7 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
             }
         }
 
-        public IMonster CurrentMonster
+        public IMonsterModel CurrentMonster
         {
             get { return _currentMonster; }
             set
@@ -113,7 +113,7 @@ namespace Demo2020.Biz.MonsterManual.ViewModels
             }
         }
 
-        public IList<IMonster> Monsters
+        public IList<IMonsterModel> Monsters
         {
             get { return _monsters; }
             set

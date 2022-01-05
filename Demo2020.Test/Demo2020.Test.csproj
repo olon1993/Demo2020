@@ -58,12 +58,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Equipment\DnD5eEquipmentDataAccessObject_Tests.cs" />
-    <Compile Include="Equipment\EquipmentSearchAndFilter_Tests.cs" />
-    <Compile Include="Equipment\LootTableSearchAndFilter_Tests.cs" />
-    <Compile Include="MonsterManual\DnD5eMonsterDataAccessObject_Tests.cs" />
-    <Compile Include="MonsterManual\MonsterSearchAndFilter_Tests.cs" />
-    <Compile Include="MonsterManual\Monster_Test.cs" />
+    <Compile Include="Equipment\DnD5eEquipmentDataAccessService_Tests.cs" />
+    <Compile Include="Equipment\EquipmentSearchAndFilterService_Tests.cs" />
+    <Compile Include="Equipment\LootTableSearchAndFilterService_Tests.cs" />
+    <Compile Include="MonsterManual\DnD5eMonsterDataAccessService_Tests.cs" />
+    <Compile Include="MonsterManual\MonsterSearchAndFilterService_Tests.cs" />
+    <Compile Include="MonsterManual\MonsterModel_Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

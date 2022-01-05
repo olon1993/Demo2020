@@ -8,7 +8,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipmentViewModel
     {
-        IEquipment CurrentEquipment { get; set; }
-        IList<IEquipment> Equipment { get; set; }
+        IEquipmentModel CurrentEquipment { get; set; }
+        IList<IEquipmentModel> Equipment { get; set; }
     }
 }

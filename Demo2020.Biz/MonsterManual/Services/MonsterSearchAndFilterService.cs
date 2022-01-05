@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.MonsterManual.Services
 {
-    public class MonsterSearchAndFilterService : ISearchAndFilterService
+    public class MonsterSearchAndFilterService : IMonsterSearchAndFilterService
     {
-        public IList<IMonster> Filter(IList<IMonster> list, string filter)
+        public IList<IMonsterModel> Filter(IList<IMonsterModel> list, string filter)
         {
-            IList < IMonster > results = new List<IMonster>();
-            foreach (IMonster monster in list)
+            IList < IMonsterModel > results = new List<IMonsterModel>();
+            foreach (IMonsterModel monster in list)
             {
                 string buffer = monster.Name.ToLower();
                 if (buffer.Contains(filter.ToLower()))

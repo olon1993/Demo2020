@@ -8,7 +8,7 @@ namespace Demo2020.Biz.ActorCatalog.Interfaces
 {
     public interface IActorCatalogViewModel
     {
-        IActor CurrentActor { get; set; }
-        IList<IActor> Actors { get; set; }
+        IActorModel CurrentActor { get; set; }
+        IList<IActorModel> Actors { get; set; }
     }
 }

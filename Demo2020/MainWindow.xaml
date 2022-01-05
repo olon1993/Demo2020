@@ -28,28 +28,32 @@
         <Button
             Grid.Row="0"
             Grid.Column="0"
-            Command="{Binding MonsterManualCommand}">
+            Command="{Binding MonsterManualCommand}"
+            ToolTip="Monster Manual">
             <Image Height="64" Source="/Demo2020;component/Resources/Images/BeholderIcon.png" />
         </Button>
 
         <Button
             Grid.Row="1"
             Grid.Column="0"
-            Command="{Binding EquipmentCommand}">
+            Command="{Binding EquipmentCommand}"
+            ToolTip="Equipment">
             <Image Height="64" Source="/Demo2020;component/Resources/Images/SwordIcon.png" />
         </Button>
 
         <Button
             Grid.Row="2"
             Grid.Column="0"
-            Command="{Binding LootCommand}">
+            Command="{Binding LootCommand}"
+            ToolTip="Loot Tables">
             <Image Height="64" Source="/Demo2020;component/Resources/Images/ArrowsIcon.png" />
         </Button>
 
         <Button
             Grid.Row="3"
             Grid.Column="0"
-            Command="{Binding ActorCatalogCommand}">
+            Command="{Binding ActorCatalogCommand}"
+            ToolTip="Characters">
             <Image Height="64" Source="/Demo2020;component/Resources/Images/KnightIcon.png" />
         </Button>
 

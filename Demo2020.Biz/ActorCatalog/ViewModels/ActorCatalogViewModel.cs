@@ -15,8 +15,8 @@ namespace Demo2020.Biz.ActorCatalog.ViewModels
         //**************************************************\\
         //private IActorFactory _monsterFactory;
         //private IActorDataAccessObject _monsterDataAccessObject;
-        private IActor _currentActor;
-        private IList<IActor> _actors;
+        private IActorModel _currentActor;
+        private IList<IActorModel> _actors;
         private int _selectedActorIndex = -1;
 
         //**************************************************\\
@@ -46,7 +46,7 @@ namespace Demo2020.Biz.ActorCatalog.ViewModels
                 }
             }
         }
-        public IActor CurrentActor 
+        public IActorModel CurrentActor 
         { 
             get { return _currentActor; }
             set 
@@ -59,7 +59,7 @@ namespace Demo2020.Biz.ActorCatalog.ViewModels
             }
         }
 
-        public IList<IActor> Actors
+        public IList<IActorModel> Actors
         {
             get { return _actors; }
             set

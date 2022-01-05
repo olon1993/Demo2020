@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Demo2020.Biz.ActorCatalog.Interfaces;
+using Demo2020.Biz.ActorCatalog.Services;
 using Demo2020.Biz.ActorCatalog.ViewModels;
 using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Services;
@@ -28,32 +29,35 @@ namespace Demo2020.Biz
             builder.RegisterType<ActorCatalogViewModel>().As<IActorCatalogViewModel>();
 
             // Models
-            builder.RegisterType<Monster>().As<IMonster>();
-            builder.RegisterType<Speed>().As<ISpeed>();
-            builder.RegisterType<ArmorClass>().As<IArmorClass>();
-            builder.RegisterType<Equipment.Models.Equipment>().As<IEquipment>();
-            builder.RegisterType<Category>().As<ICategory>();
-            builder.RegisterType<Cost>().As<ICost>();
-            builder.RegisterType<Damage>().As<IDamage>();
-            builder.RegisterType<EquipmentProperty>().As<IEquipmentProperty>();
-            builder.RegisterType<Range>().As<IRange>();
-            builder.RegisterType<LootTable>().As<ILootTable>();
+            builder.RegisterType<MonsterModel>().As<IMonsterModel>();
+            builder.RegisterType<SpeedModel>().As<ISpeedModel>();
+            builder.RegisterType<ArmorClassModel>().As<IArmorClassModel>();
+            builder.RegisterType<Equipment.Models.EquipmentModel>().As<IEquipmentModel>();
+            builder.RegisterType<CategoryModel>().As<ICategoryModel>();
+            builder.RegisterType<CostModel>().As<ICostModel>();
+            builder.RegisterType<DamageModel>().As<IDamageModel>();
+            builder.RegisterType<EquipmentPropertyModel>().As<IEquipmentPropertyModel>();
+            builder.RegisterType<RangeModel>().As<IRangeModel>();
+            builder.RegisterType<LootTableModel>().As<ILootTableModel>();
 
             // Services
             builder.RegisterType<SqlDataAccessService>().As<IDataAccessService>();
 
-            builder.RegisterType<MonsterFactory>().As<IMonsterFactory>();
-            builder.RegisterType<MonsterDataAccessObject>().As<IMonsterDataAccessObject>();
-            builder.RegisterType<MonsterSearchAndFilterService>().As<ISearchAndFilterService>();
-            builder.RegisterType<SpeedFactory>().As<ISpeedFactory>();
+            builder.RegisterType<MonsterFactoryService>().As<IMonsterFactoryService>();
+            builder.RegisterType<MonsterDataAccessService>().As<IMonsterDataAccessService>();
+            builder.RegisterType<MonsterSearchAndFilterService>().As<IMonsterSearchAndFilterService>();
+            builder.RegisterType<SpeedFactoryService>().As<ISpeedFactoryService>();
 
-            builder.RegisterType<EquipmentFactory>().As<IEquipmentFactory>();
-            builder.RegisterType<EquipmentDataAccessObject>().As<IEquipmentDataAccessObject>();
-            builder.RegisterType<EquipmentSearchAndFilterService>().As<IEquipmentSearchAndFilter>();
+            builder.RegisterType<EquipmentFactoryService>().As<IEquipmentFactoryService>();
+            builder.RegisterType<EquipmentDataAccessService>().As<IEquipmentDataAccessService>();
+            builder.RegisterType<EquipmentSearchAndFilterService>().As<IEquipmentSearchAndFilterService>();
 
-            builder.RegisterType<LootTableFactory>().As<ILootTableFactory>();
-            builder.RegisterType<LootTableDataAccessObject>().As<ILootTableDataAccessObject>();
-            builder.RegisterType<LootTableSearchAndFilterService>().As<ILootTableSearchAndFilter>();
+            builder.RegisterType<LootTableFactoryService>().As<ILootTableFactoryService>();
+            builder.RegisterType<LootTableDataAccessService>().As<ILootTableDataAccessService>();
+            builder.RegisterType<LootTableSearchAndFilterService>().As<ILootTableSearchAndFilterService>();
+
+            builder.RegisterType<ActorFactoryService>().As<IActorFactoryService>();
+            builder.RegisterType<ActorSearchAndFilterService>().As<IActorSearchAndFilterService>();
 
             return builder.Build();
         }
