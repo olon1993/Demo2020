@@ -66,23 +66,32 @@
                 </Grid.RowDefinitions>
                 <uc:EditLootTableControl DataContext="{Binding CurrentLootTable}" />
 
-                <DockPanel Grid.Row="1" Margin="3">
-                    <Button
-                        Height="20"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        Command="{Binding AddLootSlotCommand}"
-                        DockPanel.Dock="Left">
+                <Button
+                    Grid.Row="1"
+                    Height="20"
+                    Margin="3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddLootSlotCommand}"
+                    DockPanel.Dock="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
                         <Image Source="/Demo2020;component/Resources/Images/Add.png" />
-                    </Button>
-                    <TextBlock
-                        Margin="3,0,0,0"
-                        DockPanel.Dock="Left"
-                        FontWeight="Bold"
-                        Text="Add Equipment Slot" />
-                </DockPanel>
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="3,0,0,0"
+                            DockPanel.Dock="Left"
+                            FontWeight="Bold"
+                            Text="Add Equipment Slot" />
+
+                    </Grid>
+                </Button>
             </Grid>
         </Border>
 

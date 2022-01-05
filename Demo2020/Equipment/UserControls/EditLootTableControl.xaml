@@ -108,31 +108,40 @@
                                 ItemsSource="{Binding Equipment.Description}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" TextWrapping="Wrap" />
+                                        <TextBox
+                                            Margin="2"
+                                            Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                            TextWrapping="Wrap" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <DockPanel
+                            <Button
                                 Grid.Row="1"
                                 Grid.Column="2"
-                                Margin="3,0,0,10">
-                                <Button
-                                    Height="20"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Background="Transparent"
-                                    BorderBrush="Transparent"
-                                    Command="{Binding AddDescriptionCommand}"
-                                    DockPanel.Dock="Left">
+                                Height="20"
+                                Margin="3,0,0,10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Command="{Binding AddDescriptionCommand}"
+                                DockPanel.Dock="Left">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
                                     <Image Source="/Demo2020;component/Resources/Images/Add.png" />
-                                </Button>
-                                <TextBlock
-                                    Margin="3,0,0,0"
-                                    DockPanel.Dock="Right"
-                                    FontWeight="Bold"
-                                    Text="Add Description" />
-                            </DockPanel>
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="3,0,0,0"
+                                        DockPanel.Dock="Right"
+                                        FontWeight="Bold"
+                                        Text="Add Description" />
+                                </Grid>
+                            </Button>
                         </Grid>
                         <DataTemplate.Triggers>
                             <Trigger Property="ItemsControl.AlternationIndex" Value="0">

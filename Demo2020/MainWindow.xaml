@@ -8,6 +8,7 @@
     Title="Demo 2020"
     Width="900"
     Height="450"
+    d:DesignHeight="900"
     IsEnabled="{Binding Source={StaticResource MessageListener}, Path=BindableProperty}"
     WindowState="Maximized"
     mc:Ignorable="d">
@@ -31,7 +32,7 @@
             Grid.Column="0"
             Command="{Binding MonsterManualCommand}"
             ToolTip="Monster Manual">
-            <Image Height="64" Source="/Demo2020;component/Resources/Images/BeholderIcon.png" />
+            <Image Height="96" Source="/Demo2020;component/Resources/Images/BeholderIcon.png" />
         </Button>
 
         <Button
@@ -39,7 +40,7 @@
             Grid.Column="0"
             Command="{Binding EquipmentCommand}"
             ToolTip="Equipment">
-            <Image Height="64" Source="/Demo2020;component/Resources/Images/SwordIcon.png" />
+            <Image Height="96" Source="/Demo2020;component/Resources/Images/ArmorIcon.png" />
         </Button>
 
         <Button
@@ -47,7 +48,7 @@
             Grid.Column="0"
             Command="{Binding MagicItemCommand}"
             ToolTip="Magic Items">
-            <Image Height="64" Source="/Demo2020;component/Resources/Images/WandIcon.png" />
+            <Image Height="96" Source="/Demo2020;component/Resources/Images/BattleAxeIcon.png" />
         </Button>
 
         <Button
@@ -55,7 +56,7 @@
             Grid.Column="0"
             Command="{Binding LootCommand}"
             ToolTip="Loot Tables">
-            <Image Height="64" Source="/Demo2020;component/Resources/Images/BowIcon.png" />
+            <Image Height="96" Source="/Demo2020;component/Resources/Images/BowIcon.png" />
         </Button>
 
         <Button
@@ -63,7 +64,7 @@
             Grid.Column="0"
             Command="{Binding ActorCatalogCommand}"
             ToolTip="Characters">
-            <Image Height="64" Source="/Demo2020;component/Resources/Images/KnightIcon.png" />
+            <Image Height="96" Source="/Demo2020;component/Resources/Images/KnightIcon.png" />
         </Button>
 
         <!--  Column : 1  -->
