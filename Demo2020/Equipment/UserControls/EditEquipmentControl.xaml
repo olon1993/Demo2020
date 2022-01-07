@@ -49,40 +49,144 @@
                     Text="{Binding Name, FallbackValue=Name}" />
 
                 <!--  Row 1 : Type and Alignment  -->
-                <DockPanel Grid.Row="1">
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Width="122"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Equipment Category: " />
+
+                    <ComboBox
+                        Grid.Column="1"
+                        Width="150"
+                        Margin="2"
+                        HorizontalAlignment="Left"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        ItemsSource="{Binding EquipmentCategories}"
+                        SelectedItem="{Binding EquipmentCategory.Name}" />
+
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Width="122"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Subcategory: " />
+
                     <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
                         Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding EquipmentCategory.Name, FallbackValue=EquipmentCategory}" />
-                    <TextBlock Margin="3,0,0,0" Text="(" />
+                        Text="{Binding GearCategory.Name}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Adventuring Gear">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
                     <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
                         Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding GearCategory.Name}" />
+                        Text="{Binding ToolCategory}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Tools">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
                     <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
                         Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding ToolCategory}" />
+                        Text="{Binding WeaponCategory}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Weapon">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
                     <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Height="22"
                         Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding WeaponCategory}" />
+                        Text="{Binding ArmorCategory}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Armor">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
                     <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
                         Margin="2"
+                        VerticalContentAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding ArmorCategory}" />
-                    <TextBox
-                        Margin="2"
-                        DockPanel.Dock="Left"
-                        FontSize="12"
-                        Text="{Binding VehicleCategory}" />
-                    <TextBlock Margin="0" Text=")" />
-                </DockPanel>
+                        Text="{Binding VehicleCategory}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Mounts and Vehicles">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+
+                </Grid>
 
             </Grid>
         </Border>
@@ -103,67 +207,93 @@
                 </Grid.RowDefinitions>
 
                 <!--  Row 0 : Damage  -->
-                <DockPanel>
+                <Grid>
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
                     <TextBlock
-                        Margin="2"
+                        Width="70"
+                        HorizontalAlignment="Left"
                         VerticalAlignment="Center"
-                        DockPanel.Dock="Left"
                         FontSize="12"
                         FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Damage" />
+
+                    <TextBlock
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
                         Foreground="DarkRed">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
                                 <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
-                                        <Setter Property="Text" Value="Damage" />
                                         <Setter Property="Visibility" Value="Visible" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
+                        <Run Text="{Binding Damage.DamageDice}" />
+                        <Run Text="{Binding Damage.DamageType.Name}" />
                     </TextBlock>
 
-                    <TextBox
-                        Margin="2"
-                        DockPanel.Dock="Left"
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
                         FontSize="12"
                         Foreground="DarkRed"
-                        Text="{Binding Damage.DamageDice}">
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                        Text="Damage Dice: " />
 
                     <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Height="22"
                         Margin="2"
-                        DockPanel.Dock="Left"
+                        VerticalContentAlignment="Center"
                         FontSize="12"
                         Foreground="DarkRed"
-                        Text="{Binding Damage.DamageType.Name}">
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </DockPanel>
+                        Text="{Binding Damage.DamageDice, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Height="22"
+                        Margin="2"
+                        VerticalContentAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding Damage.DamageType.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                </Grid>
 
                 <!--  Row 1 : Armor Class  -->
                 <DockPanel Grid.Row="1">
                     <TextBlock
+                        Width="70"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
@@ -183,8 +313,11 @@
                     </TextBlock>
 
                     <TextBox
+                        Width="40"
+                        Height="22"
                         Margin="2"
-                        DockPanel.Dock="Left"
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
                         FontSize="12"
                         Foreground="DarkRed">
                         <TextBox.Style>
@@ -204,6 +337,7 @@
                 <!--  Row 2 : Weight  -->
                 <DockPanel Grid.Row="2">
                     <TextBlock
+                        Width="70"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
@@ -212,7 +346,10 @@
                         Text="Weight" />
 
                     <TextBox
+                        Width="40"
+                        Height="22"
                         Margin="2"
+                        VerticalContentAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Foreground="DarkRed"
@@ -229,6 +366,7 @@
                 <!--  Row 3 : Value  -->
                 <DockPanel Grid.Row="3">
                     <TextBlock
+                        Width="70"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
@@ -237,17 +375,24 @@
                         Text="Cost" />
 
                     <TextBox
+                        Width="40"
+                        Height="22"
                         Margin="2"
+                        VerticalContentAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Foreground="DarkRed"
                         Text="{Binding Cost.Quantity}" />
 
-                    <TextBox
+                    <ComboBox
+                        Width="50"
                         Margin="2"
+                        HorizontalAlignment="Left"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Foreground="DarkRed"
+                        ItemsSource="{Binding Cost.UnitTypes}"
+                        SelectedItem="{Binding Cost.Unit}"
                         Text="{Binding Cost.Unit}" />
 
                 </DockPanel>

@@ -37,6 +37,15 @@ namespace Demo2020.Biz.Equipment.Models
         private int _strengthRequirement;
         private IArmorClassModel _armorClass;
         private string _armorCategory;
+        private List<string> _equipmentCategories = new List<string> 
+        {
+            "Adventuring Gear",
+            "Tools",
+            "Weapon",
+            "Armor",
+            "Mounts and Vehicles"
+        };
+        private string _selectedEquipmentCategory;
 
         private string _armorIconPath = "/Demo2020;component/Resources/Images/ArmorIcon.png";
         private string _arrowsIconPath = "/Demo2020;component/Resources/Images/ArrowsIcon.png";
@@ -406,6 +415,32 @@ namespace Demo2020.Biz.Equipment.Models
         {
             get { return _isDataComplete; }
             set { _isDataComplete = value; }
+        }
+
+        public List<string> EquipmentCategories
+        {
+            get { return _equipmentCategories; }
+            set
+            {
+                if(_equipmentCategories != value)
+                {
+                    _equipmentCategories = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string SelectedEquipmentCategory
+        {
+            get { return _selectedEquipmentCategory; }
+            set
+            {
+                if(_selectedEquipmentCategory != value)
+                {
+                    _selectedEquipmentCategory = value;
+                    OnPropertyChanged();
+                }
+            }
         }
     }
 }

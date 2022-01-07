@@ -55,26 +55,87 @@
                         FontSize="12"
                         Text="{Binding EquipmentCategory.Name, FallbackValue=EquipmentCategory}" />
                     <TextBlock Margin="3,0,0,0" Text="(" />
+
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding GearCategory.Name}" />
+                        Text="{Binding GearCategory.Name}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Adventuring Gear">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding ToolCategory}" />
+                        Text="{Binding ToolCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Tools">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding WeaponCategory}" />
+                        Text="{Binding WeaponCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Weapon">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding ArmorCategory}" />
+                        Text="{Binding ArmorCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Armor">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <TextBlock
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Text="{Binding VehicleCategory}" />
+                        Text="{Binding VehicleCategory}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name}" Value="Mounts and Vehicles">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <TextBlock Margin="0" Text=")" />
                 </DockPanel>
 

@@ -33,6 +33,8 @@ namespace Demo2020.Biz.Equipment.Interfaces
 
         string VehicleCategory { get; set; }
 
+        string ArmorCategory { get; set; }
+
         ICategoryModel GearCategory { get; set; }
 
         ICategoryModel EquipmentCategory { get; set; }
