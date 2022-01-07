@@ -32,10 +32,6 @@ namespace Demo2020.Biz.Equipment.Services
                     {
                         string rawJSON = await response.Content.ReadAsStringAsync();
                         var data = JsonConvert.DeserializeObject<MagicItemContainer>(rawJSON);
-                        foreach(MagicItemModel model in data.Results)
-                        {
-                            Console.WriteLine(model.Name);
-                        }
                         return data.Results;
                     }
                 }

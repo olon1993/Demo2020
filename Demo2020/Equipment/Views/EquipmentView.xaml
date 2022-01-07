@@ -55,10 +55,51 @@
             </ListBox>
         </Grid>
 
-        <uc:EquipmentControl
+        <Border Grid.Column="1" Visibility="{Binding IsEditEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ReverseBoolToVisibilityConverter}, FallbackValue=Visible}">
+            <uc:EquipmentControl DataContext="{Binding CurrentEquipment}" />
+        </Border>
+
+        <Border Grid.Column="1" Visibility="{Binding IsEditEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+            <Grid Background="LightGoldenrodYellow">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <uc:EditEquipmentControl DataContext="{Binding CurrentEquipment}" />
+
+                <Button
+                    Grid.Row="1"
+                    Height="20"
+                    Margin="3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddEquipmentCommand}"
+                    DockPanel.Dock="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Demo2020;component/Resources/Images/Add.png" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="3,0,0,0"
+                            DockPanel.Dock="Left"
+                            FontWeight="Bold"
+                            Text="Add Equipment Slot" />
+
+                    </Grid>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!--<uc:EquipmentControl
             Grid.RowSpan="2"
             Grid.Column="1"
-            DataContext="{Binding CurrentEquipment}" />
+            DataContext="{Binding CurrentEquipment}" />-->
 
         <Button
             Grid.Row="0"

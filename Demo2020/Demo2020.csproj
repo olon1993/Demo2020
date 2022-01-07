@@ -126,6 +126,9 @@
     <Compile Include="Converters\ReverseBoolToVisiblityConverter.cs" />
     <Compile Include="Converters\BoolToVisiblityConverter.cs" />
     <Compile Include="Converters\IsGreaterThanValueConverter.cs" />
+    <Compile Include="Equipment\UserControls\EditEquipmentControl.xaml.cs">
+      <DependentUpon>EditEquipmentControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\UserControls\EditLootTableControl.xaml.cs">
       <DependentUpon>EditLootTableControl.xaml</DependentUpon>
     </Compile>
@@ -151,13 +154,20 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageListener.cs" />
-    <Compile Include="MonsterManual\UserControls\StatBlockControl.xaml.cs">
-      <DependentUpon>StatBlockControl.xaml</DependentUpon>
+    <Compile Include="MonsterManual\UserControls\EditMonsterControl.xaml.cs">
+      <DependentUpon>EditMonsterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MonsterManual\UserControls\MonsterControl.xaml.cs">
+      <DependentUpon>MonsterControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MonsterManual\Views\MonsterManualView.xaml.cs">
       <DependentUpon>MonsterManualView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProgramConfig.cs" />
+    <Page Include="Equipment\UserControls\EditEquipmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Equipment\UserControls\EditLootTableControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,7 +200,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MonsterManual\UserControls\StatBlockControl.xaml">
+    <Page Include="MonsterManual\UserControls\EditMonsterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MonsterManual\UserControls\MonsterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

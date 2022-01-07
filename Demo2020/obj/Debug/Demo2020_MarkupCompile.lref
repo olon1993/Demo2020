@@ -3,6 +3,7 @@ FC:\Users\olon1\source\repos\Demo2020\Demo2020\App.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\ActorCatalog\UserControls\ActorDescriptionControl.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\ActorCatalog\Views\ActorCatalogView.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\Commons\Windows\MessageWindow.xaml;;
+FC:\Users\olon1\source\repos\Demo2020\Demo2020\Equipment\UserControls\EditEquipmentControl.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\Equipment\UserControls\EditLootTableControl.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\Equipment\UserControls\EquipmentControl.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\Equipment\UserControls\LootTableControl.xaml;;
@@ -11,6 +12,7 @@ FC:\Users\olon1\source\repos\Demo2020\Demo2020\Equipment\Views\EquipmentView.xam
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\Equipment\Views\LootTableView.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\Equipment\Views\MagicItemView.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\MainWindow.xaml;;
-FC:\Users\olon1\source\repos\Demo2020\Demo2020\MonsterManual\UserControls\StatBlockControl.xaml;;
+FC:\Users\olon1\source\repos\Demo2020\Demo2020\MonsterManual\UserControls\EditMonsterControl.xaml;;
+FC:\Users\olon1\source\repos\Demo2020\Demo2020\MonsterManual\UserControls\MonsterControl.xaml;;
 FC:\Users\olon1\source\repos\Demo2020\Demo2020\MonsterManual\Views\MonsterManualView.xaml;;
 

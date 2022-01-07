@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Demo2020.MonsterManual.UserControls
+namespace Demo2020.Equipment.UserControls
 {
     /// <summary>
-    /// Interaction logic for StatBlockControl.xaml
+    /// Interaction logic for EditEquipmentControl.xaml
     /// </summary>
-    public partial class StatBlockControl : UserControl
+    public partial class EditEquipmentControl : UserControl
     {
-        public StatBlockControl()
+        public EditEquipmentControl()
         {
             InitializeComponent();
         }
