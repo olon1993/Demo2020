@@ -1,11 +1,13 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Equipment.Interfaces;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Demo2020.Biz.Equipment.Models
 {
@@ -61,6 +63,20 @@ namespace Demo2020.Biz.Equipment.Models
             EquipmentCategory = new CategoryModel();
             GearCategory = new CategoryModel();
             Cost = new CostModel();
+
+            AddDescriptionCommand = new RelayCommand(AddDescription);
+        }
+
+        private void AddDescription()
+        {
+            IList<DescriptionModel> descriptions = new List<DescriptionModel>();
+            foreach (DescriptionModel d in Description)
+            {
+                descriptions.Add(d);
+            }
+
+            descriptions.Add(new DescriptionModel("{{New Line}}"));
+            Description = descriptions;
         }
 
         //**************************************************\\
@@ -345,7 +361,7 @@ namespace Demo2020.Biz.Equipment.Models
                     List<DescriptionModel> buffer = new List<DescriptionModel>();
                     foreach(string s in _stringdescription)
                     {
-                        buffer.Add(new Models.DescriptionModel(s));
+                        buffer.Add(new DescriptionModel(s));
                     }
                     Description = buffer;
                     OnPropertyChanged();
@@ -383,6 +399,8 @@ namespace Demo2020.Biz.Equipment.Models
                 }
             }
         }
+
+        public ICommand AddDescriptionCommand { get; set; }
 
         public bool IsDataComplete
         {

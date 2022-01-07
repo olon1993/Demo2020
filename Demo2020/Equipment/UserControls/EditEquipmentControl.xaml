@@ -41,38 +41,43 @@
                 </Grid.RowDefinitions>
 
                 <!--  Row 0 : Name  -->
-                <TextBlock
+                <TextBox
                     Margin="36,0,0,10"
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="DarkRed"
-                    Text="Edit Mode" />
-                <!--  {Binding Name, FallbackValue=Name}  -->
+                    Text="{Binding Name, FallbackValue=Name}" />
 
                 <!--  Row 1 : Type and Alignment  -->
                 <DockPanel Grid.Row="1">
-                    <TextBlock
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Text="{Binding EquipmentCategory.Name, FallbackValue=EquipmentCategory}" />
                     <TextBlock Margin="3,0,0,0" Text="(" />
-                    <TextBlock
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Text="{Binding GearCategory.Name}" />
-                    <TextBlock
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Text="{Binding ToolCategory}" />
-                    <TextBlock
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Text="{Binding WeaponCategory}" />
-                    <TextBlock
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Text="{Binding ArmorCategory}" />
-                    <TextBlock
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Text="{Binding VehicleCategory}" />
@@ -100,6 +105,8 @@
                 <!--  Row 0 : Damage  -->
                 <DockPanel>
                     <TextBlock
+                        Margin="2"
+                        VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         FontWeight="Bold"
@@ -117,13 +124,14 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock
-                        Margin="3,0,0,0"
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
+                        Foreground="DarkRed"
+                        Text="{Binding Damage.DamageDice}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
                                 <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
@@ -131,15 +139,32 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </TextBlock.Style>
-                        <Run Text="{Binding Damage.DamageDice}" />
-                        <Run Text="{Binding Damage.DamageType.Name}" />
-                    </TextBlock>
+                        </TextBox.Style>
+                    </TextBox>
+
+                    <TextBox
+                        Margin="2"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding Damage.DamageType.Name}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
                 </DockPanel>
 
                 <!--  Row 1 : Armor Class  -->
                 <DockPanel Grid.Row="1">
                     <TextBlock
+                        VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         FontWeight="Bold"
@@ -157,13 +182,13 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock
-                        Margin="3,0,0,0"
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Foreground="DarkRed">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
+                        <TextBox.Style>
+                            <Style TargetType="{x:Type TextBox}">
                                 <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Armor">
@@ -172,46 +197,59 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                        </TextBox.Style>
+                    </TextBox>
                 </DockPanel>
 
                 <!--  Row 2 : Weight  -->
                 <DockPanel Grid.Row="2">
                     <TextBlock
+                        VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         FontWeight="Bold"
                         Foreground="DarkRed"
                         Text="Weight" />
 
-                    <TextBlock
-                        Margin="3,0,0,0"
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <Run Text="{Binding Weight}" />
-                        <Run Text="lbs" />
-                    </TextBlock>
+                        Foreground="DarkRed"
+                        Text="{Binding Weight}" />
+
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="lbs" />
                 </DockPanel>
 
                 <!--  Row 3 : Value  -->
                 <DockPanel Grid.Row="3">
                     <TextBlock
+                        VerticalAlignment="Center"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         FontWeight="Bold"
                         Foreground="DarkRed"
                         Text="Cost" />
 
-                    <TextBlock
-                        Margin="3,0,0,0"
+                    <TextBox
+                        Margin="2"
                         DockPanel.Dock="Left"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <Run Text="{Binding Cost.Quantity}" />
-                        <Run Text="{Binding Cost.Unit}" />
-                    </TextBlock>
+                        Foreground="DarkRed"
+                        Text="{Binding Cost.Quantity}" />
+
+                    <TextBox
+                        Margin="2"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding Cost.Unit}" />
+
                 </DockPanel>
 
             </Grid>
@@ -248,16 +286,46 @@
                     Text="Description" />
 
                 <!--  Row 1 : Description  -->
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding Description}">
+                <ItemsControl
+                    Grid.Row="1"
+                    Margin="3"
+                    ItemsSource="{Binding Description}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock
-                                Margin="0,0,0,3"
-                                Text="{Binding Text}"
+                            <TextBox
+                                Margin="2"
+                                Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                 TextWrapping="Wrap" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+
+                <Button
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Height="20"
+                    Margin="3,0,0,10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddDescriptionCommand}"
+                    DockPanel.Dock="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="/Demo2020;component/Resources/Images/Add.png" />
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="3,0,0,0"
+                            DockPanel.Dock="Right"
+                            FontWeight="Bold"
+                            Text="Add Description" />
+                    </Grid>
+                </Button>
 
             </Grid>
         </Border>

@@ -1,4 +1,5 @@
-﻿using Demo2020.Biz.Equipment.Models;
+﻿using Demo2020.Biz.Commons.Models;
+using Demo2020.Biz.Equipment.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

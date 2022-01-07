@@ -96,7 +96,7 @@ namespace Demo2020.Biz.Equipment.Models
                     List<DescriptionModel> buffer = new List<DescriptionModel>();
                     foreach (string s in _stringdescription)
                     {
-                        buffer.Add(new Models.DescriptionModel(s));
+                        buffer.Add(new DescriptionModel(s));
                     }
                     Description = buffer;
                     OnPropertyChanged();

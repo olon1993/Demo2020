@@ -127,7 +127,7 @@
     <Compile Include="Equipment\Models\CategoryModel.cs" />
     <Compile Include="Equipment\Models\CostModel.cs" />
     <Compile Include="Equipment\Models\DamageModel.cs" />
-    <Compile Include="Equipment\Models\DescriptionModel.cs" />
+    <Compile Include="Commons\Models\DescriptionModel.cs" />
     <Compile Include="Equipment\Models\EquipmentModel.cs" />
     <Compile Include="Equipment\Models\EquipmentPropertyModel.cs" />
     <Compile Include="Equipment\Models\EquipmentSlotModel.cs" />

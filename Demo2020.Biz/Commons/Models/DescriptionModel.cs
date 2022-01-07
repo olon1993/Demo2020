@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo2020.Biz.Equipment.Models
+namespace Demo2020.Biz.Commons.Models
 {
     public class DescriptionModel : ObservableObject
     {

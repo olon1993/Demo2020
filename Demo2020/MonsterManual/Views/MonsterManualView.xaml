@@ -96,11 +96,6 @@
             </Grid>
         </Border>
 
-        <!--<uc:MonsterControl
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            DataContext="{Binding CurrentMonster}" />-->
-
         <Button
             Grid.Row="0"
             Grid.Column="1"
