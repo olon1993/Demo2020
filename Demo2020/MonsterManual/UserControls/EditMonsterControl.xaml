@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Demo2020.MonsterManual.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
+    d:DesignHeight="900"
     d:DesignWidth="600"
     mc:Ignorable="d">
 
@@ -26,6 +26,7 @@
             Grid.RowSpan="4"
             Grid.Column="1"
             Height="240"
+            VerticalAlignment="Top"
             Source="/Demo2020;component/Resources/Images/BeholderIcon.png" />
 
         <Border
@@ -39,45 +40,85 @@
                 </Grid.RowDefinitions>
 
                 <!--  Row 0 : Name  -->
-                <TextBlock
+                <TextBox
                     Margin="36,0,0,10"
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="DarkRed"
-                    Text="Edit Mode" />
-                <!--  {Binding Name, FallbackValue=Name}  -->
+                    Text="{Binding Name, FallbackValue=Name}" />
 
-                <!--  Row 1 : Type and Alignment  -->
-                <DockPanel Grid.Row="1">
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
                     <TextBlock
-                        DockPanel.Dock="Left"
+                        VerticalAlignment="Center"
                         FontSize="12"
-                        Text="{Binding Size, FallbackValue=Size}" />
+                        Foreground="DarkRed"
+                        Text="Size" />
+
+                    <ComboBox
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        ItemsSource="{Binding CreatureSizes}"
+                        SelectedItem="{Binding Size}" />
+
                     <TextBlock
-                        Margin="3,0,0,0"
-                        DockPanel.Dock="Left"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Type" />
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Height="22"
+                        Margin="2"
                         FontSize="12"
                         Text="{Binding MonsterType, FallbackValue=Type}" />
-                    <TextBlock Margin="3,0,0,0" FontSize="12">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding MonsterSubtype.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                        <Run Text="(" />
-                        <Run Text="{Binding MonsterSubtype, FallbackValue=(Subtype)}" />
-                        <Run Text=")" />
-                    </TextBlock>
-                    <TextBlock DockPanel.Dock="Left" FontSize="12">
-                        <Run Text="," />
-                        <Run Text="{Binding Alignment, FallbackValue=Alignment}" />
-                    </TextBlock>
-                </DockPanel>
+
+                    <TextBlock
+                        Grid.Row="2"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Subtype" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Height="22"
+                        Margin="2"
+                        FontSize="12"
+                        Text="{Binding MonsterSubtype, FallbackValue=Subtype}" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Alignment" />
+
+                    <ComboBox
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        ItemsSource="{Binding CreatureAlignments}"
+                        SelectedItem="{Binding Alignment}" />
+                </Grid>
 
             </Grid>
         </Border>
@@ -97,149 +138,201 @@
                 </Grid.RowDefinitions>
 
                 <!--  Row 0 : Armor Class  -->
-                <DockPanel>
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
                     <TextBlock
-                        DockPanel.Dock="Left"
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Center"
                         FontSize="12"
                         FontWeight="Bold"
                         Foreground="DarkRed"
-                        Text="Armor Class" />
+                        Text="Armor Class"
+                        TextAlignment="Center" />
 
                     <TextBlock
-                        Margin="3,0,0,0"
-                        DockPanel.Dock="Left"
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Armor Class" />
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="2"
                         FontSize="12"
                         Foreground="DarkRed"
                         Text="{Binding ArmorClass}" />
 
                     <TextBlock
-                        Margin="3,0,0,0"
-                        DockPanel.Dock="Left"
+                        Grid.Row="2"
+                        VerticalAlignment="Center"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ArmorType.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                        <Run Text="(" />
-                        <Run Text="{Binding ArmorType}" />
-                        <Run Text=")" />
-                    </TextBlock>
-                </DockPanel>
+                        Foreground="DarkRed"
+                        Text="Armor Type" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding ArmorType}" />
+                </Grid>
 
                 <!--  Row 1 : Hit Points  -->
-                <TextBlock
-                    Grid.Row="1"
-                    FontSize="12"
-                    Foreground="DarkRed">
-                    <Run FontWeight="Bold" Text="Hit Points" />
-                    <Run Text="{Binding HitPoints, FallbackValue=HitPoints}" />
-                    <Run Text="(" />
-                    <Run Text="{Binding HitPointsCalculation, FallbackValue=1d2+3}" />
-                    <Run Text=")" />
-                </TextBlock>
+                <Grid Grid.Row="1" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <!--  Row 2 : Speed  -->
-                <DockPanel Grid.Row="2">
                     <TextBlock
-                        DockPanel.Dock="Left"
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Center"
                         FontSize="12"
                         FontWeight="Bold"
                         Foreground="DarkRed"
-                        Text="Speed " />
+                        Text="Hit Points"
+                        TextAlignment="Center" />
 
                     <TextBlock
-                        DockPanel.Dock="Left"
+                        Grid.Row="1"
+                        FontSize="12"
+                        Foreground="DarkRed">
+                        <Run Text="Hit Points" />
+                        <Run Text="{Binding HitPoints, FallbackValue=HitPoints}" />
+                        <Run Text="(" />
+                        <Run Text="{Binding HitPointsCalculation, FallbackValue=1d2+3}" />
+                        <Run Text=")" />
+                    </TextBlock>
+                </Grid>
+
+                <!--  Row 2 : Speed  -->
+                <Grid Grid.Row="2" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.ColumnSpan="2"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Foreground="DarkRed"
+                        Text="Speed"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Ground Speed" />
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="2"
                         FontSize="12"
                         Foreground="DarkRed"
                         Text="{Binding Speed.Walk}" />
 
                     <TextBlock
-                        DockPanel.Dock="Left"
-                        FontSize="12"
-                        Foreground="DarkRed">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Speed.Fly.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                        <Run Text=", Fly" />
-                        <Run Text="{Binding Speed.Fly}" />
-                    </TextBlock>
-
-                    <TextBlock
-                        DockPanel.Dock="Left"
+                        Grid.Row="2"
+                        VerticalAlignment="Center"
                         FontSize="12"
                         Foreground="DarkRed"
-                        Text="(hover)"
-                        Visibility="{Binding Speed.Hover, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}" />
+                        Text="Flying Speed" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding Speed.Fly}" />
 
                     <TextBlock
-                        DockPanel.Dock="Left"
+                        Grid.Row="3"
+                        VerticalAlignment="Center"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Speed.Swim.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                        <Run Text=", Swim" />
-                        <Run Text="{Binding Speed.Swim}" />
-                    </TextBlock>
+                        Foreground="DarkRed"
+                        Text="Hover Speed" />
+
+                    <CheckBox
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        IsChecked="{Binding Speed.Hover}" />
+
 
                     <TextBlock
-                        DockPanel.Dock="Left"
+                        Grid.Row="4"
+                        VerticalAlignment="Center"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Speed.Burrow.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                        <Run Text=", Burrow" />
-                        <Run Text="{Binding Speed.Burrow}" />
-                    </TextBlock>
+                        Foreground="DarkRed"
+                        Text="Swim Speed" />
+
+                    <TextBox
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding Speed.Swim}" />
 
                     <TextBlock
-                        DockPanel.Dock="Left"
+                        Grid.Row="5"
+                        VerticalAlignment="Center"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Speed.Climb.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                        <Run Text=", Climb" />
-                        <Run Text="{Binding Speed.Climb}" />
-                    </TextBlock>
+                        Foreground="DarkRed"
+                        Text="Burrow Speed" />
 
-                </DockPanel>
+                    <TextBox
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding Speed.Burrow}" />
+
+                    <TextBlock
+                        Grid.Row="6"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Climbing Speed" />
+
+                    <TextBox
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding Speed.Climb}" />
+                </Grid>
 
                 <!--  Row 3 : Speed  -->
                 <DockPanel Grid.Row="3">
@@ -282,302 +375,571 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                     <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
+                <!--  Row 0  -->
                 <!--  Col 0 : Strength  -->
-                <TextBlock
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StrengthModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="STR" />
-                    <LineBreak />
-                    <Run Text="{Binding Strength, FallbackValue=STR}" />
-                    <LineBreak />
-                    <Run Text="(+" />
-                    <Run Text="{Binding StrengthModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding StrengthModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                    <Button
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Right"
+                        Background="Red"
+                        Command="{Binding SubtractCommand}"
+                        CommandParameter="STR">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                    </Button>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="STR"
+                            TextAlignment="Center" />
+
+                        <TextBox
+                            Grid.Row="1"
+                            Margin="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="{Binding Strength}"
+                            TextAlignment="Center" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="STR" />
-                    <LineBreak />
-                    <Run Text="{Binding Strength, FallbackValue=STR}" />
-                    <LineBreak />
-                    <Run Text="(" />
-                    <Run Text="{Binding StrengthModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding StrengthModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(+" />
+                            <Run Text="{Binding StrengthModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding StrengthModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(" />
+                            <Run Text="{Binding StrengthModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+                    </Grid>
+
+                    <Button
+                        Grid.Column="2"
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Left"
+                        Background="Green"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="STR">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                    </Button>
+
+                </Grid>
 
                 <!--  Col 1 : Dexterity  -->
-                <TextBlock
-                    Grid.Column="1"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding DexterityModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="DEX" />
-                    <LineBreak />
-                    <Run Text="{Binding Dexterity, FallbackValue=DEX}" />
-                    <LineBreak />
-                    <Run Text="(+" />
-                    <Run Text="{Binding DexterityModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                <Grid Grid.Column="1" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock
-                    Grid.Column="1"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding DexterityModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                    <Button
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Right"
+                        Background="Red"
+                        Command="{Binding SubtractCommand}"
+                        CommandParameter="DEX">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                    </Button>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="DEX"
+                            TextAlignment="Center" />
+
+                        <TextBox
+                            Grid.Row="1"
+                            Margin="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="{Binding Dexterity}"
+                            TextAlignment="Center" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="DEX" />
-                    <LineBreak />
-                    <Run Text="{Binding Dexterity, FallbackValue=DEX}" />
-                    <LineBreak />
-                    <Run Text="(" />
-                    <Run Text="{Binding DexterityModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DexterityModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(+" />
+                            <Run Text="{Binding DexterityModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DexterityModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(" />
+                            <Run Text="{Binding DexterityModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+                    </Grid>
+
+                    <Button
+                        Grid.Column="2"
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Left"
+                        Background="Green"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="DEX">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                    </Button>
+
+                </Grid>
 
                 <!--  Col 2 : Constitution  -->
-                <TextBlock
+                <Grid Grid.Column="2" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Right"
+                        Background="Red"
+                        Command="{Binding SubtractCommand}"
+                        CommandParameter="CON">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                    </Button>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="CON"
+                            TextAlignment="Center" />
+
+                        <TextBox
+                            Grid.Row="1"
+                            Margin="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="{Binding Constitution}"
+                            TextAlignment="Center" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ConstitutionModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(+" />
+                            <Run Text="{Binding ConstitutionModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ConstitutionModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(" />
+                            <Run Text="{Binding ConstitutionModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+                    </Grid>
+
+                    <Button
+                        Grid.Column="2"
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Left"
+                        Background="Green"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="CON">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                    </Button>
+
+                </Grid>
+
+                <!--  Row 2  -->
+                <!--  Col 0 : Intelligence  -->
+                <Grid Grid.Row="1" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Right"
+                        Background="Red"
+                        Command="{Binding SubtractCommand}"
+                        CommandParameter="INT">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                    </Button>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="INT"
+                            TextAlignment="Center" />
+
+                        <TextBox
+                            Grid.Row="1"
+                            Margin="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="{Binding Intelligence}"
+                            TextAlignment="Center" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IntelligenceModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(+" />
+                            <Run Text="{Binding IntelligenceModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IntelligenceModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(" />
+                            <Run Text="{Binding IntelligenceModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+                    </Grid>
+
+                    <Button
+                        Grid.Column="2"
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Left"
+                        Background="Green"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="INT">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                    </Button>
+
+                </Grid>
+
+                <!--  Col 1 : Wisdom  -->
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Right"
+                        Background="Red"
+                        Command="{Binding SubtractCommand}"
+                        CommandParameter="WIS">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                    </Button>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="WIS"
+                            TextAlignment="Center" />
+
+                        <TextBox
+                            Grid.Row="1"
+                            Margin="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="{Binding Wisdom}"
+                            TextAlignment="Center" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding WisdomModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(+" />
+                            <Run Text="{Binding WisdomModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding WisdomModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(" />
+                            <Run Text="{Binding WisdomModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+                    </Grid>
+
+                    <Button
+                        Grid.Column="2"
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Left"
+                        Background="Green"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="WIS">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                    </Button>
+
+                </Grid>
+
+                <!--  Col 2 : Charisma  -->
+                <Grid
+                    Grid.Row="1"
                     Grid.Column="2"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ConstitutionModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="CON" />
-                    <LineBreak />
-                    <Run Text="{Binding Constitution, FallbackValue=CON}" />
-                    <LineBreak />
-                    <Run Text="(+" />
-                    <Run Text="{Binding ConstitutionModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                    Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock
-                    Grid.Column="2"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding ConstitutionModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                    <Button
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Right"
+                        Background="Red"
+                        Command="{Binding SubtractCommand}"
+                        CommandParameter="CHA">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                    </Button>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="CHA"
+                            TextAlignment="Center" />
+
+                        <TextBox
+                            Grid.Row="1"
+                            Margin="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            Text="{Binding Charisma}"
+                            TextAlignment="Center" />
+
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="CON" />
-                    <LineBreak />
-                    <Run Text="{Binding Constitution, FallbackValue=CON}" />
-                    <LineBreak />
-                    <Run Text="(" />
-                    <Run Text="{Binding ConstitutionModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CharismaModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(+" />
+                            <Run Text="{Binding CharismaModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
 
-                <!--  Col 3 : Intelligence  -->
-                <TextBlock
-                    Grid.Column="3"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IntelligenceModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                        <TextBlock
+                            Grid.Row="2"
+                            FontSize="12"
+                            Foreground="DarkRed"
+                            TextAlignment="Center">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="INT" />
-                    <LineBreak />
-                    <Run Text="{Binding Intelligence, FallbackValue=INT}" />
-                    <LineBreak />
-                    <Run Text="(+" />
-                    <Run Text="{Binding IntelligenceModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CharismaModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <Run Text="(" />
+                            <Run Text="{Binding CharismaModifier, FallbackValue=0}" />
+                            <Run Text=")" />
+                        </TextBlock>
+                    </Grid>
 
-                <TextBlock
-                    Grid.Column="3"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding IntelligenceModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="INT" />
-                    <LineBreak />
-                    <Run Text="{Binding Intelligence, FallbackValue=INT}" />
-                    <LineBreak />
-                    <Run Text="(" />
-                    <Run Text="{Binding IntelligenceModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                    <Button
+                        Grid.Column="2"
+                        Width="17"
+                        Height="17"
+                        HorizontalAlignment="Left"
+                        Background="Green"
+                        Command="{Binding AddCommand}"
+                        CommandParameter="CHA">
+                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                    </Button>
 
-                <!--  Col 4 : Wisdom  -->
-                <TextBlock
-                    Grid.Column="4"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding WisdomModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="WIS" />
-                    <LineBreak />
-                    <Run Text="{Binding Wisdom, FallbackValue=WIS}" />
-                    <LineBreak />
-                    <Run Text="(+" />
-                    <Run Text="{Binding WisdomModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
-
-                <TextBlock
-                    Grid.Column="4"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding WisdomModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="WIS" />
-                    <LineBreak />
-                    <Run Text="{Binding Wisdom, FallbackValue=WIS}" />
-                    <LineBreak />
-                    <Run Text="(" />
-                    <Run Text="{Binding WisdomModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
-
-                <!--  Col 5 : Charisma  -->
-                <TextBlock
-                    Grid.Column="5"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding CharismaModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="CHA" />
-                    <LineBreak />
-                    <Run Text="{Binding Charisma, FallbackValue=CHA}" />
-                    <LineBreak />
-                    <Run Text="(+" />
-                    <Run Text="{Binding CharismaModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
-
-                <TextBlock
-                    Grid.Column="5"
-                    FontSize="12"
-                    Foreground="DarkRed"
-                    TextAlignment="Center">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding CharismaModifier, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="False">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                    <Run FontWeight="Bold" Text="CHA" />
-                    <LineBreak />
-                    <Run Text="{Binding Charisma, FallbackValue=CHA}" />
-                    <LineBreak />
-                    <Run Text="(" />
-                    <Run Text="{Binding CharismaModifier, FallbackValue=0}" />
-                    <Run Text=")" />
-                </TextBlock>
+                </Grid>
 
             </Grid>
         </Border>

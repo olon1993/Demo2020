@@ -1,7 +1,10 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.MonsterManual.Interfaces;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace Demo2020.Biz.MonsterManual.Models
 {
@@ -36,10 +39,28 @@ namespace Demo2020.Biz.MonsterManual.Models
         private List<ProficiencyModel> _proficiencies;
         private double _challengeRating;
         private int _xp;
+        private List<string> _creatureSizes = new List<string>
+        {
+            "Tiny", "Small", "Medium", "Large", "Huge", "Gargantuan"
+        };
+        private List<string> _creatureAlignments = new List<string>
+        {
+            "lawful good", "neutral good", "chaotic good",
+            "lawful neutral", "neutral", "chaotic neutral",
+            "lawful evil", "neutral evil", "chaotic evil",
+            "any lawful alignment", "any chaotic alignment",
+            "any good alignment", "any evil alignment", "any neutral alignment",
+            "any non-lawful alignment", "any non-chaotic alignment",
+            "any non-good alignment", "any non-evil alignment", "any non-neutral alignment",
+            "any", "unaligned",
+        };
 
         public MonsterModel()
         {
             Speed = new SpeedModel();
+
+            AddCommand = new RelayCommand<string>(x => Add(x));
+            SubtractCommand = new RelayCommand<string>(x => Subtract(x));
         }
 
         private int CalculateModifier(int score)
@@ -50,6 +71,56 @@ namespace Demo2020.Biz.MonsterManual.Models
                 modifier--;
             }
             return modifier;
+        }
+
+        private void Add(string ability)
+        {
+            switch (ability)
+            {
+                case "STR":
+                    Strength++;
+                    break;
+                case "DEX":
+                    Dexterity++;
+                    break;
+                case "CON":
+                    Constitution++;
+                    break;
+                case "INT":
+                    Intelligence++;
+                    break;
+                case "WIS":
+                    Wisdom++;
+                    break;
+                case "CHA":
+                    Charisma++;
+                    break;
+            }
+        }
+
+        private void Subtract(string ability)
+        {
+            switch (ability)
+            {
+                case "STR":
+                    Strength--;
+                    break;
+                case "DEX":
+                    Dexterity--;
+                    break;
+                case "CON":
+                    Constitution--;
+                    break;
+                case "INT":
+                    Intelligence--;
+                    break;
+                case "WIS":
+                    Wisdom--;
+                    break;
+                case "CHA":
+                    Charisma--;
+                    break;
+            }
         }
 
         //**************************************************\\
@@ -146,6 +217,10 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_armorType != value)
                 {
                     _armorType = value;
+                    if(_armorType != null)
+                    {
+                        Console.WriteLine(_armorType);
+                    }
                     OnPropertyChanged();
                 }
             }
@@ -400,6 +475,36 @@ namespace Demo2020.Biz.MonsterManual.Models
                 }
             }
         }
+
+        public List<string> CreatureSizes
+        {
+            get { return _creatureSizes; }
+            set
+            {
+                if (_creatureSizes != value)
+                {
+                    _creatureSizes = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public List<string> CreatureAlignments
+        {
+            get { return _creatureAlignments; }
+            set
+            {
+                if (_creatureAlignments != value)
+                {
+                    _creatureAlignments = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand AddCommand { get; set; }
+
+        public ICommand SubtractCommand { get; set; }
 
     }
 }

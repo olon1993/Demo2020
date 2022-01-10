@@ -80,7 +80,7 @@
             Background="Transparent"
             BorderBrush="Transparent"
             Command="{Binding ToggleEditCommand}">
-            <Image Source="/Demo2020;component/Resources/Images/LockIcon.png" />
+            <Image Source="{Binding EditIconSource}" />
         </Button>
 
     </Grid>

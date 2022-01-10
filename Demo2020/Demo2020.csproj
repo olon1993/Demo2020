@@ -284,5 +284,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\KnightIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AddIcon.png" />
+    <Resource Include="Resources\Images\SubtractIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
