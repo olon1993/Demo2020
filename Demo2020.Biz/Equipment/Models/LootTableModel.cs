@@ -14,7 +14,7 @@ namespace Demo2020.Biz.Equipment.Models
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
-        private int _id;
+        private Guid _id;
         private string _name;
         private string _description;
         private string _imageSource;
@@ -29,7 +29,7 @@ namespace Demo2020.Biz.Equipment.Models
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
-        public int Id
+        public Guid Id
         {
             get { return _id; }
             set

@@ -10,6 +10,8 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IMagicItemModel
     {
+        Guid Id { get; set; }
+
         string Name { get; set; }
 
         IList<DescriptionModel> Description { get; set; }

@@ -132,6 +132,9 @@
     <Compile Include="Equipment\UserControls\EditLootTableControl.xaml.cs">
       <DependentUpon>EditLootTableControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Equipment\UserControls\EditMagicItemControl.xaml.cs">
+      <DependentUpon>EditMagicItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Equipment\UserControls\EquipmentControl.xaml.cs">
       <DependentUpon>EquipmentControl.xaml</DependentUpon>
     </Compile>
@@ -169,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Equipment\UserControls\EditLootTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Equipment\UserControls\EditMagicItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,6 +294,14 @@
   <ItemGroup>
     <Resource Include="Resources\Images\AddIcon.png" />
     <Resource Include="Resources\Images\SubtractIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\d04Icon.png" />
+    <Resource Include="Resources\Images\d06Icon.png" />
+    <Resource Include="Resources\Images\d08Icon.png" />
+    <Resource Include="Resources\Images\d10Icon.png" />
+    <Resource Include="Resources\Images\d12Icon.png" />
+    <Resource Include="Resources\Images\d20Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

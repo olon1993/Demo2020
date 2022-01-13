@@ -55,10 +55,22 @@
             </ListBox>
         </Grid>
 
-        <uc:MagicItemControl
-            Grid.RowSpan="2"
-            Grid.Column="1"
-            DataContext="{Binding CurrentMagicItem}" />
+        <Border Grid.Column="1" Visibility="{Binding IsEditEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ReverseBoolToVisibilityConverter}, FallbackValue=Visible}">
+            <uc:MagicItemControl DataContext="{Binding CurrentMagicItem}" />
+        </Border>
+
+        <Border Grid.Column="1" Visibility="{Binding IsEditEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+            <Grid Background="LightGoldenrodYellow">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <uc:EditMagicItemControl
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    DataContext="{Binding CurrentMagicItem}" />
+            </Grid>
+        </Border>
 
         <Button
             Grid.Row="0"
@@ -71,7 +83,7 @@
             Background="Transparent"
             BorderBrush="Transparent"
             Command="{Binding ToggleEditCommand}">
-            <Image Source="/Demo2020;component/Resources/Images/LockIcon.png" />
+            <Image Source="{Binding EditIconSource}" />
         </Button>
 
     </Grid>

@@ -2,8 +2,11 @@
 using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Equipment.Interfaces;
 using Demo2020.Biz.Equipment.Models;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace Demo2020.Biz.Equipment.Models
 {
@@ -36,11 +39,31 @@ namespace Demo2020.Biz.Equipment.Models
         {
             Description = new List<DescriptionModel>();
             EquipmentCategory = new CategoryModel();
+
+            AddDescriptionCommand = new RelayCommand(AddDescription);
+        }
+
+        //**************************************************\\
+        //******************** Methods *********************\\
+        //**************************************************\\
+
+        private void AddDescription()
+        {
+            IList<DescriptionModel> descriptions = new List<DescriptionModel>();
+            foreach (DescriptionModel d in Description)
+            {
+                descriptions.Add(d);
+            }
+
+            descriptions.Add(new DescriptionModel("{{New Line}}"));
+            Description = descriptions;
         }
 
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
+
+        public Guid Id { get; set; }
 
         [JsonProperty("name")]
         public string Name
@@ -128,5 +151,7 @@ namespace Demo2020.Biz.Equipment.Models
             get { return _isDataComplete; }
             set { _isDataComplete = value; }
         }
+
+        public ICommand AddDescriptionCommand { get; set; }
     }
 }

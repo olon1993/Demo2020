@@ -1,11 +1,13 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Equipment.Interfaces;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Demo2020.Biz.Equipment.ViewModels
 {
@@ -24,12 +26,21 @@ namespace Demo2020.Biz.Equipment.ViewModels
         private IList<IMagicItemModel> _magicItemsRaw;
         private string _filter = "";
         private int _SelectedMagicItemIndex = -1;
+        private bool _isEditEnabled;
+        private string _editIconSource;
+
+        private const string UNLOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/UnlockIcon.png";
+        private const string LOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/LockIcon.png";
 
         public MagicItemViewModel(IMagicItemFactoryService magicItemFactory, IMagicItemDataAccessService magicItemDataAccessObject, IMagicItemSearchAndFilterService magicItemSearchAndFilter)
         {
             _magicItemFactory = magicItemFactory;
             _magicItemDataAccessObject = magicItemDataAccessObject;
             _magicItemSearchAndFilter = magicItemSearchAndFilter;
+
+            EditIconSource = LOCKED_IMAGE_PATH;
+
+            ToggleEditCommand = new RelayCommand(ToggleEdit);
 
             Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg =>
             {
@@ -93,6 +104,18 @@ namespace Demo2020.Biz.Equipment.ViewModels
             }
         }
 
+        private void ToggleEdit()
+        {
+            if (_isEditEnabled)
+            {
+                IsEditEnabled = false;
+            }
+            else
+            {
+                IsEditEnabled = true;
+            }
+        }
+
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
@@ -152,5 +175,41 @@ namespace Demo2020.Biz.Equipment.ViewModels
                 }
             }
         }
+
+        public bool IsEditEnabled
+        {
+            get { return _isEditEnabled; }
+            set
+            {
+                if (_isEditEnabled != value)
+                {
+                    _isEditEnabled = value;
+                    if (_isEditEnabled)
+                    {
+                        EditIconSource = UNLOCKED_IMAGE_PATH;
+                    }
+                    else
+                    {
+                        EditIconSource = LOCKED_IMAGE_PATH;
+                    }
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string EditIconSource
+        {
+            get { return _editIconSource; }
+            set
+            {
+                if (_editIconSource != value)
+                {
+                    _editIconSource = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand ToggleEditCommand { get; set; }
     }
 }

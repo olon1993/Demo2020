@@ -22,6 +22,23 @@ namespace Demo2020.Biz.MonsterManual.Models
         private string _armorType;
         private int _hitPoints;
         private string _hitPointsCalculation;
+        private int _hitPointBase;
+        private List<int> _hitDice = new List<int>
+        {
+            4, 6, 8, 10, 12, 20
+        };
+        private int _hitDie;
+        private int _hitDiceQuantity;
+        private string _hitDieImageSource = "/Demo2020;component/Resources/Images/d20Icon.png";
+        private List<string> _hitDiceImageSources = new List<string>
+        {
+            "/Demo2020;component/Resources/Images/d04Icon.png",
+            "/Demo2020;component/Resources/Images/d06Icon.png",
+            "/Demo2020;component/Resources/Images/d08Icon.png",
+            "/Demo2020;component/Resources/Images/d10Icon.png",
+            "/Demo2020;component/Resources/Images/d12Icon.png",
+            "/Demo2020;component/Resources/Images/d20Icon.png",
+        };
         private SpeedModel _speed;
         private int _strength;
         private int _strengthModifier;
@@ -52,7 +69,7 @@ namespace Demo2020.Biz.MonsterManual.Models
             "any good alignment", "any evil alignment", "any neutral alignment",
             "any non-lawful alignment", "any non-chaotic alignment",
             "any non-good alignment", "any non-evil alignment", "any non-neutral alignment",
-            "any", "unaligned",
+            "any alignment", "unaligned",
         };
 
         public MonsterModel()
@@ -63,6 +80,10 @@ namespace Demo2020.Biz.MonsterManual.Models
             SubtractCommand = new RelayCommand<string>(x => Subtract(x));
         }
 
+        //**************************************************\\
+        //******************** Methods *********************\\
+        //**************************************************\\
+
         private int CalculateModifier(int score)
         {
             int modifier = (score - 10) / 2;
@@ -71,6 +92,54 @@ namespace Demo2020.Biz.MonsterManual.Models
                 modifier--;
             }
             return modifier;
+        }
+
+        private void ExtractHitPointValues()
+        {
+            if(HitPointsCalculation != null && HitPointsCalculation != string.Empty)
+            {
+                int length = HitPointsCalculation.Length;
+                int dIndex = HitPointsCalculation.IndexOf("d");
+                int pIndex = HitPointsCalculation.IndexOf("+");
+                int eIndex = pIndex > 0 ? pIndex : length;
+
+                if(dIndex > 0)
+                {
+                    HitDiceQuantity = Convert.ToInt32(HitPointsCalculation.Substring(0, dIndex));
+                    HitDie = Convert.ToInt32(HitPointsCalculation.Substring(dIndex + 1, eIndex - dIndex - 1));
+                }
+                else
+                {
+                    HitDiceQuantity = 0;
+                    HitDie = HitDice[5];
+                }
+
+                if(pIndex > 0)
+                {
+                    HitPointBase = Convert.ToInt32(HitPointsCalculation.Substring(pIndex + 1, length - pIndex - 1));
+                }
+                else
+                {
+                    HitPointBase = 0;
+                }
+            }
+        }
+
+        private void UpdateHitPointCalculation()
+        {
+            if (HitPointBase > 0 && HitDiceQuantity > 0 && HitDie > 0)
+            {
+                HitPointsCalculation = HitDiceQuantity + "d" + HitDie + "+" + HitPointBase;
+            }
+            else if(HitDiceQuantity > 0 && HitDie > 0)
+            {
+                HitPointsCalculation = HitDiceQuantity + "d" + HitDie;
+            }
+
+            if (HitDiceQuantity > 0 && HitDie > 0)
+            {
+                HitPoints = HitPointBase + HitDiceQuantity * ((HitDie / 2) + 1);
+            }
         }
 
         private void Add(string ability)
@@ -126,6 +195,8 @@ namespace Demo2020.Biz.MonsterManual.Models
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
+
+        public Guid Id { get; set; }
 
         public string Name
         {
@@ -217,10 +288,6 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_armorType != value)
                 {
                     _armorType = value;
-                    if(_armorType != null)
-                    {
-                        Console.WriteLine(_armorType);
-                    }
                     OnPropertyChanged();
                 }
             }
@@ -249,6 +316,97 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_hitPointsCalculation != value)
                 {
                     _hitPointsCalculation = value;
+                    ExtractHitPointValues();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int HitPointBase
+        {
+            get { return _hitPointBase; }
+            set
+            {
+                if (_hitPointBase != value)
+                {
+                    _hitPointBase = value;
+                    UpdateHitPointCalculation();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        public List<int> HitDice
+        {
+            get { return _hitDice; }
+            set
+            {
+                if (_hitDice != value)
+                {
+                    _hitDice = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int HitDie
+        {
+            get { return _hitDie; }
+            set
+            {
+                if (_hitDie != value)
+                {
+                    _hitDie = value;
+                    switch (_hitDie)
+                    {
+                        case 4:
+                            HitDieImageSource = _hitDiceImageSources[0];
+                            break;
+                        case 6:
+                            HitDieImageSource = _hitDiceImageSources[1];
+                            break;
+                        case 8:
+                            HitDieImageSource = _hitDiceImageSources[2];
+                            break;
+                        case 10:
+                            HitDieImageSource = _hitDiceImageSources[3];
+                            break;
+                        case 12:
+                            HitDieImageSource = _hitDiceImageSources[4];
+                            break;
+                        default:
+                            HitDieImageSource = _hitDiceImageSources[5];
+                            break;
+                    }
+                    UpdateHitPointCalculation();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int HitDiceQuantity
+        {
+            get { return _hitDiceQuantity; }
+            set
+            {
+                if (_hitDiceQuantity != value)
+                {
+                    _hitDiceQuantity = value;
+                    UpdateHitPointCalculation();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public string HitDieImageSource
+        {
+            get { return _hitDieImageSource; }
+            set
+            {
+                if (_hitDieImageSource != value)
+                {
+                    _hitDieImageSource = value;
                     OnPropertyChanged();
                 }
             }

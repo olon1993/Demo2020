@@ -1,12 +1,15 @@
 ﻿using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Equipment.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipmentModel
     {
+        Guid Id { get; set; }
+
         string Name { get; set; }
 
         double Weight { get; set; }

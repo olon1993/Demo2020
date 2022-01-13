@@ -195,3 +195,5 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserContro
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\MonsterManual\UserControls\MonsterControl.baml
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditEquipmentControl.g.cs
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditEquipmentControl.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditMagicItemControl.g.cs
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditMagicItemControl.baml

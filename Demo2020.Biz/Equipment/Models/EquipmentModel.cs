@@ -76,6 +76,10 @@ namespace Demo2020.Biz.Equipment.Models
             AddDescriptionCommand = new RelayCommand(AddDescription);
         }
 
+        //**************************************************\\
+        //******************** Methods *********************\\
+        //**************************************************\\
+
         private void AddDescription()
         {
             IList<DescriptionModel> descriptions = new List<DescriptionModel>();
@@ -91,6 +95,8 @@ namespace Demo2020.Biz.Equipment.Models
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
+
+        public Guid Id { get; set; }
 
         [JsonProperty("name")]
         public string Name
@@ -358,6 +364,7 @@ namespace Demo2020.Biz.Equipment.Models
         }
 
         // This implementation is messy. I want to clean this up in the near future. 
+        // Cleanup should be done when the source of the data is changed and data type is corrected
         [JsonProperty("desc")]
         public IList<string> StringDescription
         {
@@ -442,5 +449,6 @@ namespace Demo2020.Biz.Equipment.Models
                 }
             }
         }
+
     }
 }

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\olon1\source\repos\Demo2020\Demo2020\App.xaml
-151605146847
+16-2072854098
 
-25-4494105
+26-777187731
 133-1452134836
-ActorCatalog\UserControls\ActorDescriptionControl.xaml;ActorCatalog\Views\ActorCatalogView.xaml;Commons\Windows\MessageWindow.xaml;Equipment\UserControls\EditEquipmentControl.xaml;Equipment\UserControls\EditLootTableControl.xaml;Equipment\UserControls\EquipmentControl.xaml;Equipment\UserControls\LootTableControl.xaml;Equipment\UserControls\MagicItemControl.xaml;Equipment\Views\EquipmentView.xaml;Equipment\Views\LootTableView.xaml;Equipment\Views\MagicItemView.xaml;MainWindow.xaml;MonsterManual\UserControls\EditMonsterControl.xaml;MonsterManual\UserControls\MonsterControl.xaml;MonsterManual\Views\MonsterManualView.xaml;
+ActorCatalog\UserControls\ActorDescriptionControl.xaml;ActorCatalog\Views\ActorCatalogView.xaml;Commons\Windows\MessageWindow.xaml;Equipment\UserControls\EditEquipmentControl.xaml;Equipment\UserControls\EditLootTableControl.xaml;Equipment\UserControls\EditMagicItemControl.xaml;Equipment\UserControls\EquipmentControl.xaml;Equipment\UserControls\LootTableControl.xaml;Equipment\UserControls\MagicItemControl.xaml;Equipment\Views\EquipmentView.xaml;Equipment\Views\LootTableView.xaml;Equipment\Views\MagicItemView.xaml;MainWindow.xaml;MonsterManual\UserControls\EditMonsterControl.xaml;MonsterManual\UserControls\MonsterControl.xaml;MonsterManual\Views\MonsterManualView.xaml;
 
-False
+True
 

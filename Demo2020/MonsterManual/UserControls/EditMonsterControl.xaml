@@ -194,7 +194,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
                     <TextBlock
                         Grid.ColumnSpan="2"
@@ -205,16 +214,89 @@
                         Text="Hit Points"
                         TextAlignment="Center" />
 
+                    <Image
+                        Grid.RowSpan="3"
+                        Grid.Column="1"
+                        Height="60"
+                        HorizontalAlignment="Right"
+                        Source="{Binding HitDieImageSource}" />
+
                     <TextBlock
                         Grid.Row="1"
+                        VerticalAlignment="Center"
                         FontSize="12"
-                        Foreground="DarkRed">
-                        <Run Text="Hit Points" />
-                        <Run Text="{Binding HitPoints, FallbackValue=HitPoints}" />
-                        <Run Text="(" />
-                        <Run Text="{Binding HitPointsCalculation, FallbackValue=1d2+3}" />
-                        <Run Text=")" />
-                    </TextBlock>
+                        Foreground="DarkRed"
+                        Text="Average Hit Points" />
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding HitPoints, FallbackValue=HitPoints}" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Hit Point Calculation" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding HitPointsCalculation, FallbackValue=1d2+3}" />
+
+                    <TextBlock
+                        Grid.Row="3"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Base Hit Points" />
+
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding HitPointBase, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="4"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Hit Dice" />
+
+                    <ComboBox
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        ItemsSource="{Binding HitDice}"
+                        SelectedItem="{Binding HitDie}" />
+
+                    <TextBlock
+                        Grid.Row="5"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="Number of Hit Dice" />
+
+                    <TextBox
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Margin="2"
+                        FontSize="12"
+                        Foreground="DarkRed"
+                        Text="{Binding HitDiceQuantity, UpdateSourceTrigger=PropertyChanged}" />
+
                 </Grid>
 
                 <!--  Row 2 : Speed  -->
