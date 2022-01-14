@@ -197,3 +197,8 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\E
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditEquipmentControl.baml
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditMagicItemControl.g.cs
 C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Equipment\UserControls\EditMagicItemControl.baml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\DungeonAssistantDb.db
+C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\System.Data.SQLite.dll
+C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\System.Data.SQLite.xml
+C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\Dapper.dll
+C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\Dapper.xml
