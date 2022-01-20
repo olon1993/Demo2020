@@ -258,7 +258,6 @@
                         <Run Text="{Binding Damage.DamageType.Name}" />
                     </TextBlock>
 
-
                     <TextBlock
                         Grid.Row="1"
                         Grid.Column="1"
@@ -278,6 +277,29 @@
                         Foreground="DarkRed"
                         Text="{Binding Damage.DamageDice, UpdateSourceTrigger=PropertyChanged}" />
 
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Margin="4,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="10"
+                        FontSize="12"
+                        Foreground="Gray"
+                        IsHitTestVisible="False"
+                        Text="1d20">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Damage.DamageDice.Length}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="2"
@@ -287,6 +309,29 @@
                         FontSize="12"
                         Foreground="DarkRed"
                         Text="{Binding Damage.DamageType.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Margin="4,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="10"
+                        FontSize="12"
+                        Foreground="Gray"
+                        IsHitTestVisible="False"
+                        Text="Damage Type">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Damage.DamageType.Name.Length}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
 
                 </Grid>
 
