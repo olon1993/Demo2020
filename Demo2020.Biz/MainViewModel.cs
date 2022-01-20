@@ -1,18 +1,9 @@
 ﻿using Demo2020.Biz.ActorCatalog.Interfaces;
 using Demo2020.Biz.Commons.Interfaces;
 using Demo2020.Biz.Commons.Models;
-using Demo2020.Biz.Commons.Services;
-using Demo2020.Biz.Commons.ViewModels;
 using Demo2020.Biz.Equipment.Interfaces;
 using Demo2020.Biz.MonsterManual.Interfaces;
-using Demo2020.Biz.MonsterManual.ViewModels;
 using GalaSoft.MvvmLight.Command;
-using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Demo2020.Biz

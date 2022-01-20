@@ -105,4 +105,7 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.cspro
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.csproj.CopyComplete
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.dll
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\obj\Debug\Demo2020.Test.pdb
-C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\bin\Debug\DungeonAssistantDb.db
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\bin\Debug\System.Data.SQLite.dll
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\bin\Debug\Dapper.dll
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\bin\Debug\System.Data.SQLite.xml
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Test\bin\Debug\Dapper.xml

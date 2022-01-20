@@ -3,7 +3,6 @@ using Demo2020.Biz.ActorCatalog.Interfaces;
 using Demo2020.Biz.ActorCatalog.Services;
 using Demo2020.Biz.ActorCatalog.ViewModels;
 using Demo2020.Biz.Commons.Interfaces;
-using Demo2020.Biz.Commons.Services;
 using Demo2020.Biz.Equipment.Interfaces;
 using Demo2020.Biz.Equipment.Models;
 using Demo2020.Biz.Equipment.Services;
@@ -43,8 +42,6 @@ namespace Demo2020.Biz
             builder.RegisterType<LootTableModel>().As<ILootTableModel>();
 
             // Services
-            builder.RegisterType<SqlDataAccessService>().As<IDataAccessService>();
-
             builder.RegisterType<MonsterFactoryService>().As<IMonsterFactoryService>();
             builder.RegisterType<MonsterDataAccessService>().As<IMonsterDataAccessService>();
             builder.RegisterType<MonsterSearchAndFilterService>().As<IMonsterSearchAndFilterService>();

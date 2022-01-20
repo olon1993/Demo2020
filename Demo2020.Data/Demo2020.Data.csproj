@@ -53,8 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LocalDataAccess.cs" />
-    <Compile Include="SqlDataAccess.cs" />
+    <Compile Include="Interfaces\ISQLiteDataAccess.cs" />
+    <Compile Include="Services\SQLiteDataAccessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
