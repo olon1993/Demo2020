@@ -8,7 +8,9 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipmentSlotModel
     {
+        int Id { get; set; }
         IEquipmentModel Equipment { get; set; }
-        string Multiplier { get; set; }
+        int Multiplier { get; set; }
+        int LootTableId { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 
-namespace Demo2020.Data.Equipment
+namespace Demo2020.Data.Services
 {
 
     public class SQLiteDataAccessService : ISQLiteDataAccess

@@ -10,10 +10,10 @@ namespace Demo2020.Biz.Equipment.Models
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
-        private Guid _id;
+        private int _id;
         private string _name;
         private string _description;
-        private string _imageSource;
+        private string _imageSource = "/Demo2020;component/Resources/Images/SwordIcon.png";
         private int _lootTableSize;
         private IList<IEquipmentSlotModel> _equipmentSlots;
 
@@ -25,7 +25,7 @@ namespace Demo2020.Biz.Equipment.Models
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
-        public Guid Id
+        public int Id
         {
             get { return _id; }
             set
@@ -102,5 +102,7 @@ namespace Demo2020.Biz.Equipment.Models
                 }
             }
         }
+
+        public bool IsDataComplete { get; set; }
     }
 }

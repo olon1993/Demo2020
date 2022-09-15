@@ -22,7 +22,17 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBox Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" />
+            <DockPanel>
+                <Button
+                    Width="36"
+                    Background="Green"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddLootTableCommand}"
+                    DockPanel.Dock="Right">
+                    <TextBlock Text="New" FontWeight="Bold" Foreground="White" />
+                </Button>
+                <TextBox DockPanel.Dock="Right" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
             <TextBlock
                 Margin="3,0,0,0"
                 Panel.ZIndex="10"

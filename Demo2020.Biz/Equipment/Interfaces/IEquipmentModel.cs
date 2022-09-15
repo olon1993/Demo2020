@@ -8,7 +8,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipmentModel
     {
-        Guid Id { get; set; }
+        int Id { get; set; }
 
         string Name { get; set; }
 
@@ -25,6 +25,12 @@ namespace Demo2020.Biz.Equipment.Interfaces
         IRangeModel Range { get; set; }
 
         IDamageModel Damage { get; set; }
+
+        IArmorClassModel ArmorClass { get; set; }
+
+        int StrengthRequirement { get; set; }
+
+        bool IsStealthDisadvantage { get; set; }
 
         string CategoryRange { get; set; }
 

@@ -19,7 +19,14 @@ namespace Demo2020.Biz.Equipment.Services
 
         public ILootTableModel GetLootTable()
         {
-            return _scope.Resolve<ILootTableModel>();
+            IEquipmentSlotModel equipmentSlotModel = _scope.Resolve<IEquipmentSlotModel>();
+
+            ILootTableModel lootTableModel = _scope.Resolve<ILootTableModel>();
+            lootTableModel.EquipmentSlots = _scope.Resolve<IList<IEquipmentSlotModel>>();
+            lootTableModel.EquipmentSlots.Add(equipmentSlotModel);
+            lootTableModel.Name = "Name";
+            lootTableModel.Description = "Description";
+            return lootTableModel;
         }
     }
 }

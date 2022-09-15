@@ -16,6 +16,7 @@ namespace Demo2020.Biz.Equipment.Models
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
+        private int _id;
         private bool _isDataComplete;
         private string _name;
         private double _weight;
@@ -96,7 +97,18 @@ namespace Demo2020.Biz.Equipment.Models
         //******************* Properties *******************\\
         //**************************************************\\
 
-        public Guid Id { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         [JsonProperty("name")]
         public string Name
@@ -449,6 +461,5 @@ namespace Demo2020.Biz.Equipment.Models
                 }
             }
         }
-
     }
 }

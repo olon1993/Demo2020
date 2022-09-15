@@ -14,8 +14,12 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
     public class LootTableViewModel : ObservableObject, ILootTableViewModel
     {
-        private ILootTableFactoryService _lootTableFactory;
-        private ILootTableDataAccessService _lootTableDataAccessObject;
+        private bool _isDebugOn = false;
+
+        private ILootTableFactoryService _lootTableFactoryService;
+        private IEquipmentSlotFactoryService _equipmentSlotFactoryService;
+        private IEquipmentFactoryService _equipmentModelService;
+        private ILootTableDataAccessService _lootTableDataAccessService;
         private ILootTableSearchAndFilterService _lootTableSearchAndFilter;
         private ILootTableModel _currentLootTable;
         private IList<ILootTableModel> _lootTables;
@@ -28,14 +32,18 @@ namespace Demo2020.Biz.Equipment.ViewModels
         private const string UNLOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/UnlockIcon.png";
         private const string LOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/LockIcon.png";
 
-        public LootTableViewModel(ILootTableFactoryService lootTableFactory, ILootTableDataAccessService lootTableDataAccessObject, ILootTableSearchAndFilterService lootTableSearchAndFilter)
+        public LootTableViewModel(ILootTableFactoryService lootTableFactory, IEquipmentSlotFactoryService equipmentSlotFactoryService, IEquipmentFactoryService equipmentModelService, 
+            ILootTableDataAccessService lootTableDataAccessService, ILootTableSearchAndFilterService lootTableSearchAndFilter)
         {
-            _lootTableFactory = lootTableFactory;
-            _lootTableDataAccessObject = lootTableDataAccessObject;
+            _lootTableFactoryService = lootTableFactory;
+            _equipmentSlotFactoryService = equipmentSlotFactoryService;
+            _equipmentModelService = equipmentModelService;
+            _lootTableDataAccessService = lootTableDataAccessService;
             _lootTableSearchAndFilter = lootTableSearchAndFilter;
 
             ToggleEditCommand = new RelayCommand(ToggleEdit);
             AddLootSlotCommand = new RelayCommand(AddLootSlot);
+            AddLootTableCommand = new RelayCommand(AddLootTable);
             EditIconSource = LOCKED_IMAGE_PATH;
 
             GetLootTables();
@@ -46,20 +54,26 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         private async void GetLootTables()
         {
-            _lootTablesRaw = LootTables = new List<ILootTableModel>() 
-            { 
-                new LootTableModel() 
-                { 
-                    Name = "I Loot the... Cultist!", 
-                    Description = "This is the description", 
+            //_lootTablesRaw = LootTables = _lootTableDataAccessService.GetLootTables();
+
+            //IList<ILootTableModel> lootTables = new List<ILootTableModel>();
+            //lootTables.Add(_lootTableFactoryService.GetLootTable());
+            //_lootTablesRaw = LootTables = lootTables;
+
+            _lootTablesRaw = LootTables = new List<ILootTableModel>()
+            {
+                new LootTableModel()
+                {
+                    Name = "I Loot the... Cultist!",
+                    Description = "This is the description",
                     ImageSource = "/Demo2020;component/Resources/Images/SwordIcon.png",
-                    EquipmentSlots = new System.Collections.ObjectModel.ObservableCollection<IEquipmentSlotModel>() 
+                    EquipmentSlots = new System.Collections.ObjectModel.ObservableCollection<IEquipmentSlotModel>()
                     {
                         new EquipmentSlotModel()
                         {
                             Index = 1,
-                            Multiplier = "1d12",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 12,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Bronze Hourglass",
                                 Description = new List<DescriptionModel>()
@@ -71,8 +85,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 2,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Tattered Letter",
                                 Description = new List<DescriptionModel>()
@@ -84,8 +98,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 3,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Manacles",
                                 Description = new List<DescriptionModel>()
@@ -97,8 +111,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 4,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Jar of Dirt",
                                 Description = new List<DescriptionModel>()
@@ -110,8 +124,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 5,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Carved Skull",
                                 Description = new List<DescriptionModel>()
@@ -123,8 +137,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 6,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Handbell",
                                 Description = new List<DescriptionModel>()
@@ -136,8 +150,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 7,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "White Chalk",
                                 Description = new List<DescriptionModel>()
@@ -149,8 +163,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 8,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Signet Ring",
                                 Description = new List<DescriptionModel>()
@@ -162,8 +176,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 9,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Crystal Pendant",
                                 Description = new List<DescriptionModel>()
@@ -175,8 +189,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 10,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Black Candle",
                                 Description = new List<DescriptionModel>()
@@ -188,8 +202,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 11,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Unholy Symbol",
                                 Description = new List<DescriptionModel>()
@@ -201,8 +215,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 12,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Ceremonial Dagger",
                                 Description = new List<DescriptionModel>()
@@ -211,7 +225,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
                                 }
                             }
                         }
-                    } 
+                    }
                 },
                 new LootTableModel()
                 {
@@ -223,8 +237,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 1,
-                            Multiplier = "1d12",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 12,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Red Bandana",
                                 Description = new List<DescriptionModel>()
@@ -236,8 +250,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 2,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Steel Lock",
                                 Description = new List<DescriptionModel>()
@@ -249,8 +263,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 3,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Playing Card Set",
                                 Description = new List<DescriptionModel>()
@@ -262,8 +276,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 4,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Rusted Scimitar",
                                 Description = new List<DescriptionModel>()
@@ -275,8 +289,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 5,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Fingerless Gloves",
                                 Description = new List<DescriptionModel>()
@@ -288,8 +302,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 6,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Six Sided Die",
                                 Description = new List<DescriptionModel>()
@@ -301,8 +315,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 7,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Gold Earrings",
                                 Description = new List<DescriptionModel>()
@@ -314,8 +328,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 8,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Double-Headed Coin",
                                 Description = new List<DescriptionModel>()
@@ -327,8 +341,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 9,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Vial of Acid",
                                 Description = new List<DescriptionModel>()
@@ -340,8 +354,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 10,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Wooden Box of Coins",
                                 Description = new List<DescriptionModel>()
@@ -353,8 +367,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 11,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "A Fine, Leather Gem Pouch",
                                 Description = new List<DescriptionModel>()
@@ -366,8 +380,8 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         new EquipmentSlotModel()
                         {
                             Index = 12,
-                            Multiplier = "",
-                            Equipment = new Equipment.Models.EquipmentModel()
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
                             {
                                 Name = "Poison Bolt",
                                 Description = new List<DescriptionModel>()
@@ -384,6 +398,15 @@ namespace Demo2020.Biz.Equipment.ViewModels
         private async void GetLootTableDetails() 
         {
             CurrentLootTable = LootTables[SelectedLootTableIndex];
+            //if (CurrentLootTable.IsDataComplete == false)
+            //{
+            //    LootTables[SelectedLootTableIndex] = (_lootTableDataAccessService.GetLootTable(LootTables[SelectedLootTableIndex].Name)) as ILootTableModel;
+            //}
+
+            //if (_isDebugOn)
+            //{
+            //    Console.Write(CurrentLootTable.Name);
+            //}
         }
 
         private void ToggleEdit()
@@ -400,16 +423,211 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
         private void AddLootSlot()
         {
-            CurrentLootTable.EquipmentSlots.Add(new EquipmentSlotModel
+            IEquipmentSlotModel equipmentSlot = new EquipmentSlotModel();
+            IEquipmentModel equipmentModel = new EquipmentModel();
+            equipmentSlot.Equipment = equipmentModel;
+            IList<IEquipmentSlotModel> equipmentSlots = new List<IEquipmentSlotModel>();
+            
+            foreach(IEquipmentSlotModel equipmentSlotModel in CurrentLootTable.EquipmentSlots)
             {
-                Index = CurrentLootTable.EquipmentSlots.Count + 1,
-                Equipment = new Equipment.Models.EquipmentModel { Name = "{{Name}}", Description = new List<DescriptionModel> { new DescriptionModel("{{Description}}") } }
-            });
+                equipmentSlots.Add(equipmentSlotModel);
+            }
+
+            IEquipmentSlotModel newSlot = new EquipmentSlotModel();
+            equipmentSlots.Add(newSlot);
+
+            IList<ILootTableModel> lootTables = new List<ILootTableModel>();
+            foreach (ILootTableModel model in LootTables)
+            {
+                lootTables.Add(model);
+            }
+
+            lootTables[_selectedLootTableIndex].EquipmentSlots = equipmentSlots;
+
+            _lootTablesRaw = LootTables = lootTables;
+            CurrentLootTable = LootTables[SelectedLootTableIndex];
         }
 
         private void RemoveLootSlot()
         {
+        }
 
+        private void AddLootTable()
+        {
+            IList<ILootTableModel> lootTables = new List<ILootTableModel>();
+            foreach (ILootTableModel model in _lootTablesRaw)
+            {
+                lootTables.Add(model);
+            }
+
+            ILootTableModel newTable = new LootTableModel()
+            {
+                Name = "I Loot the... Cultist!",
+                Description = "This is the description",
+                ImageSource = "/Demo2020;component/Resources/Images/SwordIcon.png",
+                EquipmentSlots = new System.Collections.ObjectModel.ObservableCollection<IEquipmentSlotModel>()
+                    {
+                        new EquipmentSlotModel()
+                        {
+                            Index = 1,
+                            Multiplier = 12,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Bronze Hourglass",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("Beautifully designed, the sand inside is black.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 2,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Tattered Letter",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("From a mother, pleas for them to come home.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 3,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Manacles",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("For fastening someones hands or legs together")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 4,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Jar of Dirt",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("There is a faintly beating heart inside it.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 5,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Carved Skull",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("Covered in runes, the teeth chatter on a full moon.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 6,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Handbell",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("Can be used to catch someones attention.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 7,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "White Chalk",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("For writing and marking various surfaces.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 8,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Signet Ring",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("Has a distinctively abnormal design carved into it.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 9,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Crystal Pendant",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("Begins to glow if completely submerged in water.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 10,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Black Candle",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("When lit, it emenates an eerie purple light.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 11,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Unholy Symbol",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("This symbol is always cold to the touch.")
+                                }
+                            }
+                        },
+                        new EquipmentSlotModel()
+                        {
+                            Index = 12,
+                            Multiplier = 0,
+                            Equipment = new EquipmentModel()
+                            {
+                                Name = "Ceremonial Dagger",
+                                Description = new List<DescriptionModel>()
+                                {
+                                    new DescriptionModel("This dagger works exceptionally well on human flesh, it deals 2d4 piercing damage to humans.")
+                                }
+                            }
+                        }
+                    }
+            };
+            lootTables.Add(newTable);
+
+            _lootTablesRaw = LootTables = lootTables;
         }
 
         //**************************************************\\
@@ -434,14 +652,22 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
         public ILootTableModel CurrentLootTable
         {
-            get { return _currentLootTable; }
+            get 
+            {
+                if (_currentLootTable == null)
+                {
+                    _currentLootTable = _lootTableFactoryService.GetLootTable();
+                }
+
+                return _currentLootTable; 
+            }
             set
             {
-                if (_currentLootTable != value)
-                {
+                //if (_currentLootTable != value)
+                //{
                     _currentLootTable = value;
                     OnPropertyChanged();
-                }
+                //}
             }
         }
 
@@ -510,5 +736,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
         public ICommand ToggleEditCommand { get; set; }
 
         public ICommand AddLootSlotCommand { get; set; }
+
+        public ICommand AddLootTableCommand { get; set; }
     }
 }

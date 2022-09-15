@@ -32,7 +32,7 @@
             BorderBrush="DarkRed"
             BorderThickness="0,0,0,3">
             <!--  Row 0 : Name  -->
-            <TextBlock
+            <TextBox
                 VerticalAlignment="Center"
                 FontSize="20"
                 FontWeight="Bold"
@@ -56,14 +56,22 @@
 
             <!--  Row 0 : Treasure Count  -->
             <DockPanel Margin="3">
-                <TextBlock FontWeight="Bold" Text="1d" />
-                <TextBlock FontWeight="Bold" Text="{Binding EquipmentSlots.Count, Mode=OneWay, FallbackValue=8}" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="1d" />
+                <TextBox
+                    Margin="6,3,3,3"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Text="{Binding EquipmentSlots.Count, Mode=OneWay, FallbackValue=8}" />
             </DockPanel>
 
             <!--  Row 1 : Name  -->
             <TextBlock
                 Grid.Column="1"
                 Margin="3"
+                VerticalAlignment="Center"
                 FontWeight="Bold"
                 Text="Treasure" />
 
@@ -71,6 +79,7 @@
             <TextBlock
                 Grid.Column="2"
                 Margin="3"
+                VerticalAlignment="Center"
                 FontWeight="Bold"
                 Text="Description" />
 
@@ -98,9 +107,27 @@
                             <TextBox Margin="3" Text="{Binding Index}" />
 
                             <TextBox
+                                x:Name="EquipmentName"
                                 Grid.Column="1"
                                 Margin="3"
                                 Text="{Binding Equipment.Name}" />
+
+                            <ListBox
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="3"
+                                ItemsSource="{Binding FilteredEquipmentList}"
+                                Visibility="Visible">
+                                <ListBox.Style>
+                                    <Style TargetType="{x:Type ListBox}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding FilteredEquipmentList.Count}" Value="0">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListBox.Style>
+                            </ListBox>
 
                             <ItemsControl
                                 Grid.Column="2"

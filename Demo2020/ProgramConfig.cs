@@ -40,6 +40,7 @@ namespace Demo2020.Biz
             builder.RegisterType<RangeModel>().As<IRangeModel>();
             builder.RegisterType<MagicItemModel>().As<IMagicItemModel>();
             builder.RegisterType<LootTableModel>().As<ILootTableModel>();
+            builder.RegisterType<EquipmentSlotModel>().As<IEquipmentSlotModel>();
 
             // Services
             builder.RegisterType<MonsterFactoryService>().As<IMonsterFactoryService>();
@@ -48,6 +49,7 @@ namespace Demo2020.Biz
             builder.RegisterType<SpeedFactoryService>().As<ISpeedFactoryService>();
 
             builder.RegisterType<EquipmentFactoryService>().As<IEquipmentFactoryService>();
+            builder.RegisterType<EquipmentSlotFactoryService>().As<IEquipmentSlotFactoryService>();
             builder.RegisterType<EquipmentDataAccessService>().As<IEquipmentDataAccessService>();
             builder.RegisterType<EquipmentSearchAndFilterService>().As<IEquipmentSearchAndFilterService>();
 

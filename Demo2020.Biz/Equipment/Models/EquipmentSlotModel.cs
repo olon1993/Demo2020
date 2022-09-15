@@ -12,13 +12,16 @@ namespace Demo2020.Biz.Equipment.Models
 {
     public class EquipmentSlotModel : ObservableObject, IEquipmentSlotModel
     {
+        private int _id;
+        private int _lootTableId;
         private IEquipmentModel _equipment;
-        private string _multiplier;
+        private int _multiplier;
         private int _index;
 
         public EquipmentSlotModel()
         {
             AddDescriptionCommand = new RelayCommand(AddDescription);
+            Equipment = new EquipmentModel();
         }
 
         public IEquipmentModel Equipment
@@ -34,7 +37,7 @@ namespace Demo2020.Biz.Equipment.Models
             }
         }
 
-        public string Multiplier
+        public int Multiplier
         {
             get { return _multiplier; }
             set
@@ -73,5 +76,30 @@ namespace Demo2020.Biz.Equipment.Models
         }
 
         public ICommand AddDescriptionCommand { get; set; }
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int LootTableId
+        {
+            get { return _lootTableId; }
+            set
+            {
+                if (_lootTableId != value)
+                {
+                    _lootTableId = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
     }
 }
