@@ -1,5 +1,6 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Equipment.Interfaces;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 
@@ -20,6 +21,19 @@ namespace Demo2020.Biz.Equipment.Models
         public LootTableModel()
         {
             EquipmentSlots = new List<IEquipmentSlotModel>();
+
+            Messenger.Default.Register<EquipmentSlotModel>(this, msg => { RemoveEquipmentSlot(msg); });
+        }
+
+        private void RemoveEquipmentSlot(EquipmentSlotModel model)
+        {
+            EquipmentSlots.Remove(model);
+            IList<IEquipmentSlotModel> buffer = new List<IEquipmentSlotModel>();
+            foreach(IEquipmentSlotModel m in EquipmentSlots)
+            {
+                buffer.Add(m);
+            }
+            EquipmentSlots = buffer;
         }
 
         //**************************************************\\

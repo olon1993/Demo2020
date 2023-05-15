@@ -18,8 +18,7 @@ namespace Demo2020.Biz.MonsterManual.Models
         private string _monsterType;
         private string _monsterSubtype;
         private string _alignment;
-        private int _armorClass;
-        private string _armorType;
+        private List<ArmorClassModel> _armorClass;
         private int _hitPoints;
         private string _hitPointsCalculation;
         private int _hitPointBase;
@@ -75,6 +74,7 @@ namespace Demo2020.Biz.MonsterManual.Models
         public MonsterModel()
         {
             Speed = new SpeedModel();
+            ArmorClass = new List<ArmorClassModel>();
 
             AddCommand = new RelayCommand<string>(x => Add(x));
             SubtractCommand = new RelayCommand<string>(x => Subtract(x));
@@ -266,7 +266,7 @@ namespace Demo2020.Biz.MonsterManual.Models
         }
 
         [JsonProperty("armor_class")]
-        public int ArmorClass
+        public List<ArmorClassModel> ArmorClass
         {
             get { return _armorClass; }
             set
@@ -274,20 +274,6 @@ namespace Demo2020.Biz.MonsterManual.Models
                 if (_armorClass != value)
                 {
                     _armorClass = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        [JsonProperty("armor_type")]
-        public string ArmorType
-        {
-            get { return _armorType; }
-            set
-            {
-                if (_armorType != value)
-                {
-                    _armorType = value;
                     OnPropertyChanged();
                 }
             }

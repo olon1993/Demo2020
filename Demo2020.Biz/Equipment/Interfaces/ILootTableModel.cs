@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demo2020.Biz.Equipment.Interfaces
 {
-    public interface ILootTableModel
+    public interface ILootTableModel 
     {
         string Name { get; set; }
         int Id { get; set; }

@@ -31,7 +31,7 @@ namespace Demo2020.Biz
             // Models
             builder.RegisterType<MonsterModel>().As<IMonsterModel>();
             builder.RegisterType<SpeedModel>().As<ISpeedModel>();
-            builder.RegisterType<ArmorClassModel>().As<IArmorClassModel>();
+            builder.RegisterType<Equipment.Models.ArmorClassModel>().As<IArmorClassModel>();
             builder.RegisterType<EquipmentModel>().As<IEquipmentModel>();
             builder.RegisterType<CategoryModel>().As<ICategoryModel>();
             builder.RegisterType<CostModel>().As<ICostModel>();

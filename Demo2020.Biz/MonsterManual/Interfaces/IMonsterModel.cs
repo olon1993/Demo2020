@@ -13,7 +13,7 @@ namespace Demo2020.Biz.MonsterManual.Interfaces
         string MonsterType { get; set; }
         string MonsterSubtype { get; set; }
         string Alignment { get; set; }
-        int ArmorClass { get; set; }
+        List<ArmorClassModel> ArmorClass { get; set; }
         int HitPoints { get; set; }
         string HitPointsCalculation { get; set; }
         SpeedModel Speed { get; set; }

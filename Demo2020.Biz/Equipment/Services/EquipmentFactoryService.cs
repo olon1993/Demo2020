@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Equipment.Interfaces;
+using Demo2020.Biz.Equipment.Models;
 using System.Collections.Generic;
 
 namespace Demo2020.Biz.Equipment.Services
@@ -16,11 +17,11 @@ namespace Demo2020.Biz.Equipment.Services
 
         public IEquipmentModel GetEquipment()
         {
-            return _scope.Resolve<IEquipmentModel>();
-            //IEquipmentModel equipmentModel = _scope.Resolve<IEquipmentModel>();
-            //equipmentModel.Name = "Name";
-            //equipmentModel.Description = new List<DescriptionModel> { new DescriptionModel("Description") };
-            //return equipmentModel;
+            //return _scope.Resolve<IEquipmentModel>();
+            IEquipmentModel equipmentModel = new EquipmentModel();
+            equipmentModel.Name = "Name";
+            equipmentModel.Description.Add(new DescriptionModel("Description") );
+            return equipmentModel;
         }
     }
 }

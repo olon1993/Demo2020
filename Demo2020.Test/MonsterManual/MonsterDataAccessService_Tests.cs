@@ -14,7 +14,7 @@ namespace Demo2020.Test.MonsterManual
             List<MonsterModel> monsters = await monsterDataObject.GetAllMonsters();
 
             Assert.NotNull(monsters);
-            Assert.Equal(332, monsters.Count);
+            Assert.Equal(334, monsters.Count);
 
             foreach(MonsterModel monster in monsters)
             {
@@ -31,7 +31,7 @@ namespace Demo2020.Test.MonsterManual
             List<MonsterModel> monsters = await monsterDataObject.GetAllMonsters();
 
             Assert.NotNull(monsters);
-            Assert.Equal(332, monsters.Count);
+            Assert.Equal(334, monsters.Count);
 
             MonsterModel container = null;
             foreach (MonsterModel monster in monsters)
@@ -344,6 +344,8 @@ namespace Demo2020.Test.MonsterManual
             new object[] { "Tyrannosaurus Rex" },
             new object[] { "Unicorn" },
             new object[] { "Vampire" },
+            new object[] { "Vampire Bat" },
+            new object[] { "Vampire Mist" },
             new object[] { "Vampire Spawn" },
             new object[] { "Veteran" },
             new object[] { "Violet Fungus" },

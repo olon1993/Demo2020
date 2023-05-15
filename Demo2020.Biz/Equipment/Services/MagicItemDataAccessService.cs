@@ -80,6 +80,10 @@ namespace Demo2020.Biz.Equipment.Services
                         var data = JsonConvert.DeserializeObject<MagicItemModel>(rawJSON);
                         return data;
                     }
+                    else
+                    {
+                        Console.WriteLine("HERE");
+                    }
                 }
                 catch (Exception ex)
                 {

@@ -8,6 +8,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface ILootTableDataAccessService
     {
+
         ILootTableModel GetLootTable(int id);
         ILootTableModel GetLootTable(string name);
         IList<ILootTableModel> GetLootTables();

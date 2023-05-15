@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Demo2020.Biz.Equipment.Interfaces;
+using Demo2020.Biz.Equipment.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace Demo2020.Biz.Equipment.Services
 
         public IEquipmentSlotModel GetEquipmentSlot()
         {
-            return _scope.Resolve<IEquipmentSlotModel>();
+            return new EquipmentSlotModel();
         }
     }
 }

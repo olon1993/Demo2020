@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Demo2020.Biz.Equipment.Interfaces;
+using Demo2020.Biz.Equipment.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,10 @@ namespace Demo2020.Biz.Equipment.Services
 
         public ILootTableModel GetLootTable()
         {
-            IEquipmentSlotModel equipmentSlotModel = _scope.Resolve<IEquipmentSlotModel>();
+            IEquipmentSlotModel equipmentSlotModel = new EquipmentSlotModel();
 
-            ILootTableModel lootTableModel = _scope.Resolve<ILootTableModel>();
-            lootTableModel.EquipmentSlots = _scope.Resolve<IList<IEquipmentSlotModel>>();
-            lootTableModel.EquipmentSlots.Add(equipmentSlotModel);
+            ILootTableModel lootTableModel = new LootTableModel();
+            lootTableModel.EquipmentSlots = new List<IEquipmentSlotModel>();
             lootTableModel.Name = "Name";
             lootTableModel.Description = "Description";
             return lootTableModel;

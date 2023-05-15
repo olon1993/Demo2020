@@ -4,9 +4,11 @@ using Demo2020.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Demo2020.Biz.Equipment.Models;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace Demo2020.Biz.Equipment.Services
 {
@@ -18,7 +20,9 @@ namespace Demo2020.Biz.Equipment.Services
         private IEquipmentFactoryService _equipmentFactoryService;
 
         private const string _lootTableName = "LootTables";
-        private const string _descriptionTableName = "Descriptions";
+        private const string _descriptionTableName = "LootTablesDescriptions";
+
+        private const string _baseUrl = "http://www.dnd5eapi.co";
 
         public LootTableDataAccessService(ILootTableFactoryService lootTableFactoryService, IEquipmentSlotFactoryService equipmentSlotFactoryService,
             IEquipmentFactoryService equipmentFactoryService)
@@ -37,8 +41,39 @@ namespace Demo2020.Biz.Equipment.Services
         public ILootTableModel GetLootTable(string name)
         {
             ILootTableModel lootTable = _lootTableFactoryService.GetLootTable();
+            lootTable.Name = name;
+            
+            string query = "SELECT " +
+                "ES.Id AS EquipmentSlotId, " +
+                "ES.Multiplier, " +
+                "ES.LootTableId, " +
+                "ES.[Index], " +
+                "E.Id AS EquipmentId, " +
+                "E.name AS Name, " +
+                "E.Weight AS Weight, " +
+                "E.CostQuantity, " +
+                "E.CostUnits, " +
+                "E.OneHandedDamageDice, " +
+                "E.OneHandedDamageType, " +
+                "E.TwoHandedDamageDice, " +
+                "E.TwoHandedDamageType, " +
+                "E.NormalRange, " +
+                "E.LongRange, " +
+                "E.EquipmentCategory, " +
+                "E.WeaponRange, " +
+                "E.WeaponCategory, " +
+                "E.ToolCategory, " +
+                "E.VehicleCategory, " +
+                "E.ArmorCategory, " +
+                "E.GearCategory " +
+            "FROM LootTables AS LT " +
+                "INNER JOIN EquipmentSlots AS ES " +
+                    "ON LT.Id = ES.LootTableId " +
+                "INNER JOIN Equipment AS E " +
+                    "ON E.Id = ES.EquipmentId " +
+            "WHERE LT.Name = '" + name + "' " +
+            "ORDER BY ES.[Index]";
 
-            string query = "";
             try
             {
                 using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(query))
@@ -53,6 +88,7 @@ namespace Demo2020.Biz.Equipment.Services
                             equipmentSlotModel.Id = Convert.IsDBNull(row["EquipmentSlotId"]) ? 0 : Convert.ToInt32(row["EquipmentSlotId"]);
                             equipmentSlotModel.Multiplier = Convert.IsDBNull(row["Multiplier"]) ? 0 : Convert.ToInt32(row["Multiplier"]);
                             equipmentSlotModel.LootTableId = Convert.IsDBNull(row["LootTableId"]) ? 0 : Convert.ToInt32(row["LootTableId"]);
+                            equipmentSlotModel.Index = Convert.IsDBNull(row["Index"]) ? 0 : Convert.ToInt32(row["Index"]);
 
                             equipmentModel.Id = Convert.IsDBNull(row["EquipmentId"]) ? 0 : Convert.ToInt32(row["EquipmentId"]);
                             equipmentModel.Name = Convert.IsDBNull(row["Name"]) ? string.Empty : Convert.ToString(row["Name"]);
@@ -74,6 +110,7 @@ namespace Demo2020.Biz.Equipment.Services
                             equipmentModel.GearCategory.Name = Convert.IsDBNull(row["GearCategory"]) ? string.Empty : Convert.ToString(row["GearCategory"]);
 
                             equipmentSlotModel.Equipment = equipmentModel;
+
                             lootTable.EquipmentSlots.Add(equipmentSlotModel);
                         }
                     }
@@ -150,6 +187,22 @@ namespace Demo2020.Biz.Equipment.Services
         public bool DeleteLootTables(IList<ILootTableModel> lootTable)
         {
             throw new NotImplementedException();
+        }
+
+
+        //**************************************************\\
+        //****************** Nested Class ******************\\
+        //**************************************************\\
+        private class LootTableContainer
+        {
+            public LootTableContainer(int count, List<LootTableModel> results)
+            {
+                Count = count;
+                Results = results;
+            }
+
+            public int Count { get; set; }
+            public List<LootTableModel> Results { get; set; }
         }
     }
 }

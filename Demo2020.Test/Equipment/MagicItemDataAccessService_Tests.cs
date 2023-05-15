@@ -14,7 +14,7 @@ namespace Demo2020.Test.Equipment
             List<MagicItemModel> magicItems = await magicItemApi.GetAllMagicItems();
 
             Assert.NotNull(magicItems);
-            Assert.Equal(239, magicItems.Count);
+            Assert.Equal(362, magicItems.Count);
 
             foreach (MagicItemModel magicItem in magicItems)
             {
@@ -31,7 +31,7 @@ namespace Demo2020.Test.Equipment
             List<MagicItemModel> magicItems = await magicItemApi.GetAllMagicItems();
 
             Assert.NotNull(magicItems);
-            Assert.Equal(239, magicItems.Count);
+            Assert.Equal(362, magicItems.Count);
 
             MagicItemModel container = null;
             foreach (MagicItemModel magicItem in magicItems)

@@ -150,6 +150,8 @@
     <Compile Include="MonsterManual\Interfaces\IMonsterDataAccessService.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterManualViewModel.cs" />
     <Compile Include="MonsterManual\Interfaces\IMonsterSearchAndFilterService.cs" />
+    <Compile Include="MonsterManual\Models\ArmorClassModel.cs" />
+    <Compile Include="MonsterManual\Models\ConditionModel.cs" />
     <Compile Include="MonsterManual\Models\ProficiencyModel.cs" />
     <Compile Include="MonsterManual\Models\ProficiencyElementModel.cs" />
     <Compile Include="Commons\ViewModels\MessageWindowViewModel.cs" />

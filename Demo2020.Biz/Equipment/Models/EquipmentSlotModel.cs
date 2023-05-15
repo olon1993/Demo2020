@@ -1,6 +1,7 @@
 ﻿using Demo2020.Biz.Commons.Models;
 using Demo2020.Biz.Equipment.Interfaces;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Demo2020.Biz.Equipment.Models
         public EquipmentSlotModel()
         {
             AddDescriptionCommand = new RelayCommand(AddDescription);
+            RemoveCommand = new RelayCommand(Remove);
             Equipment = new EquipmentModel();
         }
 
@@ -75,7 +77,15 @@ namespace Demo2020.Biz.Equipment.Models
             Equipment.Description = descriptions;
         }
 
+        private void Remove()
+        {
+            Messenger.Default.Send(this);
+        }
+
         public ICommand AddDescriptionCommand { get; set; }
+
+        public ICommand RemoveCommand { get; set; }
+
         public int Id
         {
             get { return _id; }

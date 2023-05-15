@@ -50,6 +50,7 @@
             Margin="10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="6*" />
             </Grid.ColumnDefinitions>
@@ -60,16 +61,23 @@
                 <TextBlock FontWeight="Bold" Text="{Binding EquipmentSlots.Count, Mode=OneWay, FallbackValue=8}" />
             </DockPanel>
 
-            <!--  Row 1 : Name  -->
+            <!--  Row 1 : Treasure Quantity  -->
             <TextBlock
                 Grid.Column="1"
                 Margin="3"
                 FontWeight="Bold"
-                Text="Treasure" />
+                Text="#" />
 
-            <!--  Row 2 : Description  -->
+            <!--  Row 2 : Name  -->
             <TextBlock
                 Grid.Column="2"
+                Margin="3"
+                FontWeight="Bold"
+                Text="Treasure" />
+
+            <!--  Row 3 : Description  -->
+            <TextBlock
+                Grid.Column="3"
                 Margin="3"
                 FontWeight="Bold"
                 Text="Description" />
@@ -87,19 +95,25 @@
                         <Grid x:Name="EquipmentSlots">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="3*" />
                                 <ColumnDefinition Width="6*" />
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Margin="3" Text="{Binding Index}" />
 
+                            <DockPanel Grid.Column="1" Margin="3">
+                                <TextBlock FontWeight="Bold" Text="{Binding Multiplier, Mode=OneWay, FallbackValue=1}" />
+                                <TextBlock FontWeight="Bold" Text="x" />
+                            </DockPanel>
+
                             <TextBlock
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 Margin="3"
                                 Text="{Binding Equipment.Name}" />
 
                             <ItemsControl
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 Margin="3"
                                 ItemsSource="{Binding Equipment.Description}">
                                 <ItemsControl.ItemTemplate>

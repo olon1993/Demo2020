@@ -104,12 +104,68 @@
                         Foreground="DarkRed"
                         Text="Armor Class" />
 
-                    <TextBlock
+                    <ItemsControl
+                        Margin="0"
+                        Padding="0"
+                        Background="LightGoldenrodYellow"
+                        DockPanel.Dock="Left"
+                        FontSize="12"
+                        ItemsSource="{Binding ArmorClass}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <TextBlock
+                                        Margin="3,0,0,0"
+                                        DockPanel.Dock="Left"
+                                        Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
+                                    <TextBlock
+                                        Margin="3,0,0,0"
+                                        DockPanel.Dock="Left"
+                                        FontSize="12"
+                                        Foreground="DarkRed">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ArmorType.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                        <Run Text="(" />
+                                        <Run Text="{Binding ArmorType}" />
+                                        <Run Text=")" />
+                                    </TextBlock>
+                                    <TextBlock
+                                        Margin="3,0,0,0"
+                                        DockPanel.Dock="Left"
+                                        FontSize="12"
+                                        FontStyle="Italic"
+                                        Foreground="DarkRed">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Condition.Name.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                        <Run Text="When " />
+                                        <Run Text="{Binding Condition.Name}" />
+                                    </TextBlock>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!--<TextBlock
                         Margin="3,0,0,0"
                         DockPanel.Dock="Left"
                         FontSize="12"
                         Foreground="DarkRed"
-                        Text="{Binding ArmorClass}" />
+                        Text="{Binding ArmorClass.Value}" />
 
                     <TextBlock
                         Margin="3,0,0,0"
@@ -120,16 +176,16 @@
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Collapsed" />
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ArmorType.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
+                                    <DataTrigger Binding="{Binding ArmorClass.ArmorType.Length, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}" Value="True">
                                         <Setter Property="Visibility" Value="Visible" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
                         <Run Text="(" />
-                        <Run Text="{Binding ArmorType}" />
+                        <Run Text="{Binding ArmorClass.ArmorType}" />
                         <Run Text=")" />
-                    </TextBlock>
+                    </TextBlock>-->
                 </DockPanel>
 
                 <!--  Row 1 : Hit Points  -->

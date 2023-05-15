@@ -50,6 +50,7 @@
             Margin="10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="3*" />
                 <ColumnDefinition Width="6*" />
             </Grid.ColumnDefinitions>
@@ -73,11 +74,19 @@
                 Margin="3"
                 VerticalAlignment="Center"
                 FontWeight="Bold"
+                Text="#" />
+
+            <!--  Row 1 : Name  -->
+            <TextBlock
+                Grid.Column="2"
+                Margin="3"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
                 Text="Treasure" />
 
             <!--  Row 2 : Description  -->
             <TextBlock
-                Grid.Column="2"
+                Grid.Column="3"
                 Margin="3"
                 VerticalAlignment="Center"
                 FontWeight="Bold"
@@ -90,14 +99,16 @@
             Grid.Row="2"
             Grid.ColumnSpan="2"
             Margin="10,0,10,10">
-            <ItemsControl AlternationCount="2" ItemsSource="{Binding EquipmentSlots}">
+            <ItemsControl AlternationCount="2" ItemsSource="{Binding EquipmentSlots, UpdateSourceTrigger=PropertyChanged}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid x:Name="EquipmentSlots">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="3*" />
                                 <ColumnDefinition Width="6*" />
+                                <ColumnDefinition Width="32" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -107,14 +118,25 @@
                             <TextBox Margin="3" Text="{Binding Index}" />
 
                             <TextBox
-                                x:Name="EquipmentName"
                                 Grid.Column="1"
+                                Margin="3"
+                                Text="{Binding Multiplier}" />
+
+                            <TextBox
+                                x:Name="EquipmentName"
+                                Grid.Column="2"
                                 Margin="3"
                                 Text="{Binding Equipment.Name}" />
 
-                            <ListBox
+                            <!--
+                                Commented out for now. Would like to bind this listbox to a list of equipment that contains the text the user is typing in the
+                                equipment name field. This list would update every time the name field updates. Selecting a piece of equipment from the list
+                                will automatically replace the current equipment and name with the selected equipment. The idea is to have an auto complete
+                                intellisence like functionality that allows the user to create loot tables quickly using equipment from the equipment database
+                            -->
+                            <!--<ListBox
                                 Grid.Row="1"
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 Margin="3"
                                 ItemsSource="{Binding FilteredEquipmentList}"
                                 Visibility="Visible">
@@ -127,10 +149,10 @@
                                         </Style.Triggers>
                                     </Style>
                                 </ListBox.Style>
-                            </ListBox>
+                            </ListBox>-->
 
                             <ItemsControl
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 Margin="3"
                                 ItemsSource="{Binding Equipment.Description}">
                                 <ItemsControl.ItemTemplate>
@@ -145,7 +167,7 @@
 
                             <Button
                                 Grid.Row="1"
-                                Grid.Column="2"
+                                Grid.Column="3"
                                 Height="20"
                                 Margin="3,0,0,10"
                                 HorizontalAlignment="Left"
@@ -168,6 +190,20 @@
                                         FontWeight="Bold"
                                         Text="Add Description" />
                                 </Grid>
+                            </Button>
+
+                            <Button
+                                Grid.RowSpan="2"
+                                Grid.Column="4"
+                                Height="20"
+                                Margin="3,0,0,10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Background="Red"
+                                BorderBrush="Black"
+                                Command="{Binding RemoveCommand}"
+                                DockPanel.Dock="Left">
+                                <Image Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
                             </Button>
                         </Grid>
                         <DataTemplate.Triggers>

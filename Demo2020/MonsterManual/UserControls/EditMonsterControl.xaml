@@ -141,16 +141,13 @@
                 <Grid Margin="0,10,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <TextBlock
-                        Grid.ColumnSpan="2"
                         VerticalAlignment="Center"
                         FontSize="12"
                         FontWeight="Bold"
@@ -158,35 +155,54 @@
                         Text="Armor Class"
                         TextAlignment="Center" />
 
-                    <TextBlock
+                    <ItemsControl
                         Grid.Row="1"
                         VerticalAlignment="Center"
-                        FontSize="12"
-                        Foreground="DarkRed"
-                        Text="Armor Class" />
+                        ItemsSource="{Binding ArmorClass}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="DarkRed"
+                                        Text="Armor Class" />
 
-                    <TextBox
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Margin="2"
-                        FontSize="12"
-                        Foreground="DarkRed"
-                        Text="{Binding ArmorClass}" />
+                                    <TextBox
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="2"
+                                        FontSize="12"
+                                        Foreground="DarkRed"
+                                        Text="{Binding Value}" />
 
-                    <TextBlock
-                        Grid.Row="2"
-                        VerticalAlignment="Center"
-                        FontSize="12"
-                        Foreground="DarkRed"
-                        Text="Armor Type" />
+                                    <TextBlock
+                                        Grid.Row="1"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="DarkRed"
+                                        Text="Armor Type" />
 
-                    <TextBox
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Margin="2"
-                        FontSize="12"
-                        Foreground="DarkRed"
-                        Text="{Binding ArmorType}" />
+                                    <TextBox
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="2"
+                                        FontSize="12"
+                                        Foreground="DarkRed"
+                                        Text="{Binding ArmorType}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
 
                 <!--  Row 1 : Hit Points  -->
