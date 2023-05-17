@@ -109,6 +109,7 @@
     <Compile Include="Equipment\Interfaces\IEquipmentFactoryService.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentPropertyModel.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentSearchAndFilterService.cs" />
+    <Compile Include="Equipment\Interfaces\IEquipmentService.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentSlotFactoryService.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentSlotModel.cs" />
     <Compile Include="Equipment\Interfaces\IEquipmentViewModel.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Equipment\Services\EquipmentDataAccessService.cs" />
     <Compile Include="Equipment\Services\EquipmentFactoryService.cs" />
     <Compile Include="Equipment\Services\EquipmentSearchAndFilterService.cs" />
+    <Compile Include="Equipment\Services\EquipmentService.cs" />
     <Compile Include="Equipment\Services\EquipmentSlotFactoryService.cs" />
     <Compile Include="Equipment\Services\LootTableDataAccessService.cs" />
     <Compile Include="Equipment\Services\LootTableFactoryService.cs" />

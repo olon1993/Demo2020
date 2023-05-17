@@ -344,13 +344,13 @@ namespace Demo2020.Biz.Equipment.Services
             if (equipment.Weight != 0)
             {
                 header.Append(WEIGHT_COLUMN + ", ");
-                values.Append("\"" + equipment.Weight + "\", ");
+                values.Append(equipment.Weight + ", ");
             }
 
             if (equipment.Cost.Quantity != 0)
             {
                 header.Append(COST_QUANTITY_COLUMN + ", ");
-                values.Append("\"" + equipment.Cost.Quantity + "\", ");
+                values.Append(equipment.Cost.Quantity + ", ");
             }
 
             if (equipment.Cost.Unit != null)
@@ -386,43 +386,43 @@ namespace Demo2020.Biz.Equipment.Services
             if (equipment.Range.Normal != null)
             {
                 header.Append(NORMAL_RANGE_COLUMN + ", ");
-                values.Append("\"" + equipment.Range.Normal + "\", ");
+                values.Append(equipment.Range.Normal + ", ");
             }
 
             if (equipment.Range.Long != null)
             {
                 header.Append(LONG_RANGE_COLUMN + ", ");
-                values.Append("\"" + equipment.Range.Long + "\", ");
+                values.Append(equipment.Range.Long + ", ");
             }
 
             if (equipment.ArmorClass.Base != null)
             {
                 header.Append(ARMOR_CLASS_COLUMN + ", ");
-                values.Append("\"" + equipment.ArmorClass.Base + "\", ");
+                values.Append(equipment.ArmorClass.Base + ", ");
             }
 
             if (equipment.ArmorClass.DexBonus != false)
             {
                 header.Append(IS_DEX_BONUS_COLUMN + ", ");
-                values.Append("\"" + equipment.ArmorClass.DexBonus + "\", ");
+                values.Append(equipment.ArmorClass.DexBonus + ", ");
             }
 
             if (equipment.ArmorClass.MaxBonus != null)
             {
                 header.Append(MAX_DEX_BONUS_COLUMN + ", ");
-                values.Append("\"" + equipment.ArmorClass.MaxBonus + "\", ");
+                values.Append(equipment.ArmorClass.MaxBonus + ", ");
             }
 
             if (equipment.StrengthRequirement != 0)
             {
                 header.Append(STR_REQ_COLUMN + ", ");
-                values.Append("\"" + equipment.StrengthRequirement + "\", ");
+                values.Append(equipment.StrengthRequirement + ", ");
             }
 
             if (equipment.IsStealthDisadvantage != false)
             {
                 header.Append(IS_STEALTH_DISAD_COLUMN + ", ");
-                values.Append("\"" + equipment.IsStealthDisadvantage + "\", ");
+                values.Append(equipment.IsStealthDisadvantage + ", ");
             }
 
             if (equipment.EquipmentCategory.Name != null)

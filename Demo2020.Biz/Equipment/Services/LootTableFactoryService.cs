@@ -12,15 +12,17 @@ namespace Demo2020.Biz.Equipment.Services
     public class LootTableFactoryService : ILootTableFactoryService
     {
         private ILifetimeScope _scope;
+        private IEquipmentService _equipmentService;
 
-        public LootTableFactoryService(ILifetimeScope scope)
+        public LootTableFactoryService(ILifetimeScope scope, IEquipmentService equipmentService)
         {
             _scope = scope;
+            _equipmentService = equipmentService;
         }
 
         public ILootTableModel GetLootTable()
         {
-            IEquipmentSlotModel equipmentSlotModel = new EquipmentSlotModel();
+            IEquipmentSlotModel equipmentSlotModel = new EquipmentSlotModel(_equipmentService);
 
             ILootTableModel lootTableModel = new LootTableModel();
             lootTableModel.EquipmentSlots = new List<IEquipmentSlotModel>();

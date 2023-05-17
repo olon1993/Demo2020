@@ -16,6 +16,7 @@ namespace Demo2020.Biz.Equipment.Models
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
+
         private int _id;
         private bool _isDataComplete;
         private string _name;

@@ -19,9 +19,10 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         private bool _isDebugOn = true;
 
-        private IEquipmentFactoryService _equipmentFactory;
-        private IEquipmentDataAccessService _equipmentDataAccessService;
-        private IEquipmentSearchAndFilterService _equipmentSearchAndFilter;
+        private IEquipmentService _equipmentService;
+        //private IEquipmentFactoryService _equipmentFactory;
+        //private IEquipmentDataAccessService _equipmentDataAccessService;
+        //private IEquipmentSearchAndFilterService _equipmentSearchAndFilter;
         private IEquipmentModel _currentEquipment;
         private IList<IEquipmentModel> _equipment;
         private IList<IEquipmentModel> _equipmentRaw;
@@ -33,24 +34,24 @@ namespace Demo2020.Biz.Equipment.ViewModels
         private const string UNLOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/UnlockIcon.png";
         private const string LOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/LockIcon.png";
 
-        public EquipmentViewModel(IEquipmentFactoryService equipmentFactory, IEquipmentDataAccessService equipmentDataAccessObject, IEquipmentSearchAndFilterService equipmentSearchAndFilter)
+        public EquipmentViewModel(IEquipmentService equipmentService)
         {
-            _equipmentFactory = equipmentFactory;
-            _equipmentDataAccessService = equipmentDataAccessObject;
-            _equipmentSearchAndFilter = equipmentSearchAndFilter;
+            _equipmentService = equipmentService;
+            //_equipmentFactory = equipmentFactory;
+            //_equipmentDataAccessService = equipmentDataAccessObject;
+            //_equipmentSearchAndFilter = equipmentSearchAndFilter;
 
             SaveCommand = new RelayCommand(SaveEquipment);
 
-            Messenger.Default.Register<MessageWindowResponse>(this, "GetEquipmentDetails", msg =>
-            {
-                if (msg.Response)
-                {
-                    GetEquipmentDetailsAsync();
-                }
-            });
+            //Messenger.Default.Register<MessageWindowResponse>(this, "GetEquipmentDetails", msg =>
+            //{
+            //    if (msg.Response)
+            //    {
+            //        GetEquipmentDetailsAsync();
+            //    }
+            //});
 
             GetEquipment();
-            //GetEquipmentAsync();
         }
 
         //**************************************************\\
@@ -58,84 +59,22 @@ namespace Demo2020.Biz.Equipment.ViewModels
         //**************************************************\\
         private async void GetEquipmentAsync()
         {
-            _equipmentRaw = Equipment = (await _equipmentDataAccessService.GetAllEquipmentAsync())
+            _equipmentRaw = Equipment = (await _equipmentService.GetAllEquipmentAsync())
                 .Cast<IEquipmentModel>()
                 .ToList() as IList<IEquipmentModel>;
 
             ToggleEditCommand = new RelayCommand(ToggleEdit);
             AddEquipmentCommand = new RelayCommand(AddEquipment);
             EditIconSource = LOCKED_IMAGE_PATH;
-
-            if (_isDebugOn)
-            {
-                foreach (IEquipmentModel equipment in Equipment)
-                {
-                    Console.WriteLine("Name: " + equipment.Name + "\n" +
-                                "Weight: " + equipment.Weight + "\n" +
-                                "Quantity: " + equipment.Cost.Quantity + "\n" +
-                                "Units: " + equipment.Cost.Unit + "\n" +
-                                "Damage Dice: " + equipment.Damage.DamageDice + "\n" +
-                                "Damage Type: " + equipment.Damage.DamageType.Name + "\n" +
-                                "2h Damage Dice: " + equipment.TwoHandedDamage.DamageDice + "\n" +
-                                "2h Damage Type: " + equipment.TwoHandedDamage.DamageType.Name + "\n" +
-                                "Normal: " + equipment.Range.Normal + "\n" +
-                                "Long: " + equipment.Range.Long + "\n" +
-                                "Armor Class: " + equipment.ArmorClass.Base + "\n" +
-                                "Dex Bonus: " + equipment.ArmorClass.DexBonus + "\n" +
-                                "Max Dex Bonus: " + equipment.ArmorClass.MaxBonus + "\n" +
-                                "Strength Req: " + equipment.StrengthRequirement + "\n" +
-                                "Stealth: " + equipment.IsStealthDisadvantage + "\n" +
-                                "Equipment Category: " + equipment.EquipmentCategory.Name + "\n" +
-                                "Weapon Range: " + equipment.WeaponRange + "\n" +
-                                "Weapon Category: " + equipment.WeaponCategory + "\n" +
-                                "Tool Category: " + equipment.ToolCategory + "\n" +
-                                "Vehicle Category: " + equipment.VehicleCategory + "\n" +
-                                "Armor Category: " + equipment.ArmorCategory + "\n" +
-                                "Gear Category: " + equipment.GearCategory.Name);
-                    //Console.WriteLine(equipment.Name);
-                }
-            }
         }
 
         private void GetEquipment()
         {
-            _equipmentRaw = Equipment = _equipmentDataAccessService.GetAllEquipment();
-                //.Cast<IEquipmentModel>()
-                //.ToList() as IList<IEquipmentModel>;
+            _equipmentRaw = Equipment = _equipmentService.Equipment;
 
             ToggleEditCommand = new RelayCommand(ToggleEdit);
             AddEquipmentCommand = new RelayCommand(AddEquipment);
             EditIconSource = LOCKED_IMAGE_PATH;
-
-            if (_isDebugOn)
-            {
-                foreach (IEquipmentModel equipment in Equipment)
-                {
-                    Console.WriteLine("Name: " + equipment.Name + "\n" +
-                                "Weight: " + equipment.Weight + "\n" +
-                                "Quantity: " + equipment.Cost.Quantity + "\n" +
-                                "Units: " + equipment.Cost.Unit + "\n" +
-                                "Damage Dice: " + equipment.Damage.DamageDice + "\n" +
-                                "Damage Type: " + equipment.Damage.DamageType.Name + "\n" +
-                                "2h Damage Dice: " + equipment.TwoHandedDamage.DamageDice + "\n" +
-                                "2h Damage Type: " + equipment.TwoHandedDamage.DamageType.Name + "\n" +
-                                "Normal: " + equipment.Range.Normal + "\n" +
-                                "Long: " + equipment.Range.Long + "\n" +
-                                "Armor Class: " + equipment.ArmorClass.Base + "\n" +
-                                "Dex Bonus: " + equipment.ArmorClass.DexBonus + "\n" +
-                                "Max Dex Bonus: " + equipment.ArmorClass.MaxBonus + "\n" +
-                                "Strength Req: " + equipment.StrengthRequirement + "\n" +
-                                "Stealth: " + equipment.IsStealthDisadvantage + "\n" +
-                                "Equipment Category: " + equipment.EquipmentCategory.Name + "\n" +
-                                "Weapon Range: " + equipment.WeaponRange + "\n" +
-                                "Weapon Category: " + equipment.WeaponCategory + "\n" +
-                                "Tool Category: " + equipment.ToolCategory + "\n" +
-                                "Vehicle Category: " + equipment.VehicleCategory + "\n" +
-                                "Armor Category: " + equipment.ArmorCategory + "\n" +
-                                "Gear Category: " + equipment.GearCategory.Name);
-                    //Console.WriteLine(equipment.Name);
-                }
-            }
         }
 
         private async void GetEquipmentDetailsAsync()
@@ -143,7 +82,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
             CurrentEquipment = Equipment[SelectedEquipmentIndex];
             if (CurrentEquipment.IsDataComplete == false)
             {
-                Equipment[SelectedEquipmentIndex] = (await _equipmentDataAccessService.GetEquipmentAsync(Equipment[SelectedEquipmentIndex].Name)) as IEquipmentModel;
+                Equipment[SelectedEquipmentIndex] = (await _equipmentService.GetEquipmentAsync(Equipment[SelectedEquipmentIndex].Name)) as IEquipmentModel;
 
                 // The monster api failed and returned null
                 if (Equipment[SelectedEquipmentIndex] == null)
@@ -164,42 +103,11 @@ namespace Demo2020.Biz.Equipment.ViewModels
                     CurrentEquipment = Equipment[SelectedEquipmentIndex];
                 }
             }
-
-            if (_isDebugOn)
-            {
-                Console.WriteLine("Name: " + CurrentEquipment.Name + "\n" +
-                                "Weight: " + CurrentEquipment.Weight + "\n" +
-                                "Quantity: " + CurrentEquipment.Cost.Quantity + "\n" +
-                                "Units: " + CurrentEquipment.Cost.Unit + "\n" +
-                                "Damage Dice: " + CurrentEquipment.Damage.DamageDice + "\n" +
-                                "Damage Type: " + CurrentEquipment.Damage.DamageType.Name + "\n" +
-                                "2h Damage Dice: " + CurrentEquipment.TwoHandedDamage.DamageDice + "\n" +
-                                "2h Damage Type: " + CurrentEquipment.TwoHandedDamage.DamageType.Name + "\n" +
-                                "Normal: " + CurrentEquipment.Range.Normal + "\n" +
-                                "Long: " + CurrentEquipment.Range.Long + "\n" +
-                                "Armor Class: " + CurrentEquipment.ArmorClass.Base + "\n" +
-                                "Dex Bonus: " + CurrentEquipment.ArmorClass.DexBonus + "\n" +
-                                "Max Dex Bonus: " + CurrentEquipment.ArmorClass.MaxBonus + "\n" +
-                                "Strength Req: " + CurrentEquipment.StrengthRequirement + "\n" +
-                                "Stealth: " + CurrentEquipment.IsStealthDisadvantage + "\n" +
-                                "Equipment Category: " + CurrentEquipment.EquipmentCategory.Name + "\n" +
-                                "Weapon Range: " + CurrentEquipment.WeaponRange + "\n" +
-                                "Weapon Category: " + CurrentEquipment.WeaponCategory + "\n" +
-                                "Tool Category: " + CurrentEquipment.ToolCategory + "\n" +
-                                "Vehicle Category: " + CurrentEquipment.VehicleCategory + "\n" +
-                                "Armor Category: " + CurrentEquipment.ArmorCategory + "\n" +
-                                "Gear Category: " + CurrentEquipment.GearCategory.Name);
-                //Console.Write(CurrentEquipment.EquipmentCategory.Name + " " + CurrentEquipment.GearCategory.Name);
-            }
         }
 
         private void SaveEquipment()
         {
-            //foreach (EquipmentModel equipment in Equipment)
-            //{
-            //    _equipmentDataAccessService.SaveEquipment(equipment);
-            //}
-            _equipmentDataAccessService.SaveEquipment(CurrentEquipment);
+            _equipmentService.SaveEquipment(CurrentEquipment);
         }
 
         private void ToggleEdit()
@@ -216,23 +124,9 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
         private void AddEquipment()
         {
-            IList<IEquipmentModel> equipment = new List<IEquipmentModel>();
-            foreach (IEquipmentModel model in Equipment)
-            {
-                equipment.Add(model);
-            }
-
-            IEquipmentModel newEquipment = new EquipmentModel
-            {
-                Name = "{{Name}}",
-                Description = new List<DescriptionModel> { new DescriptionModel("{{Description}}") }
-            };
-            equipment.Add(newEquipment);
-
-            IEnumerable<IEquipmentModel> sortedEquipment = equipment.OrderBy(x => x.Name);
-            equipment = sortedEquipment.ToList();
-            _equipmentRaw = Equipment = equipment;
-            SelectedEquipmentIndex = equipment.IndexOf(newEquipment);
+            int selectedIndex = _equipmentService.AddEquipment();
+            _equipmentRaw = Equipment = _equipmentService.Equipment;
+            SelectedEquipmentIndex = selectedIndex;
         }
 
         //**************************************************\\
@@ -246,11 +140,10 @@ namespace Demo2020.Biz.Equipment.ViewModels
                 if (_selectedEquipmentIndex != value)
                 {
                     _selectedEquipmentIndex = value;
-                    CurrentEquipment = Equipment[_selectedEquipmentIndex];
-                    //if (_selectedEquipmentIndex > -1)
-                    //{
-                    //    GetEquipmentDetailsAsync();
-                    //}
+                    if (_selectedEquipmentIndex > -1)
+                    {
+                        CurrentEquipment = Equipment[_selectedEquipmentIndex];
+                    }
                     OnPropertyChanged();
                 }
             }
@@ -290,7 +183,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
                 if (_filter != value)
                 {
                     _filter = value;
-                    Equipment = _equipmentSearchAndFilter.Filter(_equipmentRaw, _filter);
+                    Equipment = _equipmentService.Filter(_filter);
                     OnPropertyChanged();
                 }
             }

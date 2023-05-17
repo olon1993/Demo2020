@@ -52,6 +52,7 @@ namespace Demo2020.Biz
             builder.RegisterType<EquipmentSlotFactoryService>().As<IEquipmentSlotFactoryService>();
             builder.RegisterType<EquipmentDataAccessService>().As<IEquipmentDataAccessService>();
             builder.RegisterType<EquipmentSearchAndFilterService>().As<IEquipmentSearchAndFilterService>();
+            builder.RegisterType<EquipmentService>().As<IEquipmentService>();
 
             builder.RegisterType<MagicItemFactoryService>().As<IMagicItemFactoryService>();
             builder.RegisterType<MagicItemDataAccessService>().As<IMagicItemDataAccessService>();

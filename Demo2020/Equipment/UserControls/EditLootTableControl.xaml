@@ -119,7 +119,7 @@
                                 x:Name="EquipmentName"
                                 Grid.Column="2"
                                 Margin="3"
-                                Text="{Binding Equipment.Name}" />
+                                Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
                             <!--
                                 Commented out for now. Would like to bind this listbox to a list of equipment that contains the text the user is typing in the
@@ -127,22 +127,24 @@
                                 will automatically replace the current equipment and name with the selected equipment. The idea is to have an auto complete
                                 intellisence like functionality that allows the user to create loot tables quickly using equipment from the equipment database
                             -->
-                            <!--<ListBox
+                            <ListBox
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Margin="3"
-                                ItemsSource="{Binding FilteredEquipmentList}"
+                                DisplayMemberPath="Name"
+                                ItemsSource="{Binding FilteredEquipmentList, UpdateSourceTrigger=PropertyChanged}"
+                                SelectedIndex="{Binding SelectedEquipmentIndex}"
                                 Visibility="Visible">
                                 <ListBox.Style>
                                     <Style TargetType="{x:Type ListBox}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding FilteredEquipmentList.Count}" Value="0">
+                                            <DataTrigger Binding="{Binding FilteredEquipmentList.Count, Converter={StaticResource IsGreaterThanValueConverter}, ConverterParameter=0}">
                                                 <Setter Property="Visibility" Value="Collapsed" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </ListBox.Style>
-                            </ListBox>-->
+                            </ListBox>
 
                             <ItemsControl
                                 Grid.Column="3"

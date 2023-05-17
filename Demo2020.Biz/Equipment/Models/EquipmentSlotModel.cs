@@ -13,18 +13,119 @@ namespace Demo2020.Biz.Equipment.Models
 {
     public class EquipmentSlotModel : ObservableObject, IEquipmentSlotModel
     {
+        //**************************************************\\
+        //********************* Fields *********************\\
+        //**************************************************\\
+
         private int _id;
         private int _lootTableId;
         private IEquipmentModel _equipment;
+        private IList<IEquipmentModel> _filteredEquipmentList;
+        private IList<IEquipmentModel> _equipmentRaw;
+        private IEquipmentService _equipmentService;
+        private string _name;
         private int _multiplier;
         private int _index;
+        private int _selectedEquipmentIndex;
 
-        public EquipmentSlotModel()
+        public EquipmentSlotModel(IEquipmentService equipmentService)
         {
+            _equipmentService = equipmentService;
+            _equipmentRaw = new List<IEquipmentModel>()
+            {
+                new EquipmentModel()
+                {
+                    Name = "Axe"
+                },
+                new EquipmentModel()
+                {
+                    Name = "Arrow"
+                },
+                new EquipmentModel()
+                {
+                    Name = "Battle Axe"
+                },
+                new EquipmentModel()
+                {
+                    Name = "Katana"
+                },
+                new EquipmentModel()
+                {
+                    Name = "Broad Sword"
+                }
+            };
+            FilteredEquipmentList = new List<IEquipmentModel>();
+
             AddDescriptionCommand = new RelayCommand(AddDescription);
             RemoveCommand = new RelayCommand(Remove);
             Equipment = new EquipmentModel();
         }
+
+        //**************************************************\\
+        //******************** Methods *********************\\
+        //**************************************************\\
+
+        private void AddDescription()
+        {
+            IList<DescriptionModel> descriptions = new List<DescriptionModel>();
+            foreach (DescriptionModel d in Equipment.Description)
+            {
+                descriptions.Add(d);
+            }
+
+            descriptions.Add(new DescriptionModel("{{New Line}}"));
+            Equipment.Description = descriptions;
+        }
+
+        private void Remove()
+        {
+            Messenger.Default.Send(this);
+        }
+
+        //**************************************************\\
+        //******************* Properties *******************\\
+        //**************************************************\\
+
+
+        public string Name
+        {
+            get { return _name; }
+            set 
+            { 
+                if (_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged();
+                    if (_name.Length == 0)
+                    {
+                        FilteredEquipmentList = new List<IEquipmentModel>();
+                    }
+                    else
+                    {
+                        FilteredEquipmentList = _equipmentService.Filter(_name);
+                    }
+                }
+            }
+        }
+
+        public int SelectedEquipmentIndex 
+        {
+            get { return _selectedEquipmentIndex; }
+            set
+            {
+                if (_selectedEquipmentIndex != value)
+                {
+                    _selectedEquipmentIndex = value;
+                    if(_selectedEquipmentIndex > -1)
+                    {
+                        Equipment = FilteredEquipmentList[_selectedEquipmentIndex];
+                        FilteredEquipmentList = new List<IEquipmentModel>();
+                    }
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
         public IEquipmentModel Equipment
         {
@@ -65,21 +166,17 @@ namespace Demo2020.Biz.Equipment.Models
             }
         }
 
-        private void AddDescription()
+        public IList<IEquipmentModel> FilteredEquipmentList
         {
-            IList<DescriptionModel> descriptions = new List<DescriptionModel>();
-            foreach(DescriptionModel d in Equipment.Description)
+            get { return _filteredEquipmentList; }
+            set
             {
-                descriptions.Add(d);
+                if (_filteredEquipmentList != value)
+                {
+                    _filteredEquipmentList = value;
+                    OnPropertyChanged();
+                }
             }
-
-            descriptions.Add(new DescriptionModel("{{New Line}}"));
-            Equipment.Description = descriptions;
-        }
-
-        private void Remove()
-        {
-            Messenger.Default.Send(this);
         }
 
         public ICommand AddDescriptionCommand { get; set; }
