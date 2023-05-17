@@ -196,6 +196,8 @@ namespace Demo2020.Biz.Equipment.Services
                             gearCategoryModel.Name = Convert.IsDBNull(row[GEAR_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[GEAR_CATEGORY_COLUMN]);
                             equipmentModel.GearCategory = gearCategoryModel;
 
+                            equipmentModel.PackageId = Convert.IsDBNull(row["PackageId"]) ? 0 : Convert.ToInt32(row["PackageId"]);
+
                             equipmentModel.Description.Clear();
                             equipmentModel.IsDataComplete = true;
                             equipment.Add(equipmentModel);
@@ -332,12 +334,6 @@ namespace Demo2020.Biz.Equipment.Services
             StringBuilder values = new StringBuilder();
             header.Append("INSERT INTO Equipment (");
             values.Append(" VALUES (");
-
-            if (equipment.Id != 0)
-            {
-                header.Append("Id, ");
-                values.Append(equipment.Id + ", ");
-            }
 
             if (equipment.Name != null)
             {

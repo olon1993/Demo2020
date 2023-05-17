@@ -9,6 +9,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
     public interface IEquipmentModel
     {
         int Id { get; set; }
+        int PackageId { get; set; }
 
         string Name { get; set; }
 

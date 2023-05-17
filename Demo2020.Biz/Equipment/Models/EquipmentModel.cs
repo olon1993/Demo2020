@@ -38,6 +38,7 @@ namespace Demo2020.Biz.Equipment.Models
         private int _strengthRequirement;
         private IArmorClassModel _armorClass;
         private string _armorCategory;
+        private int _packageId;
         private List<string> _equipmentCategories = new List<string> 
         {
             "Adventuring Gear",
@@ -434,6 +435,19 @@ namespace Demo2020.Biz.Equipment.Models
         {
             get { return _isDataComplete; }
             set { _isDataComplete = value; }
+        }
+
+        public int PackageId
+        {
+            get { return _packageId; }
+            set
+            {
+                if (_packageId != value)
+                {
+                    _packageId = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
         public List<string> EquipmentCategories
