@@ -42,7 +42,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
             ToggleEditCommand = new RelayCommand(ToggleEdit);
 
-            Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg =>
+            Messenger.Default.Register<MessageWindowResponse>(this, "GetMagicItemDetails", msg =>
             {
                 if (msg.Response)
                 {
@@ -88,7 +88,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
                         "Check you internet connection if you continue to see this message.",
                         IsOkVisible = false,
                         IsTrueFalseVisible = true,
-                        Token = "ReloadMonster"
+                        Token = "GetMagicItemDetails"
                     });
                 }
                 else

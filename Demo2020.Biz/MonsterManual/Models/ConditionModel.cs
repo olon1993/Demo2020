@@ -16,14 +16,22 @@ namespace Demo2020.Biz.MonsterManual.Models
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set 
+            {
+                _name = value;
+                OnPropertyChanged();
+            }
         }
 
         [JsonProperty("desc")]
         public List<DescriptionModel> Description
         {
             get { return _description; }
-            set { _description = value; }
+            set 
+            {
+                _description = value;
+                OnPropertyChanged();
+            }
         }
 
     }

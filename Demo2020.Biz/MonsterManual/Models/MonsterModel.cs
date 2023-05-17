@@ -78,6 +78,7 @@ namespace Demo2020.Biz.MonsterManual.Models
 
             AddCommand = new RelayCommand<string>(x => Add(x));
             SubtractCommand = new RelayCommand<string>(x => Subtract(x));
+            AddArmorClassCommand = new RelayCommand(AddArmorClass);
         }
 
         //**************************************************\\
@@ -192,6 +193,18 @@ namespace Demo2020.Biz.MonsterManual.Models
             }
         }
 
+        private void AddArmorClass()
+        {
+            List<ArmorClassModel> armorClasses = new List<ArmorClassModel>();
+            foreach (ArmorClassModel d in ArmorClass)
+            {
+                armorClasses.Add(d);
+            }
+
+            armorClasses.Add(new ArmorClassModel());
+            ArmorClass = armorClasses;
+        }
+
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
@@ -223,6 +236,8 @@ namespace Demo2020.Biz.MonsterManual.Models
                 }
             }
         }
+
+        public ICommand AddArmorClassCommand { get; set; }
 
         [JsonProperty("type")]
         public string MonsterType

@@ -56,17 +56,10 @@
             </Grid.ColumnDefinitions>
 
             <!--  Row 0 : Treasure Count  -->
-            <DockPanel Margin="3">
-                <TextBlock
-                    VerticalAlignment="Center"
-                    FontWeight="Bold"
-                    Text="1d" />
-                <TextBox
-                    Margin="6,3,3,3"
-                    VerticalAlignment="Center"
-                    FontWeight="Bold"
-                    Text="{Binding EquipmentSlots.Count, Mode=OneWay, FallbackValue=8}" />
-            </DockPanel>
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold">
+                <Run Text="1d" />
+                <Run Text="{Binding EquipmentSlots.Count, Mode=OneWay}" />
+            </TextBlock>
 
             <!--  Row 1 : Name  -->
             <TextBlock

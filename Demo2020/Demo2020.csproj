@@ -297,7 +297,6 @@
     <Resource Include="Resources\Images\KnightIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\AddIcon.png" />
     <Resource Include="Resources\Images\SubtractIcon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +309,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\SaveIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AddIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />

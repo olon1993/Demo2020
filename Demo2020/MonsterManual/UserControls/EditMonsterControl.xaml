@@ -145,6 +145,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
 
                     <TextBlock
@@ -161,12 +162,13 @@
                         ItemsSource="{Binding ArmorClass}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid Margin="0,0,0,6">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
@@ -183,7 +185,7 @@
                                         Margin="2"
                                         FontSize="12"
                                         Foreground="DarkRed"
-                                        Text="{Binding Value}" />
+                                        Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" />
 
                                     <TextBlock
                                         Grid.Row="1"
@@ -198,11 +200,53 @@
                                         Margin="2"
                                         FontSize="12"
                                         Foreground="DarkRed"
-                                        Text="{Binding ArmorType}" />
+                                        Text="{Binding ArmorType, UpdateSourceTrigger=PropertyChanged}" />
+
+                                    <TextBlock
+                                        Grid.Row="2"
+                                        VerticalAlignment="Center"
+                                        FontSize="12"
+                                        Foreground="DarkRed"
+                                        Text="Condition" />
+
+                                    <TextBox
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        Margin="2"
+                                        FontSize="12"
+                                        Foreground="DarkRed"
+                                        Text="{Binding Condition.Name, UpdateSourceTrigger=PropertyChanged}" />
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Height="20"
+                        Margin="3,0,0,10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Command="{Binding AddArmorClassCommand}"
+                        DockPanel.Dock="Left">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="/Demo2020;component/Resources/Images/Add.png" />
+                            <TextBlock
+                                Grid.Column="1"
+                                Margin="3,0,0,0"
+                                DockPanel.Dock="Right"
+                                FontWeight="Bold"
+                                Text="Add Armor Class" />
+                        </Grid>
+                    </Button>
                 </Grid>
 
                 <!--  Row 1 : Hit Points  -->
@@ -489,13 +533,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Right"
                         Background="Red"
                         Command="{Binding SubtractCommand}"
                         CommandParameter="STR">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
                     </Button>
 
                     <Grid Grid.Column="1">
@@ -561,13 +605,13 @@
 
                     <Button
                         Grid.Column="2"
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Left"
                         Background="Green"
                         Command="{Binding AddCommand}"
                         CommandParameter="STR">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
                     </Button>
 
                 </Grid>
@@ -581,13 +625,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Right"
                         Background="Red"
                         Command="{Binding SubtractCommand}"
                         CommandParameter="DEX">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
                     </Button>
 
                     <Grid Grid.Column="1">
@@ -653,13 +697,13 @@
 
                     <Button
                         Grid.Column="2"
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Left"
                         Background="Green"
                         Command="{Binding AddCommand}"
                         CommandParameter="DEX">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
                     </Button>
 
                 </Grid>
@@ -673,13 +717,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Right"
                         Background="Red"
                         Command="{Binding SubtractCommand}"
                         CommandParameter="CON">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
                     </Button>
 
                     <Grid Grid.Column="1">
@@ -745,13 +789,13 @@
 
                     <Button
                         Grid.Column="2"
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Left"
                         Background="Green"
                         Command="{Binding AddCommand}"
                         CommandParameter="CON">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
                     </Button>
 
                 </Grid>
@@ -766,13 +810,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Right"
                         Background="Red"
                         Command="{Binding SubtractCommand}"
                         CommandParameter="INT">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
                     </Button>
 
                     <Grid Grid.Column="1">
@@ -838,13 +882,13 @@
 
                     <Button
                         Grid.Column="2"
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Left"
                         Background="Green"
                         Command="{Binding AddCommand}"
                         CommandParameter="INT">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
                     </Button>
 
                 </Grid>
@@ -861,13 +905,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Right"
                         Background="Red"
                         Command="{Binding SubtractCommand}"
                         CommandParameter="WIS">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
                     </Button>
 
                     <Grid Grid.Column="1">
@@ -933,13 +977,13 @@
 
                     <Button
                         Grid.Column="2"
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Left"
                         Background="Green"
                         Command="{Binding AddCommand}"
                         CommandParameter="WIS">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
                     </Button>
 
                 </Grid>
@@ -956,13 +1000,13 @@
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Right"
                         Background="Red"
                         Command="{Binding SubtractCommand}"
                         CommandParameter="CHA">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/SubtractIcon.png" />
                     </Button>
 
                     <Grid Grid.Column="1">
@@ -1028,13 +1072,13 @@
 
                     <Button
                         Grid.Column="2"
-                        Width="17"
-                        Height="17"
+                        Width="26"
+                        Height="26"
                         HorizontalAlignment="Left"
                         Background="Green"
                         Command="{Binding AddCommand}"
                         CommandParameter="CHA">
-                        <Image Height="15" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
+                        <Image Height="26" Source="/Demo2020;component/Resources/Images/AddIcon.png" />
                     </Button>
 
                 </Grid>

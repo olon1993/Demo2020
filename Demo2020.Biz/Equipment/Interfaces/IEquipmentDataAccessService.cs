@@ -9,14 +9,11 @@ namespace Demo2020.Biz.Equipment.Interfaces
 {
     public interface IEquipmentDataAccessService
     {
-        Task<List<EquipmentModel>> GetAllEquipment();
-        //IList<IEquipmentModel> GetAllEquipment();
-        Task<EquipmentModel> GetEquipment(string name);
+        Task<List<EquipmentModel>> GetAllEquipmentAsync();
+        Task<EquipmentModel> GetEquipmentAsync(string name);
         IEquipmentModel GetEquipment(int id);
-        IEquipmentModel GetEquipmentv2(string name);
-        IList<IEquipmentModel> GetAllEquipmentv2();
-        bool UpdateEquipment(IEquipmentModel equipment);
-        bool UpdateEquipment(IList<IEquipmentModel> equipment);
+        IEquipmentModel GetEquipment(string name);
+        IList<IEquipmentModel> GetAllEquipment();
         bool SaveEquipment(IEquipmentModel equipment);
         bool SaveEquipment(IList<IEquipmentModel> equipment);
         bool DeleteEquipment(IEquipmentModel equipment);

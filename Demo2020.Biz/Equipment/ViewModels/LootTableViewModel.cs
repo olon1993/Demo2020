@@ -47,7 +47,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
             AddLootTableCommand = new RelayCommand(AddLootTable);
             EditIconSource = LOCKED_IMAGE_PATH;
 
-            Messenger.Default.Register<MessageWindowResponse>(this, "ReloadMonster", msg =>
+            Messenger.Default.Register<MessageWindowResponse>(this, "GetLootTableDetails", msg =>
             {
                 if (msg.Response)
                 {
@@ -150,172 +150,175 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
             ILootTableModel newTable = new LootTableModel()
             {
-                Name = "I Loot the... Cultist!",
-                Description = "This is the description",
+                Name = "{{Name}}",
+                Description = "{{Description}}",
                 ImageSource = "/Demo2020;component/Resources/Images/SwordIcon.png",
-                EquipmentSlots = new System.Collections.ObjectModel.ObservableCollection<IEquipmentSlotModel>()
-                    {
-                        new EquipmentSlotModel()
-                        {
-                            Index = 1,
-                            Multiplier = 12,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Bronze Hourglass",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("Beautifully designed, the sand inside is black.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 2,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Tattered Letter",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("From a mother, pleas for them to come home.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 3,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Manacles",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("For fastening someones hands or legs together")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 4,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Jar of Dirt",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("There is a faintly beating heart inside it.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 5,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Carved Skull",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("Covered in runes, the teeth chatter on a full moon.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 6,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Handbell",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("Can be used to catch someones attention.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 7,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "White Chalk",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("For writing and marking various surfaces.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 8,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Signet Ring",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("Has a distinctively abnormal design carved into it.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 9,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Crystal Pendant",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("Begins to glow if completely submerged in water.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 10,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Black Candle",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("When lit, it emenates an eerie purple light.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 11,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Unholy Symbol",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("This symbol is always cold to the touch.")
-                                }
-                            }
-                        },
-                        new EquipmentSlotModel()
-                        {
-                            Index = 12,
-                            Multiplier = 0,
-                            Equipment = new EquipmentModel()
-                            {
-                                Name = "Ceremonial Dagger",
-                                Description = new List<DescriptionModel>()
-                                {
-                                    new DescriptionModel("This dagger works exceptionally well on human flesh, it deals 2d4 piercing damage to humans.")
-                                }
-                            }
-                        }
-                    }
+                EquipmentSlots = new List<IEquipmentSlotModel>()
+                    //{
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 1,
+                    //        Multiplier = 12,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Bronze Hourglass",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("Beautifully designed, the sand inside is black.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 2,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Tattered Letter",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("From a mother, pleas for them to come home.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 3,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Manacles",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("For fastening someones hands or legs together")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 4,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Jar of Dirt",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("There is a faintly beating heart inside it.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 5,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Carved Skull",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("Covered in runes, the teeth chatter on a full moon.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 6,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Handbell",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("Can be used to catch someones attention.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 7,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "White Chalk",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("For writing and marking various surfaces.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 8,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Signet Ring",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("Has a distinctively abnormal design carved into it.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 9,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Crystal Pendant",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("Begins to glow if completely submerged in water.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 10,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Black Candle",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("When lit, it emenates an eerie purple light.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 11,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Unholy Symbol",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("This symbol is always cold to the touch.")
+                    //            }
+                    //        }
+                    //    },
+                    //    new EquipmentSlotModel()
+                    //    {
+                    //        Index = 12,
+                    //        Multiplier = 0,
+                    //        Equipment = new EquipmentModel()
+                    //        {
+                    //            Name = "Ceremonial Dagger",
+                    //            Description = new List<DescriptionModel>()
+                    //            {
+                    //                new DescriptionModel("This dagger works exceptionally well on human flesh, it deals 2d4 piercing damage to humans.")
+                    //            }
+                    //        }
+                    //    }
+                    //}
             };
             lootTables.Add(newTable);
 
+            IEnumerable<ILootTableModel> sortedLootTables = lootTables.OrderBy(x => x.Name);
+            lootTables = sortedLootTables.ToList();
             _lootTablesRaw = LootTables = lootTables;
+            SelectedLootTableIndex = lootTables.IndexOf(newTable);
         }
 
         //**************************************************\\

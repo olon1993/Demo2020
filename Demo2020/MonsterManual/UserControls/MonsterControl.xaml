@@ -134,7 +134,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                         <Run Text="(" />
-                                        <Run Text="{Binding ArmorType}" />
+                                        <Run Text="{Binding ArmorType, UpdateSourceTrigger=PropertyChanged}" />
                                         <Run Text=")" />
                                     </TextBlock>
                                     <TextBlock
@@ -154,7 +154,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                         <Run Text="When " />
-                                        <Run Text="{Binding Condition.Name}" />
+                                        <Run Text="{Binding Condition.Name, UpdateSourceTrigger=PropertyChanged}" />
                                     </TextBlock>
                                 </DockPanel>
                             </DataTemplate>
