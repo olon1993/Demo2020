@@ -222,7 +222,8 @@
 						Margin="3,0,0,0"
 						DockPanel.Dock="Left"
 						FontSize="12"
-						Foreground="DarkRed">
+						Foreground="DarkRed"
+						Text="{Binding WeaponRange}">
 						<TextBlock.Style>
 							<Style TargetType="{x:Type TextBlock}">
 								<Setter Property="Visibility" Value="Collapsed" />
@@ -233,9 +234,28 @@
 								</Style.Triggers>
 							</Style>
 						</TextBlock.Style>
+					</TextBlock>
+
+					<TextBlock
+						Margin="3,0,0,0"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed">
+						<TextBlock.Style>
+							<Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility" Value="Collapsed" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding WeaponRange, UpdateSourceTrigger=PropertyChanged}" Value="Ranged">
+										<Setter Property="Visibility" Value="Visible" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+						<Run Text="(" />
 						<Run Text="{Binding Range.Normal}" />
 						<Run Text="/" />
 						<Run Text="{Binding Range.Long}" />
+						<Run Text=")" />
 					</TextBlock>
 				</DockPanel>
 

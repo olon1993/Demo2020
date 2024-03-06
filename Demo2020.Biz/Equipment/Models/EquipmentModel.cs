@@ -30,6 +30,8 @@ namespace Demo2020.Biz.Equipment.Models
         private IDamageModel _damage;
         private string _categoryRange;
         private string _weaponRange;
+        private IList<string> _weaponRangeOptions;
+        private int _selectedWeaponRangeIndex;
         private string _weaponCategory;
         private string _toolCategory;
         private string _vehicleCategory;
@@ -75,6 +77,8 @@ namespace Demo2020.Biz.Equipment.Models
             EquipmentCategory = new CategoryModel();
             GearCategory = new CategoryModel();
             Cost = new CostModel();
+
+            WeaponRangeOptions = new List<string> { "Martial", "Ranged" };
 
             AddDescriptionCommand = new RelayCommand(AddDescription);
         }
@@ -205,10 +209,45 @@ namespace Demo2020.Biz.Equipment.Models
                 if (_weaponRange != value)
                 {
                     _weaponRange = value;
+                    if(_weaponRange == "Martial")
+					{
+                        SelectedWeaponRangeIndex = 0;
+					}
+                    else if(_weaponRange == "Ranged")
+					{
+                        SelectedWeaponRangeIndex = 1;
+					}
                     OnPropertyChanged();
                 }
             }
         }
+
+		public IList<string> WeaponRangeOptions 
+        { 
+            get { return _weaponRangeOptions; }
+			set
+			{
+                if (_weaponRangeOptions != value)
+				{
+                    _weaponRangeOptions = value;
+                    OnPropertyChanged();
+                }
+			}
+        }
+
+        public int SelectedWeaponRangeIndex
+		{
+            get { return _selectedWeaponRangeIndex; }
+			set
+			{
+                if (_selectedWeaponRangeIndex != value)
+				{
+                    _selectedWeaponRangeIndex = value;
+                    WeaponRange = _weaponRangeOptions[_selectedWeaponRangeIndex];
+                    OnPropertyChanged();
+                }
+			}
+		}
 
         [JsonProperty("category_range")]
         public string CategoryRange
