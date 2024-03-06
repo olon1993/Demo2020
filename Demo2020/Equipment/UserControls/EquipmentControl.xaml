@@ -155,6 +155,7 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
@@ -317,8 +318,34 @@
 					</TextBlock>
 				</DockPanel>
 
-				<!--  Row 4 : Value  -->
+				<!--  Row 4 : StrengthRequirement  -->
 				<DockPanel Grid.Row="4">
+					<DockPanel.Style>
+						<Style TargetType="{x:Type DockPanel}">
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding StrengthRequirement}" Value="0">
+									<Setter Property="Visibility" Value="Collapsed" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</DockPanel.Style>
+					<TextBlock
+						DockPanel.Dock="Left"
+						FontSize="12"
+						FontWeight="Bold"
+						Foreground="DarkRed"
+						Text="Required Strength" />
+
+					<TextBlock
+						Margin="3,0,0,0"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="{Binding StrengthRequirement}" />
+				</DockPanel>
+
+				<!--  Row 5 : Value  -->
+				<DockPanel Grid.Row="5">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"

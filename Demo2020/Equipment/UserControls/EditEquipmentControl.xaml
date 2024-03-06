@@ -203,6 +203,7 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
@@ -503,7 +504,7 @@
 				<!--  Row 2 : Armor Class  -->
 				<DockPanel Grid.Row="2">
 					<TextBlock
-						Width="70"
+						Width="140"
 						VerticalAlignment="Center"
 						DockPanel.Dock="Left"
 						FontSize="12"
@@ -547,7 +548,7 @@
 				<!--  Row 3 : Weight  -->
 				<DockPanel Grid.Row="3">
 					<TextBlock
-						Width="70"
+						Width="140"
 						VerticalAlignment="Center"
 						DockPanel.Dock="Left"
 						FontSize="12"
@@ -573,10 +574,40 @@
 						Text="lbs" />
 				</DockPanel>
 
-				<!--  Row 4 : Value  -->
+				<!--  Row 4 : StrengthRequirement  -->
 				<DockPanel Grid.Row="4">
 					<TextBlock
-						Width="70"
+						Width="140"
+						VerticalAlignment="Center"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						FontWeight="Bold"
+						Foreground="DarkRed"
+						Text="Required Strength" />
+
+					<TextBox
+						Width="40"
+						Height="22"
+						Margin="2"
+						VerticalContentAlignment="Center"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="{Binding StrengthRequirement}" />
+
+					<TextBlock
+						VerticalAlignment="Center"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="Minimum" />
+
+				</DockPanel>
+
+				<!--  Row 5 : Value  -->
+				<DockPanel Grid.Row="5">
+					<TextBlock
+						Width="140"
 						VerticalAlignment="Center"
 						DockPanel.Dock="Left"
 						FontSize="12"
