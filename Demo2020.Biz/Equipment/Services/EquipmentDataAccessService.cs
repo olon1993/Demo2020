@@ -129,19 +129,109 @@ namespace Demo2020.Biz.Equipment.Services
         // New Methods
         public IEquipmentModel GetEquipment(int id)
         {
-            throw new NotImplementedException();
+            IEquipmentModel equipment = _equipmentFactoryService.GetEquipment();
+            StringBuilder equipmentQuery = new StringBuilder();
+            equipmentQuery.Append("SELECT * FROM Equipment WHERE IsDeleted != 1 AND Id = " + id);
+
+            // Get equipment data
+            try
+            {
+                using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(equipmentQuery.ToString()))
+                {
+                    if (ds != null && ds.Tables != null && ds.Tables.Count > 0)
+                    {
+                        equipment = ExtractEquipment(ds.Tables[0].Rows[0]);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            // Get description data
+            StringBuilder descriptionQuery = new StringBuilder();
+            descriptionQuery.Append("SELECT * FROM EquipmentDescriptions WHERE EquipmentId = " + equipment.Id);
+
+            try
+            {
+                using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(descriptionQuery.ToString()))
+                {
+                    if (ds != null && ds.Tables != null && ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            DescriptionModel description = new DescriptionModel(Convert.ToInt32(row["Id"]), Convert.ToString(row[DESCRIPTION_COLUMN]));
+                            equipment.Description.Add(description);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return equipment;
         }
 
         public IEquipmentModel GetEquipment(string name)
         {
-            throw new NotImplementedException();
+            IEquipmentModel equipment = _equipmentFactoryService.GetEquipment();
+            StringBuilder equipmentQuery = new StringBuilder();
+            equipmentQuery.Append("SELECT * FROM Equipment WHERE IsDeleted != 1 AND Name = \"" + name + "\"");
+
+            // Get equipment data
+            try
+            {
+                using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(equipmentQuery.ToString()))
+                {
+                    if (ds != null && ds.Tables != null && ds.Tables.Count > 0)
+                    {
+                        equipment = ExtractEquipment(ds.Tables[0].Rows[0]);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            // Get description data
+            StringBuilder descriptionQuery = new StringBuilder();
+            descriptionQuery.Append("SELECT * FROM EquipmentDescriptions WHERE EquipmentId = " + equipment.Id);
+
+            try
+            {
+                using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(descriptionQuery.ToString()))
+                {
+                    if (ds != null && ds.Tables != null && ds.Tables.Count > 0)
+                    {
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            DescriptionModel description = new DescriptionModel(Convert.ToInt32(row["Id"]), Convert.ToString(row[DESCRIPTION_COLUMN]));
+                            equipment.Description.Add(description);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return equipment;
         }
 
         public IList<IEquipmentModel> GetAllEquipment()
         {
             IList<IEquipmentModel> equipment = new List<IEquipmentModel>();
             StringBuilder equipmentQuery = new StringBuilder();
-            equipmentQuery.Append("SELECT * FROM Equipment");
+            equipmentQuery.Append("SELECT * FROM Equipment WHERE IsDeleted != 1");
 
             // Get equipment data
             try
@@ -152,55 +242,7 @@ namespace Demo2020.Biz.Equipment.Services
                     {
                         foreach(DataRow row in ds.Tables[0].Rows)
                         {
-                            IEquipmentModel equipmentModel = _equipmentFactoryService.GetEquipment();
-                            equipmentModel.Id = Convert.ToInt32(row["Id"]);
-                            equipmentModel.Name = Convert.IsDBNull(row[NAME_COLUMN]) ? string.Empty : Convert.ToString(row[NAME_COLUMN]);
-                            equipmentModel.Weight = Convert.IsDBNull(row[WEIGHT_COLUMN]) ? 0 : Convert.ToDouble(row[WEIGHT_COLUMN]);
-                            equipmentModel.Cost.Quantity = Convert.IsDBNull(row[COST_QUANTITY_COLUMN]) ? 0 : Convert.ToInt64(row[COST_QUANTITY_COLUMN]);
-                            equipmentModel.Cost.Unit = Convert.IsDBNull(row[COST_UNITS_COLUMN]) ? string.Empty : Convert.ToString(row[COST_UNITS_COLUMN]);
-
-                            equipmentModel.Damage.DamageDice = Convert.IsDBNull(row[ONE_HAND_DAMAGE_DICE_COLUMN]) ? string.Empty : Convert.ToString(row[ONE_HAND_DAMAGE_DICE_COLUMN]);
-                            
-                            ICategoryModel oneHandedDamageCategoryModel = new CategoryModel();
-                            oneHandedDamageCategoryModel.Name = Convert.IsDBNull(row[ONE_HAND_DAMAGE_TYPE_COLUMN]) ? string.Empty : Convert.ToString(row[ONE_HAND_DAMAGE_TYPE_COLUMN]);
-                            equipmentModel.Damage.DamageType = oneHandedDamageCategoryModel;
-
-                            equipmentModel.TwoHandedDamage.DamageDice = Convert.IsDBNull(row[TWO_HAND_DAMAGE_DICE_COLUMN]) ? string.Empty : Convert.ToString(row[TWO_HAND_DAMAGE_DICE_COLUMN]);
-                            ICategoryModel twoHandedDamageCategoryModel = new CategoryModel();
-                            twoHandedDamageCategoryModel.Name = Convert.IsDBNull(row[TWO_HAND_DAMAGE_TYPE_COLUMN]) ? string.Empty : Convert.ToString(row[TWO_HAND_DAMAGE_TYPE_COLUMN]);
-                            equipmentModel.TwoHandedDamage.DamageType = twoHandedDamageCategoryModel;
-
-                            equipmentModel.Range.Normal = Convert.IsDBNull(row[NORMAL_RANGE_COLUMN]) ? 0 : Convert.ToInt32(row[NORMAL_RANGE_COLUMN]);
-                            equipmentModel.Range.Long = Convert.IsDBNull(row[LONG_RANGE_COLUMN]) ? 0 : Convert.ToInt32(row[LONG_RANGE_COLUMN]);
-
-                            ICategoryModel equipmentCategoryModel = new CategoryModel();
-                            equipmentCategoryModel.Name = Convert.IsDBNull(row[EQUIPMENT_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[EQUIPMENT_CATEGORY_COLUMN]);
-                            equipmentModel.EquipmentCategory = equipmentCategoryModel;
-
-                            equipmentModel.WeaponCategory = Convert.IsDBNull(row[WEAPON_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[WEAPON_CATEGORY_COLUMN]);
-                            equipmentModel.WeaponRange = Convert.IsDBNull(row[WEAPON_RANGE_COLUMN]) ? string.Empty : Convert.ToString(row[WEAPON_RANGE_COLUMN]);
-
-                            IArmorClassModel armorClassModel = new ArmorClassModel();
-                            armorClassModel.Base = Convert.IsDBNull(row[ARMOR_CLASS_COLUMN]) ? 0 : Convert.ToInt32(row[ARMOR_CLASS_COLUMN]);
-                            armorClassModel.DexBonus = Convert.IsDBNull(row[IS_DEX_BONUS_COLUMN]) ? false : Convert.ToBoolean(row[IS_DEX_BONUS_COLUMN]);
-                            armorClassModel.MaxBonus = Convert.IsDBNull(row[MAX_DEX_BONUS_COLUMN]) ? 0 : Convert.ToInt32(row[MAX_DEX_BONUS_COLUMN]);
-                            equipmentModel.ArmorClass = armorClassModel;
-
-                            equipmentModel.StrengthRequirement = Convert.IsDBNull(row[STR_REQ_COLUMN]) ? 0 : Convert.ToInt32(row[STR_REQ_COLUMN]);
-                            equipmentModel.IsStealthDisadvantage = Convert.IsDBNull(row[IS_STEALTH_DISAD_COLUMN]) ? false : Convert.ToBoolean(row[IS_STEALTH_DISAD_COLUMN]);
-                            equipmentModel.ToolCategory = Convert.IsDBNull(row[TOOL_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[TOOL_CATEGORY_COLUMN]);
-                            equipmentModel.VehicleCategory = Convert.IsDBNull(row[VEHICLE_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[VEHICLE_CATEGORY_COLUMN]);
-                            equipmentModel.ArmorCategory = Convert.IsDBNull(row[ARMOR_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[ARMOR_CATEGORY_COLUMN]);
-
-                            ICategoryModel gearCategoryModel = new CategoryModel();
-                            gearCategoryModel.Name = Convert.IsDBNull(row[GEAR_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[GEAR_CATEGORY_COLUMN]);
-                            equipmentModel.GearCategory = gearCategoryModel;
-
-                            equipmentModel.PackageId = Convert.IsDBNull(row["PackageId"]) ? 0 : Convert.ToInt32(row["PackageId"]);
-
-                            equipmentModel.Description.Clear();
-                            equipmentModel.IsDataComplete = true;
-                            equipment.Add(equipmentModel);
+                            equipment.Add(ExtractEquipment(row));
                         }
                     }
                 }
@@ -318,12 +360,38 @@ namespace Demo2020.Biz.Equipment.Services
 
         public bool DeleteEquipment(IEquipmentModel equipment)
         {
-            throw new NotImplementedException();
+            bool success = false;
+
+            StringBuilder query = new StringBuilder();
+            query.Append("UPDATE Equipment SET IsDeleted = 1 WHERE Id = " + equipment.Id);
+
+            try
+            {
+                success = _sqLiteDataAccessService.ExecuteNonQuery(query.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return success;
         }
 
         public bool DeleteEquipment(IList<IEquipmentModel> equipment)
         {
-            throw new NotImplementedException();
+            bool success = true;
+
+            foreach (IEquipmentModel equipmentModel in equipment)
+            {
+                success = DeleteEquipment(equipment);
+                if (success == false)
+                {
+                    Console.WriteLine("An error occurred during SaveEquipment.");
+                    break;
+                }
+            }
+
+            return success;
         }
 
         private bool InsertEquipment(IEquipmentModel equipment)
@@ -685,6 +753,60 @@ namespace Demo2020.Biz.Equipment.Services
             }
 
             return success;
+        }
+
+        private IEquipmentModel ExtractEquipment(DataRow row)
+        {
+            IEquipmentModel equipmentModel = _equipmentFactoryService.GetEquipment();
+            equipmentModel.Id = Convert.ToInt32(row["Id"]);
+            equipmentModel.Name = Convert.IsDBNull(row[NAME_COLUMN]) ? string.Empty : Convert.ToString(row[NAME_COLUMN]);
+            equipmentModel.Weight = Convert.IsDBNull(row[WEIGHT_COLUMN]) ? 0 : Convert.ToDouble(row[WEIGHT_COLUMN]);
+            equipmentModel.Cost.Quantity = Convert.IsDBNull(row[COST_QUANTITY_COLUMN]) ? 0 : Convert.ToInt64(row[COST_QUANTITY_COLUMN]);
+            equipmentModel.Cost.Unit = Convert.IsDBNull(row[COST_UNITS_COLUMN]) ? string.Empty : Convert.ToString(row[COST_UNITS_COLUMN]);
+
+            equipmentModel.Damage.DamageDice = Convert.IsDBNull(row[ONE_HAND_DAMAGE_DICE_COLUMN]) ? string.Empty : Convert.ToString(row[ONE_HAND_DAMAGE_DICE_COLUMN]);
+
+            ICategoryModel oneHandedDamageCategoryModel = new CategoryModel();
+            oneHandedDamageCategoryModel.Name = Convert.IsDBNull(row[ONE_HAND_DAMAGE_TYPE_COLUMN]) ? string.Empty : Convert.ToString(row[ONE_HAND_DAMAGE_TYPE_COLUMN]);
+            equipmentModel.Damage.DamageType = oneHandedDamageCategoryModel;
+
+            equipmentModel.TwoHandedDamage.DamageDice = Convert.IsDBNull(row[TWO_HAND_DAMAGE_DICE_COLUMN]) ? string.Empty : Convert.ToString(row[TWO_HAND_DAMAGE_DICE_COLUMN]);
+            ICategoryModel twoHandedDamageCategoryModel = new CategoryModel();
+            twoHandedDamageCategoryModel.Name = Convert.IsDBNull(row[TWO_HAND_DAMAGE_TYPE_COLUMN]) ? string.Empty : Convert.ToString(row[TWO_HAND_DAMAGE_TYPE_COLUMN]);
+            equipmentModel.TwoHandedDamage.DamageType = twoHandedDamageCategoryModel;
+
+            equipmentModel.Range.Normal = Convert.IsDBNull(row[NORMAL_RANGE_COLUMN]) ? 0 : Convert.ToInt32(row[NORMAL_RANGE_COLUMN]);
+            equipmentModel.Range.Long = Convert.IsDBNull(row[LONG_RANGE_COLUMN]) ? 0 : Convert.ToInt32(row[LONG_RANGE_COLUMN]);
+
+            ICategoryModel equipmentCategoryModel = new CategoryModel();
+            equipmentCategoryModel.Name = Convert.IsDBNull(row[EQUIPMENT_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[EQUIPMENT_CATEGORY_COLUMN]);
+            equipmentModel.EquipmentCategory = equipmentCategoryModel;
+
+            equipmentModel.WeaponCategory = Convert.IsDBNull(row[WEAPON_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[WEAPON_CATEGORY_COLUMN]);
+            equipmentModel.WeaponRange = Convert.IsDBNull(row[WEAPON_RANGE_COLUMN]) ? string.Empty : Convert.ToString(row[WEAPON_RANGE_COLUMN]);
+
+            IArmorClassModel armorClassModel = new ArmorClassModel();
+            armorClassModel.Base = Convert.IsDBNull(row[ARMOR_CLASS_COLUMN]) ? 0 : Convert.ToInt32(row[ARMOR_CLASS_COLUMN]);
+            armorClassModel.DexBonus = Convert.IsDBNull(row[IS_DEX_BONUS_COLUMN]) ? false : Convert.ToBoolean(row[IS_DEX_BONUS_COLUMN]);
+            armorClassModel.MaxBonus = Convert.IsDBNull(row[MAX_DEX_BONUS_COLUMN]) ? 0 : Convert.ToInt32(row[MAX_DEX_BONUS_COLUMN]);
+            equipmentModel.ArmorClass = armorClassModel;
+
+            equipmentModel.StrengthRequirement = Convert.IsDBNull(row[STR_REQ_COLUMN]) ? 0 : Convert.ToInt32(row[STR_REQ_COLUMN]);
+            equipmentModel.IsStealthDisadvantage = Convert.IsDBNull(row[IS_STEALTH_DISAD_COLUMN]) ? false : Convert.ToBoolean(row[IS_STEALTH_DISAD_COLUMN]);
+            equipmentModel.ToolCategory = Convert.IsDBNull(row[TOOL_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[TOOL_CATEGORY_COLUMN]);
+            equipmentModel.VehicleCategory = Convert.IsDBNull(row[VEHICLE_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[VEHICLE_CATEGORY_COLUMN]);
+            equipmentModel.ArmorCategory = Convert.IsDBNull(row[ARMOR_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[ARMOR_CATEGORY_COLUMN]);
+
+            ICategoryModel gearCategoryModel = new CategoryModel();
+            gearCategoryModel.Name = Convert.IsDBNull(row[GEAR_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[GEAR_CATEGORY_COLUMN]);
+            equipmentModel.GearCategory = gearCategoryModel;
+
+            equipmentModel.PackageId = Convert.IsDBNull(row["PackageId"]) ? 0 : Convert.ToInt32(row["PackageId"]);
+
+            equipmentModel.Description.Clear();
+            equipmentModel.IsDataComplete = true;
+
+            return equipmentModel;
         }
 
 

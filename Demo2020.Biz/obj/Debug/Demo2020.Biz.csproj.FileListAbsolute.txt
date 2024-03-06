@@ -111,10 +111,10 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\bin\Debug\System.Memory.xml
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.csprojAssemblyReference.cache
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.csproj.CoreCompileInputs.cache
-C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.csproj.CopyComplete
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.dll
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.pdb
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\bin\Debug\System.Data.SQLite.dll
 C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\bin\Debug\System.Data.SQLite.xml
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.Biz.csproj.AssemblyReference.cache
+C:\Users\olon1\source\repos\Demo2020\Demo2020.Biz\obj\Debug\Demo2020.987E5520.Up2Date
