@@ -156,6 +156,7 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
@@ -199,8 +200,48 @@
 					</TextBlock>
 				</DockPanel>
 
-				<!--  Row 1 : Range  -->
+				<!--  Row 1 : 2H Damage  -->
 				<DockPanel Grid.Row="1">
+					<TextBlock
+						DockPanel.Dock="Left"
+						FontSize="12"
+						FontWeight="Bold"
+						Foreground="DarkRed"
+						Text="Two Handed Damage">
+						<TextBlock.Style>
+							<Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility" Value="Visible" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding TwoHandedDamage.DamageType.Name.Length, UpdateSourceTrigger=PropertyChanged}" Value="0">
+										<Setter Property="Visibility" Value="Collapsed" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+					</TextBlock>
+
+					<TextBlock
+						Margin="3,0,0,0"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed">
+						<TextBlock.Style>
+							<Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility" Value="Visible" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding TwoHandedDamage.DamageType.Name.Length, UpdateSourceTrigger=PropertyChanged}" Value="0">
+										<Setter Property="Visibility" Value="Collapsed" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+						<Run Text="{Binding TwoHandedDamage.DamageDice}" />
+						<Run Text="{Binding TwoHandedDamage.DamageType.Name}" />
+					</TextBlock>
+				</DockPanel>
+
+				<!--  Row 2 : Range  -->
+				<DockPanel Grid.Row="2">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"
@@ -260,8 +301,8 @@
 					</TextBlock>
 				</DockPanel>
 
-				<!--  Row 2 : Armor Class  -->
-				<DockPanel Grid.Row="2">
+				<!--  Row 3 : Armor Class  -->
+				<DockPanel Grid.Row="3">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"
@@ -299,8 +340,8 @@
 					</TextBlock>
 				</DockPanel>
 
-				<!--  Row 3 : Weight  -->
-				<DockPanel Grid.Row="3">
+				<!--  Row 4 : Weight  -->
+				<DockPanel Grid.Row="4">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"
@@ -318,8 +359,8 @@
 					</TextBlock>
 				</DockPanel>
 
-				<!--  Row 4 : StrengthRequirement  -->
-				<DockPanel Grid.Row="4">
+				<!--  Row 5 : StrengthRequirement  -->
+				<DockPanel Grid.Row="5">
 					<DockPanel.Style>
 						<Style TargetType="{x:Type DockPanel}">
 							<Style.Triggers>
@@ -344,8 +385,8 @@
 						Text="{Binding StrengthRequirement}" />
 				</DockPanel>
 
-				<!--  Row 5 : Value  -->
-				<DockPanel Grid.Row="5">
+				<!--  Row 6 : Value  -->
+				<DockPanel Grid.Row="6">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"

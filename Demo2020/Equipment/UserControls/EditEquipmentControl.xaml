@@ -204,6 +204,7 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
@@ -220,7 +221,7 @@
 						</Style>
 					</Grid.Style>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="70" />
+						<ColumnDefinition Width="140" />
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
@@ -232,7 +233,7 @@
 					</Grid.RowDefinitions>
 
 					<TextBlock
-						Width="70"
+						Width="140"
 						HorizontalAlignment="Left"
 						VerticalAlignment="Center"
 						FontSize="12"
@@ -346,8 +347,147 @@
 
 				</Grid>
 
-				<!--  Row 1 : Range  -->
+				<!--  Row 1 : 2H Damage  -->
 				<Grid Grid.Row="1" Margin="0,10,0,0">
+					<Grid.Style>
+						<Style TargetType="{x:Type Grid}">
+							<Setter Property="Visibility" Value="Collapsed" />
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
+									<Setter Property="Visibility" Value="Visible" />
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</Grid.Style>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="140" />
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+
+					<TextBlock
+						Width="1400"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						FontSize="12"
+						FontWeight="Bold"
+						Foreground="DarkRed"
+						Text="Two Handed Damage" />
+
+					<TextBlock
+						Grid.Column="1"
+						Grid.ColumnSpan="2"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed">
+						<TextBlock.Style>
+							<Style TargetType="{x:Type TextBlock}">
+								<Setter Property="Visibility" Value="Collapsed" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding EquipmentCategory.Name, UpdateSourceTrigger=PropertyChanged}" Value="Weapon">
+										<Setter Property="Visibility" Value="Visible" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+						<Run Text="{Binding TwoHandedDamage.DamageDice}" />
+						<Run Text="{Binding TwoHandedDamage.DamageType.Name}" />
+					</TextBlock>
+
+					<TextBlock
+						Grid.Row="1"
+						Grid.Column="1"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="Damage Dice: " />
+
+					<TextBox
+						Grid.Row="1"
+						Grid.Column="2"
+						Height="22"
+						Margin="2"
+						VerticalContentAlignment="Center"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="{Binding TwoHandedDamage.DamageDice, UpdateSourceTrigger=PropertyChanged}" />
+
+					<TextBlock
+						Grid.Row="1"
+						Grid.Column="2"
+						Margin="4,0,0,0"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						Panel.ZIndex="10"
+						FontSize="12"
+						Foreground="Gray"
+						IsHitTestVisible="False"
+						Text="1d20">
+						<TextBlock.Style>
+							<Style TargetType="TextBlock">
+								<Setter Property="Visibility" Value="Collapsed" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding TwoHandedDamage.DamageDice.Length}" Value="0">
+										<Setter Property="Visibility" Value="Visible" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+					</TextBlock>
+
+					<TextBlock
+						Grid.Row="2"
+						Grid.Column="1"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="Damage Type: " />
+
+					<TextBox
+						Grid.Row="2"
+						Grid.Column="2"
+						Height="22"
+						Margin="2"
+						VerticalContentAlignment="Center"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="{Binding TwoHandedDamage.DamageType.Name, UpdateSourceTrigger=PropertyChanged}" />
+
+					<TextBlock
+						Grid.Row="2"
+						Grid.Column="2"
+						Margin="4,0,0,0"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						Panel.ZIndex="10"
+						FontSize="12"
+						Foreground="Gray"
+						IsHitTestVisible="False"
+						Text="Damage Type">
+						<TextBlock.Style>
+							<Style TargetType="TextBlock">
+								<Setter Property="Visibility" Value="Collapsed" />
+								<Style.Triggers>
+									<DataTrigger Binding="{Binding TwoHandedDamage.DamageType.Name.Length}" Value="0">
+										<Setter Property="Visibility" Value="Visible" />
+									</DataTrigger>
+								</Style.Triggers>
+							</Style>
+						</TextBlock.Style>
+					</TextBlock>
+
+				</Grid>
+
+				<!--  Row 2 : Range  -->
+				<Grid Grid.Row="2" Margin="0,10,0,0">
 					<Grid.Style>
 						<Style TargetType="{x:Type Grid}">
 							<Setter Property="Visibility" Value="Collapsed" />
@@ -501,8 +641,8 @@
 
 				</Grid>
 
-				<!--  Row 2 : Armor Class  -->
-				<DockPanel Grid.Row="2">
+				<!--  Row 3 : Armor Class  -->
+				<DockPanel Grid.Row="3">
 					<TextBlock
 						Width="140"
 						VerticalAlignment="Center"
@@ -545,8 +685,8 @@
 					</TextBox>
 				</DockPanel>
 
-				<!--  Row 3 : Weight  -->
-				<DockPanel Grid.Row="3">
+				<!--  Row 4 : Weight  -->
+				<DockPanel Grid.Row="4">
 					<TextBlock
 						Width="140"
 						VerticalAlignment="Center"
@@ -574,8 +714,8 @@
 						Text="lbs" />
 				</DockPanel>
 
-				<!--  Row 4 : StrengthRequirement  -->
-				<DockPanel Grid.Row="4">
+				<!--  Row 5 : StrengthRequirement  -->
+				<DockPanel Grid.Row="5">
 					<TextBlock
 						Width="140"
 						VerticalAlignment="Center"
@@ -604,8 +744,8 @@
 
 				</DockPanel>
 
-				<!--  Row 5 : Value  -->
-				<DockPanel Grid.Row="5">
+				<!--  Row 6 : Value  -->
+				<DockPanel Grid.Row="6">
 					<TextBlock
 						Width="140"
 						VerticalAlignment="Center"
