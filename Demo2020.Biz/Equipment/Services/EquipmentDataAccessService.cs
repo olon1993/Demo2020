@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -240,9 +241,15 @@ namespace Demo2020.Biz.Equipment.Services
                 {
                     if(ds != null && ds.Tables != null && ds.Tables.Count > 0)
                     {
+                        int i = 1;
                         foreach(DataRow row in ds.Tables[0].Rows)
                         {
+                            if(i == 54)
+                            {
+                                Console.WriteLine("HERE");
+                            }
                             equipment.Add(ExtractEquipment(row));
+                            i++;
                         }
                     }
                 }
@@ -793,6 +800,7 @@ namespace Demo2020.Biz.Equipment.Services
 
             equipmentModel.StrengthRequirement = Convert.IsDBNull(row[STR_REQ_COLUMN]) ? 0 : Convert.ToInt32(row[STR_REQ_COLUMN]);
             equipmentModel.IsStealthDisadvantage = Convert.IsDBNull(row[IS_STEALTH_DISAD_COLUMN]) ? false : Convert.ToBoolean(row[IS_STEALTH_DISAD_COLUMN]);
+
             equipmentModel.ToolCategory = Convert.IsDBNull(row[TOOL_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[TOOL_CATEGORY_COLUMN]);
             equipmentModel.VehicleCategory = Convert.IsDBNull(row[VEHICLE_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[VEHICLE_CATEGORY_COLUMN]);
             equipmentModel.ArmorCategory = Convert.IsDBNull(row[ARMOR_CATEGORY_COLUMN]) ? string.Empty : Convert.ToString(row[ARMOR_CATEGORY_COLUMN]);

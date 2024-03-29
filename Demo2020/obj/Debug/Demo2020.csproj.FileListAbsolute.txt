@@ -197,5 +197,5 @@ C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\System.Data.SQLite.dll
 C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\System.Data.SQLite.xml
 C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\Demo2020.Data.dll
 C:\Users\olon1\source\repos\Demo2020\Demo2020\bin\Debug\Demo2020.Data.pdb
-C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.csprojAssemblyReference.cache
-C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.csproj.CopyComplete
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.csproj.AssemblyReference.cache
+C:\Users\olon1\source\repos\Demo2020\Demo2020\obj\Debug\Demo2020.csproj.Up2Date

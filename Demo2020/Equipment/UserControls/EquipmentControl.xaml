@@ -157,6 +157,7 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
@@ -385,8 +386,26 @@
 						Text="{Binding StrengthRequirement}" />
 				</DockPanel>
 
-				<!--  Row 6 : Value  -->
+				<!--  Row 6 : IsStealthDisadvantage  -->
 				<DockPanel Grid.Row="6">
+					<TextBlock
+						DockPanel.Dock="Left"
+						FontSize="12"
+						FontWeight="Bold"
+						Foreground="DarkRed"
+						Text="Stealth Disadvantage" />
+
+					<CheckBox
+						Margin="3,0,0,0"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed"
+						IsChecked="{Binding IsStealthDisadvantage}"
+						IsEnabled="False" />
+				</DockPanel>
+
+				<!--  Row 7 : Value  -->
+				<DockPanel Grid.Row="7">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"
