@@ -16,7 +16,7 @@ namespace Demo2020.Biz.Equipment.Models
         }
 
         [JsonProperty("damage_dice")]
-        public string DamageDice { get; set; }
+        public string DamageDice { get; set; } = "";
 
         [JsonProperty("damage_type")]
         public ICategoryModel DamageType { get; set; }

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -244,10 +245,6 @@ namespace Demo2020.Biz.Equipment.Services
                         int i = 1;
                         foreach(DataRow row in ds.Tables[0].Rows)
                         {
-                            if(i == 54)
-                            {
-                                Console.WriteLine("HERE");
-                            }
                             equipment.Add(ExtractEquipment(row));
                             i++;
                         }
@@ -813,6 +810,11 @@ namespace Demo2020.Biz.Equipment.Services
 
             equipmentModel.Description.Clear();
             equipmentModel.IsDataComplete = true;
+
+            if (row.ItemArray.Contains("special"))
+            {
+                Console.WriteLine("HERE");
+            }
 
             return equipmentModel;
         }

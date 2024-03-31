@@ -29,6 +29,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
         private string _filter = "";
         private int _selectedEquipmentIndex = -1;
         private bool _isEditEnabled;
+        private bool _isSettingsVisible;
         private string _editIconSource;
 
         private const string UNLOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/UnlockIcon.png";
@@ -42,6 +43,9 @@ namespace Demo2020.Biz.Equipment.ViewModels
             //_equipmentSearchAndFilter = equipmentSearchAndFilter;
 
             SaveCommand = new RelayCommand(SaveEquipment);
+            DeleteCommand = new RelayCommand(DeleteEquipment);
+            ShowSettingsCommand = new RelayCommand(() => SetSettingsVisibility(true));
+            HideSettingsCommand = new RelayCommand(() => SetSettingsVisibility(false));
 
             //Messenger.Default.Register<MessageWindowResponse>(this, "GetEquipmentDetails", msg =>
             //{
@@ -109,6 +113,18 @@ namespace Demo2020.Biz.Equipment.ViewModels
         {
             _equipmentService.SaveEquipment(CurrentEquipment);
         }
+
+        private void DeleteEquipment()
+        {
+            _equipmentService.DeleteEquipment(CurrentEquipment);
+            _equipmentRaw = Equipment = _equipmentService.GetAllEquipment();
+            CurrentEquipment = null;
+        }
+
+        private void SetSettingsVisibility(bool isVisible)
+		{
+            IsSettingsVisible = isVisible;
+		}
 
         private void ToggleEdit()
         {
@@ -210,6 +226,19 @@ namespace Demo2020.Biz.Equipment.ViewModels
             }
         }
 
+        public bool IsSettingsVisible
+		{
+			get { return _isSettingsVisible; }
+            set
+			{
+                if(_isSettingsVisible != value)
+				{
+                    _isSettingsVisible = value;
+                    OnPropertyChanged();
+				}
+			}
+		}
+
         public string EditIconSource
         {
             get { return _editIconSource; }
@@ -228,5 +257,11 @@ namespace Demo2020.Biz.Equipment.ViewModels
         public ICommand AddEquipmentCommand { get; set; }
 
         public ICommand SaveCommand { get; set; }
+
+        public ICommand DeleteCommand { get; set; }
+
+        public ICommand ShowSettingsCommand { get; set; }
+
+        public ICommand HideSettingsCommand { get; set; }
     }
 }

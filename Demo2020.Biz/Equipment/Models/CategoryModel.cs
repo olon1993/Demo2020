@@ -14,7 +14,7 @@ namespace Demo2020.Biz.Equipment.Models
         public string Index { get; set; }
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         [JsonProperty("url")]
         public string Url { get; set; }

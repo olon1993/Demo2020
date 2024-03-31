@@ -11,6 +11,7 @@ namespace Demo2020.Biz.Equipment.Services
     public class EquipmentService : IEquipmentService
     {
         private bool _isDebugOn = false;
+
         private IEquipmentFactoryService _equipmentFactoryService;
         private IEquipmentDataAccessService _equipmentDataAccessService;
         private IEquipmentSearchAndFilterService _equipmentSearchAndFilter;
@@ -79,7 +80,12 @@ namespace Demo2020.Biz.Equipment.Services
             return _equipmentSearchAndFilter.Filter(_equipmentRaw, filter);
         }
 
-        public IList<IEquipmentModel> Equipment
+		public bool DeleteEquipment(IEquipmentModel equipmentModel)
+		{
+            return _equipmentDataAccessService.DeleteEquipment(equipmentModel);
+		}
+
+		public IList<IEquipmentModel> Equipment
         {
             get { return _equipment; }
             set

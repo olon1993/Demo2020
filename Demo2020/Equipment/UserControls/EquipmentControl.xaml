@@ -158,6 +158,7 @@
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
 					<RowDefinition />
 				</Grid.RowDefinitions>
 
@@ -387,7 +388,7 @@
 				</DockPanel>
 
 				<!--  Row 6 : IsStealthDisadvantage  -->
-				<DockPanel Grid.Row="6">
+				<DockPanel Grid.Row="6" Visibility="{Binding IsStealthDisadvantage, Converter={StaticResource BoolToVisibilityConverter}}">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"
@@ -404,8 +405,43 @@
 						IsEnabled="False" />
 				</DockPanel>
 
-				<!--  Row 7 : Value  -->
-				<DockPanel Grid.Row="7">
+				<!--  Row 7 : IsDexBonus  -->
+				<DockPanel Grid.Row="7" Visibility="{Binding ArmorClass.DexBonus, Converter={StaticResource BoolToVisibilityConverter}}">
+					<TextBlock
+						DockPanel.Dock="Left"
+						FontSize="12"
+						FontWeight="Bold"
+						Foreground="DarkRed"
+						Text="Dexterity Bonus" />
+
+					<CheckBox
+						Margin="3,0,0,0"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed"
+						IsChecked="{Binding ArmorClass.DexBonus}"
+						IsEnabled="False" />
+				</DockPanel>
+
+				<!--  Row 8 : IsDexBonus  -->
+				<DockPanel Grid.Row="8" Visibility="{Binding ArmorClass.DexBonus, Converter={StaticResource BoolToVisibilityConverter}}">
+					<TextBlock
+						DockPanel.Dock="Left"
+						FontSize="12"
+						FontWeight="Bold"
+						Foreground="DarkRed"
+						Text="Max Bonus" />
+
+					<TextBlock
+						Margin="3,0,0,0"
+						DockPanel.Dock="Left"
+						FontSize="12"
+						Foreground="DarkRed"
+						Text="{Binding ArmorClass.MaxBonus}" />
+				</DockPanel>
+
+				<!--  Row 9 : Value  -->
+				<DockPanel Grid.Row="9">
 					<TextBlock
 						DockPanel.Dock="Left"
 						FontSize="12"

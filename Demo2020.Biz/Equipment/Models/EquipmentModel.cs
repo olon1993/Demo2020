@@ -78,7 +78,7 @@ namespace Demo2020.Biz.Equipment.Models
             GearCategory = new CategoryModel();
             Cost = new CostModel();
 
-            WeaponRangeOptions = new List<string> { "Martial", "Ranged" };
+            WeaponRangeOptions = new List<string> { "Melee", "Ranged" };
 
             AddDescriptionCommand = new RelayCommand(AddDescription);
         }
