@@ -93,11 +93,11 @@ namespace Demo2020.Biz.Equipment.ViewModels
                 }
             }
 
-            //if (_isDebugOn)
-            //{
-            //    Console.Write(CurrentLootTable.Name);
-            //}
-        }
+			if (_isDebugOn)
+			{
+				Console.Write(CurrentLootTable.Name);
+			}
+		}
 
         private void ToggleEdit()
         {

@@ -14,6 +14,8 @@ namespace Demo2020.Biz.Equipment.Services
 {
     public class LootTableDataAccessService : ILootTableDataAccessService
     {
+        private bool _showDebug = true;
+
         private ISQLiteDataAccess _sqLiteDataAccessService;
         private ILootTableFactoryService _lootTableFactoryService;
         private IEquipmentSlotFactoryService _equipmentSlotFactoryService;
@@ -35,7 +37,102 @@ namespace Demo2020.Biz.Equipment.Services
 
         public ILootTableModel GetLootTable(int id)
         {
-            throw new NotImplementedException();
+            ILootTableModel lootTable = _lootTableFactoryService.GetLootTable();
+
+            string query = "SELECT " +
+                "LT.Name AS LootTableName, " +
+                "ES.Id AS EquipmentSlotId, " +
+                "ES.Multiplier, " +
+                "ES.LootTableId, " +
+                "ES.[Index], " +
+                "E.Id AS EquipmentId, " +
+                "E.name AS Name, " +
+                "E.Weight AS Weight, " +
+                "E.CostQuantity, " +
+                "E.CostUnits, " +
+                "E.OneHandedDamageDice, " +
+                "E.OneHandedDamageType, " +
+                "E.TwoHandedDamageDice, " +
+                "E.TwoHandedDamageType, " +
+                "E.NormalRange, " +
+                "E.LongRange, " +
+                "E.EquipmentCategory, " +
+                "E.WeaponRange, " +
+                "E.WeaponCategory, " +
+                "E.ToolCategory, " +
+                "E.VehicleCategory, " +
+                "E.ArmorCategory, " +
+                "E.GearCategory " +
+            "FROM LootTables AS LT " +
+                "INNER JOIN EquipmentSlots AS ES " +
+                    "ON LT.Id = ES.LootTableId " +
+                "INNER JOIN Equipment AS E " +
+                    "ON E.Id = ES.EquipmentId " +
+            "WHERE LT.Id = '" + id + "' " +
+            "ORDER BY ES.[Index]";
+
+            if (_showDebug)
+			{
+                Console.WriteLine("DEBUG ==> LootTableDataAccessService.GetLootTable(int id) ==> query:");
+                Console.WriteLine(query);
+			}
+
+            try
+            {
+                using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(query))
+                {
+                    if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    {
+                        bool isNameSet = false;
+
+                        foreach (DataRow row in ds.Tables[0].Rows)
+                        {
+                            if(isNameSet == false)
+							{
+                                lootTable.Name = Convert.IsDBNull(row["LootTableName"]) ? "Loot Table Name" : Convert.ToString(row["LootTableName"]);
+                                isNameSet = true;
+                            }
+
+                            IEquipmentSlotModel equipmentSlotModel = _equipmentSlotFactoryService.GetEquipmentSlot();
+                            IEquipmentModel equipmentModel = _equipmentFactoryService.GetEquipment();
+
+                            equipmentSlotModel.Id = Convert.IsDBNull(row["EquipmentSlotId"]) ? 0 : Convert.ToInt32(row["EquipmentSlotId"]);
+                            equipmentSlotModel.Multiplier = Convert.IsDBNull(row["Multiplier"]) ? 0 : Convert.ToInt32(row["Multiplier"]);
+                            equipmentSlotModel.LootTableId = Convert.IsDBNull(row["LootTableId"]) ? 0 : Convert.ToInt32(row["LootTableId"]);
+                            equipmentSlotModel.Index = Convert.IsDBNull(row["Index"]) ? 0 : Convert.ToInt32(row["Index"]);
+
+                            equipmentModel.Id = Convert.IsDBNull(row["EquipmentId"]) ? 0 : Convert.ToInt32(row["EquipmentId"]);
+                            equipmentModel.Name = Convert.IsDBNull(row["Name"]) ? string.Empty : Convert.ToString(row["Name"]);
+                            equipmentModel.Weight = Convert.IsDBNull(row["Weight"]) ? 0 : Convert.ToDouble(row["Weight"]);
+                            equipmentModel.Cost.Quantity = Convert.IsDBNull(row["CostQuantity"]) ? 0 : Convert.ToInt32(row["CostQuantity"]);
+                            equipmentModel.Cost.Unit = Convert.IsDBNull(row["CostUnits"]) ? string.Empty : Convert.ToString(row["CostUnits"]);
+                            equipmentModel.Damage.DamageDice = Convert.IsDBNull(row["OneHandedDamageDice"]) ? string.Empty : Convert.ToString(row["OneHandedDamageDice"]);
+                            equipmentModel.Damage.DamageType.Name = Convert.IsDBNull(row["OneHandedDamageType"]) ? string.Empty : Convert.ToString(row["OneHandedDamageType"]);
+                            equipmentModel.TwoHandedDamage.DamageDice = Convert.IsDBNull(row["TwoHandedDamageDice"]) ? string.Empty : Convert.ToString(row["TwoHandedDamageDice"]);
+                            equipmentModel.TwoHandedDamage.DamageType.Name = Convert.IsDBNull(row["TwoHandedDamageType"]) ? string.Empty : Convert.ToString(row["TwoHandedDamageType"]);
+                            equipmentModel.Range.Normal = Convert.IsDBNull(row["NormalRange"]) ? (int?)null : Convert.ToInt32(row["NormalRange"]);
+                            equipmentModel.Range.Long = Convert.IsDBNull(row["LongRange"]) ? (int?)null : Convert.ToInt32(row["LongRange"]);
+                            equipmentModel.EquipmentCategory.Name = Convert.IsDBNull(row["EquipmentCategory"]) ? string.Empty : Convert.ToString(row["EquipmentCategory"]);
+                            equipmentModel.WeaponRange = Convert.IsDBNull(row["WeaponRange"]) ? string.Empty : Convert.ToString(row["WeaponRange"]);
+                            equipmentModel.WeaponCategory = Convert.IsDBNull(row["WeaponCategory"]) ? string.Empty : Convert.ToString(row["WeaponCategory"]);
+                            equipmentModel.ToolCategory = Convert.IsDBNull(row["ToolCategory"]) ? string.Empty : Convert.ToString(row["ToolCategory"]);
+                            equipmentModel.VehicleCategory = Convert.IsDBNull(row["VehicleCategory"]) ? string.Empty : Convert.ToString(row["VehicleCategory"]);
+                            equipmentModel.ArmorCategory = Convert.IsDBNull(row["ArmorCategory"]) ? string.Empty : Convert.ToString(row["ArmorCategory"]);
+                            equipmentModel.GearCategory.Name = Convert.IsDBNull(row["GearCategory"]) ? string.Empty : Convert.ToString(row["GearCategory"]);
+
+                            equipmentSlotModel.Equipment = equipmentModel;
+
+                            lootTable.EquipmentSlots.Add(equipmentSlotModel);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return lootTable;
         }
 
         public ILootTableModel GetLootTable(string name)

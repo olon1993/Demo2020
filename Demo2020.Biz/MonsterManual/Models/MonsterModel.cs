@@ -29,6 +29,8 @@ namespace Demo2020.Biz.MonsterManual.Models
         private int _hitDie;
         private int _hitDiceQuantity;
         private string _hitDieImageSource = "/Demo2020;component/Resources/Images/d20Icon.png";
+        private string _imageSourceBase = "https://www.dnd5eapi.co";
+        private string _imageSource = "";
         private List<string> _hitDiceImageSources = new List<string>
         {
             "/Demo2020;component/Resources/Images/d04Icon.png",
@@ -634,6 +636,20 @@ namespace Demo2020.Biz.MonsterManual.Models
                 }
             }
         }
+
+        [JsonProperty("image")]
+        public string ImageSource
+		{
+            get { return _imageSource; }
+			set
+			{
+                if (_imageSource != value)
+				{
+                    _imageSource = _imageSourceBase + value;
+                    OnPropertyChanged();
+                }
+			}
+		}
 
         public List<string> CreatureSizes
         {

@@ -29,6 +29,7 @@ namespace Demo2020.Biz.MonsterManual.Interfaces
         int WisdomModifier { get; set; }
         int Charisma { get; set; }
         int CharismaModifier { get; set; }
+        string ImageSource { get; set; }
         bool IsDataComplete { get; set; }
         List<ProficiencyModel> Proficiencies { get; set; }
         double ChallengeRating { get; set; }

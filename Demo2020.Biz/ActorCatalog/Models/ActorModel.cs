@@ -1,5 +1,6 @@
 ﻿using Demo2020.Biz.ActorCatalog.Interfaces;
 using Demo2020.Biz.Commons.Models;
+using Demo2020.Biz.Equipment.Interfaces;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,7 @@ namespace Demo2020.Biz.ActorCatalog.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public IMonsterModel StatBlock { get; set; }
-    }
+        public int LootTableId { get; set; }
+		public ILootTableModel LootTable { get; set; }
+	}
 }
