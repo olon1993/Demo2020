@@ -3,11 +3,9 @@ using Demo2020.Biz.ActorCatalog.Models;
 using Demo2020.Biz.MonsterManual.Interfaces;
 using Demo2020.Biz.Equipment.Interfaces;
 using Demo2020.Biz.Commons.Models;
-using System;
+using System.Windows.Input;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 
 namespace Demo2020.Biz.ActorCatalog.ViewModels
 {

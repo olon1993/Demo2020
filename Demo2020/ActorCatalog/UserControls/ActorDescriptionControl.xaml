@@ -25,7 +25,62 @@
 				FontSize="20"
 				FontWeight="Bold"
 				Text="Stat Block" />
-			<mon:MonsterControl Grid.Row="1" DataContext="{Binding StatBlock}" />
+
+
+			<Border Grid.Row="1" Visibility="{Binding IsEditStatBlockEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ReverseBoolToVisibilityConverter}, FallbackValue=Visible}">
+				<mon:MonsterControl DataContext="{Binding StatBlock}" />
+			</Border>
+
+			<Border Grid.Row="1" Visibility="{Binding IsEditStatBlockEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+				<Grid Background="LightGoldenrodYellow">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<mon:EditMonsterControl DataContext="{Binding StatBlock}" />
+
+					<!--<Button
+                    Grid.Row="1"
+                    Height="20"
+                    Margin="3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Command="{Binding AddMonsterCommand}"
+                    DockPanel.Dock="Left">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<Image Source="/Demo2020;component/Resources/Images/Add.png" />
+							<TextBlock
+                            Grid.Column="1"
+                            Margin="3,0,0,0"
+                            DockPanel.Dock="Left"
+                            FontWeight="Bold"
+                            Text="Add Equipment Slot" />
+
+						</Grid>
+					</Button>-->
+				</Grid>
+			</Border>
+
+			<Button
+				Grid.Row="1"
+				Width="36"
+				Height="36"
+				Margin="5"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Background="Transparent"
+				BorderBrush="Transparent"
+				Command="{Binding ToggleEditStatBlockCommand}"
+				CommandParameter="EditStatBlock">
+				<Image Source="{Binding EditStatBlockIconSource, UpdateSourceTrigger=PropertyChanged}" />
+			</Button>
 
 			<TextBlock
 				Grid.Row="2"
@@ -34,7 +89,62 @@
 				FontSize="20"
 				FontWeight="Bold"
 				Text="Loot Table" />
-			<loot:LootTableControl Grid.Row="3" DataContext="{Binding LootTable}" />
+
+
+			<Border Grid.Row="3" Visibility="{Binding IsEditLootTableEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ReverseBoolToVisibilityConverter}, FallbackValue=Visible}">
+				<loot:LootTableControl DataContext="{Binding LootTable}" />
+			</Border>
+
+			<Border Grid.Row="3" Visibility="{Binding IsEditLootTableEnabled, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibilityConverter}, FallbackValue=Collapsed}">
+				<Grid Background="LightGoldenrodYellow">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+					<loot:EditLootTableControl DataContext="{Binding LootTable}" />
+
+					<!--<Button
+						Grid.Row="1"
+						Height="20"
+						Margin="3"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Top"
+						Background="Transparent"
+						BorderBrush="Transparent"
+						Command="{Binding AddLootSlotCommand}"
+						DockPanel.Dock="Left">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition />
+								<ColumnDefinition />
+							</Grid.ColumnDefinitions>
+
+							<Image Source="/Demo2020;component/Resources/Images/Add.png" />
+							<TextBlock
+								Grid.Column="1"
+								Margin="3,0,0,0"
+								DockPanel.Dock="Left"
+								FontWeight="Bold"
+								Text="Add Equipment Slot" />
+
+						</Grid>
+					</Button>-->
+				</Grid>
+			</Border>
+
+			<Button
+				Grid.Row="3"
+				Width="36"
+				Height="36"
+				Margin="5"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Background="Transparent"
+				BorderBrush="Transparent"
+				Command="{Binding ToggleEditLootTableCommand}"
+				CommandParameter="EditLootTable">
+				<Image Source="{Binding EditLootTableIconSource, UpdateSourceTrigger=PropertyChanged}" />
+			</Button>
 		</Grid>
 	</ScrollViewer>
 </UserControl>

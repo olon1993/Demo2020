@@ -9,6 +9,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
     public interface IEquipmentSlotModel
     {
         int Id { get; set; }
+        string Name { get; set; }
         int Index { get; set; }
         IEquipmentModel Equipment { get; set; }
         int Multiplier { get; set; }
