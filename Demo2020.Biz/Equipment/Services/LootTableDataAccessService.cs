@@ -141,6 +141,7 @@ namespace Demo2020.Biz.Equipment.Services
             lootTable.Name = name;
             
             string query = "SELECT " +
+                "LTD.Description AS LootTableDescription, " + 
                 "ES.Id AS EquipmentSlotId, " +
                 "ES.Multiplier, " +
                 "ES.LootTableId, " +
@@ -164,6 +165,8 @@ namespace Demo2020.Biz.Equipment.Services
                 "E.ArmorCategory, " +
                 "E.GearCategory " +
             "FROM LootTables AS LT " +
+                "INNER JOIN LootTablesDescriptions AS LTD " +
+                    "ON LT.Id = LTD.LootTableId " +
                 "INNER JOIN EquipmentSlots AS ES " +
                     "ON LT.Id = ES.LootTableId " +
                 "INNER JOIN Equipment AS E " +
@@ -171,14 +174,28 @@ namespace Demo2020.Biz.Equipment.Services
             "WHERE LT.Name = '" + name + "' " +
             "ORDER BY ES.[Index]";
 
+            if (_showDebug)
+			{
+                Console.WriteLine("GetLootTable query:");
+                Console.WriteLine(query);
+			}
+
             try
             {
                 using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(query))
                 {
                     if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                     {
+                        bool isFirstRow = true;
+
                         foreach (DataRow row in ds.Tables[0].Rows)
                         {
+                            if(isFirstRow)
+							{
+                                lootTable.Description = Convert.IsDBNull(row["LootTableDescription"]) ? string.Empty : Convert.ToString(row["LootTableDescription"]);
+                                isFirstRow = false;
+							}
+
                             IEquipmentSlotModel equipmentSlotModel = _equipmentSlotFactoryService.GetEquipmentSlot();
                             IEquipmentModel equipmentModel = _equipmentFactoryService.GetEquipment();
 

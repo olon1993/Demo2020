@@ -1,138 +1,156 @@
 ﻿<UserControl
-    x:Class="Demo2020.Equipment.UserControls.LootTableControl"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Demo2020.Equipment.UserControls"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
-    d:DesignWidth="600"
-    mc:Ignorable="d">
-    <Grid Background="LightGoldenrodYellow">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="120" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+	x:Class="Demo2020.Equipment.UserControls.LootTableControl"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="clr-namespace:Demo2020.Equipment.UserControls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	d:DesignHeight="450"
+	d:DesignWidth="600"
+	mc:Ignorable="d">
+	<Grid Background="LightGoldenrodYellow">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="120" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
 
-        <!--  Row 0  -->
-        <Image
-            Grid.Row="0"
-            Grid.Column="1"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Source="{Binding ImageSource}" />
+		<!--  Row 0  -->
+		<Image
+			Grid.Row="0"
+			Grid.Column="1"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			Source="{Binding ImageSource}" />
 
-        <Border
-            Margin="10"
-            BorderBrush="DarkRed"
-            BorderThickness="0,0,0,3">
-            <!--  Row 0 : Name  -->
-            <TextBlock
-                VerticalAlignment="Center"
-                FontSize="20"
-                FontWeight="Bold"
-                Foreground="DarkRed"
-                Text="{Binding Name, FallbackValue=Name}"
-                TextAlignment="Center"
-                TextWrapping="Wrap" />
+		<Border
+			Margin="10"
+			BorderBrush="DarkRed"
+			BorderThickness="0,0,0,3">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
 
-        </Border>
+				<!--  Row 0 : Name  -->
+				<TextBlock
+					VerticalAlignment="Center"
+					FontSize="20"
+					FontWeight="Bold"
+					Foreground="DarkRed"
+					Text="{Binding Name, FallbackValue=Name}"
+					TextAlignment="Center"
+					TextWrapping="Wrap" />
 
-        <!--  Row 1 : Headers  -->
-        <Grid
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Margin="10,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="6*" />
-            </Grid.ColumnDefinitions>
+				<!--  Row 0 : Name  -->
+				<TextBlock
+					Grid.Row="1"
+					VerticalAlignment="Center"
+					FontSize="12"
+					Foreground="DarkRed"
+					Text="{Binding Description, FallbackValue=Description}"
+					TextAlignment="Center"
+					TextWrapping="Wrap" />
 
-            <!--  Row 0 : Treasure Count  -->
-            <DockPanel Margin="3">
-                <TextBlock FontWeight="Bold" Text="1d" />
-                <TextBlock FontWeight="Bold" Text="{Binding EquipmentSlots.Count, Mode=OneWay, FallbackValue=8}" />
-            </DockPanel>
+			</Grid>
 
-            <!--  Row 1 : Treasure Quantity  -->
-            <TextBlock
-                Grid.Column="1"
-                Margin="3"
-                FontWeight="Bold"
-                Text="#" />
+		</Border>
 
-            <!--  Row 2 : Name  -->
-            <TextBlock
-                Grid.Column="2"
-                Margin="3"
-                FontWeight="Bold"
-                Text="Treasure" />
+		<!--  Row 1 : Headers  -->
+		<Grid
+			Grid.Row="1"
+			Grid.ColumnSpan="2"
+			Margin="10,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="1*" />
+				<ColumnDefinition Width="3*" />
+				<ColumnDefinition Width="6*" />
+			</Grid.ColumnDefinitions>
 
-            <!--  Row 3 : Description  -->
-            <TextBlock
-                Grid.Column="3"
-                Margin="3"
-                FontWeight="Bold"
-                Text="Description" />
+			<!--  Row 0 : Treasure Count  -->
+			<DockPanel Margin="3">
+				<TextBlock FontWeight="Bold" Text="1d" />
+				<TextBlock FontWeight="Bold" Text="{Binding EquipmentSlots.Count, Mode=OneWay, FallbackValue=8}" />
+			</DockPanel>
 
-        </Grid>
+			<!--  Row 1 : Treasure Quantity  -->
+			<TextBlock
+				Grid.Column="1"
+				Margin="3"
+				FontWeight="Bold"
+				Text="#" />
 
-        <!--  Row 2 : LootTable  -->
-        <ScrollViewer
-            Grid.Row="2"
-            Grid.ColumnSpan="2"
-            Margin="10,0,10,10">
-            <ItemsControl AlternationCount="2" ItemsSource="{Binding EquipmentSlots}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid x:Name="EquipmentSlots">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="3*" />
-                                <ColumnDefinition Width="6*" />
-                            </Grid.ColumnDefinitions>
+			<!--  Row 2 : Name  -->
+			<TextBlock
+				Grid.Column="2"
+				Margin="3"
+				FontWeight="Bold"
+				Text="Treasure" />
 
-                            <TextBlock Margin="3" Text="{Binding Index}" />
+			<!--  Row 3 : Description  -->
+			<TextBlock
+				Grid.Column="3"
+				Margin="3"
+				FontWeight="Bold"
+				Text="Description" />
 
-                            <DockPanel Grid.Column="1" Margin="3">
-                                <TextBlock FontWeight="Bold" Text="{Binding Multiplier, Mode=OneWay, FallbackValue=1}" />
-                                <TextBlock FontWeight="Bold" Text="x" />
-                            </DockPanel>
+		</Grid>
 
-                            <TextBlock
-                                Grid.Column="2"
-                                Margin="3"
-                                Text="{Binding Equipment.Name}" />
+		<!--  Row 2 : LootTable  -->
+		<ScrollViewer
+			Grid.Row="2"
+			Grid.ColumnSpan="2"
+			Margin="10,0,10,10">
+			<ItemsControl AlternationCount="2" ItemsSource="{Binding EquipmentSlots}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Grid x:Name="EquipmentSlots">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="1*" />
+								<ColumnDefinition Width="3*" />
+								<ColumnDefinition Width="6*" />
+							</Grid.ColumnDefinitions>
 
-                            <ItemsControl
-                                Grid.Column="3"
-                                Margin="3"
-                                ItemsSource="{Binding Equipment.Description}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+							<TextBlock Margin="3" Text="{Binding Index}" />
 
-                        </Grid>
-                        <DataTemplate.Triggers>
-                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
-                                <Setter TargetName="EquipmentSlots" Property="Background" Value="#dde7c1" />
-                            </Trigger>
-                        </DataTemplate.Triggers>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+							<DockPanel Grid.Column="1" Margin="3">
+								<TextBlock FontWeight="Bold" Text="{Binding Multiplier, Mode=OneWay, FallbackValue=1}" />
+								<TextBlock FontWeight="Bold" Text="x" />
+							</DockPanel>
 
-    </Grid>
+							<TextBlock
+								Grid.Column="2"
+								Margin="3"
+								Text="{Binding Equipment.Name}" />
+
+							<ItemsControl
+								Grid.Column="3"
+								Margin="3"
+								ItemsSource="{Binding Equipment.Description}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+
+						</Grid>
+						<DataTemplate.Triggers>
+							<Trigger Property="ItemsControl.AlternationIndex" Value="0">
+								<Setter TargetName="EquipmentSlots" Property="Background" Value="#dde7c1" />
+							</Trigger>
+						</DataTemplate.Triggers>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</ScrollViewer>
+
+	</Grid>
 </UserControl>
