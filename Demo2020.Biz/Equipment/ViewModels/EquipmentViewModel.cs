@@ -111,7 +111,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
 
         private void SaveEquipment()
         {
-            _equipmentService.SaveEquipment(CurrentEquipment);
+            CurrentEquipment.Id = _equipmentService.SaveEquipment(CurrentEquipment);
         }
 
         private void DeleteEquipment()

@@ -14,8 +14,8 @@ namespace Demo2020.Biz.Equipment.Interfaces
         IEquipmentModel GetEquipment(int id);
         IEquipmentModel GetEquipment(string name);
         IList<IEquipmentModel> GetAllEquipment();
-        bool SaveEquipment(IEquipmentModel equipment);
-        bool SaveEquipment(IList<IEquipmentModel> equipment);
+        int SaveEquipment(IEquipmentModel equipment);
+        int SaveEquipment(IList<IEquipmentModel> equipment);
         bool DeleteEquipment(IEquipmentModel equipment);
         bool DeleteEquipment(IList<IEquipmentModel> equipment);
     }

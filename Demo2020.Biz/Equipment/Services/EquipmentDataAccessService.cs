@@ -22,6 +22,7 @@ namespace Demo2020.Biz.Equipment.Services
         //**************************************************\\
         //********************* Fields *********************\\
         //**************************************************\\
+        private const bool _showDebug = true;
         private const string _baseUrl = "http://www.dnd5eapi.co";
 
         private ISQLiteDataAccess _sqLiteDataAccessService;
@@ -49,6 +50,7 @@ namespace Demo2020.Biz.Equipment.Services
         private const string VEHICLE_CATEGORY_COLUMN = "VehicleCategory";
         private const string ARMOR_CATEGORY_COLUMN = "ArmorCategory";
         private const string GEAR_CATEGORY_COLUMN = "GearCategory";
+        private const string IS_DELETED_COLUMN = "IsDeleted";
         private const string PACKAGE_ID_COLUMN = "PackageId";
         private const string MAGIC_ITEM_ID_COLUMN = "MagicItemId";
         private const string DESCRIPTION_COLUMN = "Description";
@@ -292,52 +294,50 @@ namespace Demo2020.Biz.Equipment.Services
             return equipment;
         }
 
-        public bool SaveEquipment(IEquipmentModel equipment)
+        public int SaveEquipment(IEquipmentModel equipment)
         {
-            bool success = false;
+            int success = -1;
 
             if(equipment.Id < 1)
             {
                 success = InsertEquipment(equipment);
 
-                if(success == false)
+                if(success == -1)
                 {
-                    return false;
+                    return success;
                 }
 
                 foreach(DescriptionModel description in equipment.Description)
                 {
-                    success = InsertEquipmentDescriptions(equipment, description);
-
-                    if (success == false)
-                    {
-                        return false;
-                    }
+                    if(InsertEquipmentDescriptions(equipment, description) == false)
+					{
+                        return -1;
+					}
                 }
             }
             else
             {
                 success = UpdateEquipment(equipment);
 
-                if (success == false)
+                if (success == -1)
                 {
-                    return false;
+                    return success;
                 }
 
                 foreach (DescriptionModel description in equipment.Description)
                 {
                     if(description.Id > 0)
                     {
-                        success = UpdateEquipmentDescriptions(description);
+                        success = UpdateEquipmentDescriptions(description) ? success : -1;
                     }
                     else
                     {
-                        success = InsertEquipmentDescriptions(equipment, description);
+                        success = InsertEquipmentDescriptions(equipment, description) ? success : -1;
                     }
 
-                    if (success == false)
+                    if (success == -1)
                     {
-                        return false;
+                        return success;
                     }
                 }
             }
@@ -345,14 +345,14 @@ namespace Demo2020.Biz.Equipment.Services
             return success;
         }
 
-        public bool SaveEquipment(IList<IEquipmentModel> equipment)
+        public int SaveEquipment(IList<IEquipmentModel> equipments)
         {
-            bool success = true;
+            int success = 1;
 
-            foreach (IEquipmentModel equipmentModel in equipment)
+            foreach (IEquipmentModel equipmentModel in equipments)
             {
-                success = SaveEquipment(equipment);
-                if(success == false)
+                success = SaveEquipment(equipmentModel) > 0 ? 1 : -1;
+                if(success == -1)
                 {
                     Console.WriteLine("An error occurred during SaveEquipment.");
                     break;
@@ -390,7 +390,7 @@ namespace Demo2020.Biz.Equipment.Services
                 success = DeleteEquipment(equipment);
                 if (success == false)
                 {
-                    Console.WriteLine("An error occurred during SaveEquipment.");
+                    Console.WriteLine("An error occurred during DeleteEquipment.");
                     break;
                 }
             }
@@ -398,9 +398,9 @@ namespace Demo2020.Biz.Equipment.Services
             return success;
         }
 
-        private bool InsertEquipment(IEquipmentModel equipment)
+        private int InsertEquipment(IEquipmentModel equipment)
         {
-            bool success = false;
+            int newId = -1;
 
             StringBuilder header = new StringBuilder();
             StringBuilder values = new StringBuilder();
@@ -539,27 +539,41 @@ namespace Demo2020.Biz.Equipment.Services
                 values.Append("\"" + equipment.GearCategory.Name + "\", ");
             }
 
+            header.Append(IS_DELETED_COLUMN + ", ");
+            values.Append("0, ");
+
             header.Remove(header.Length - 2, 2);
             header.Append(") ");
 
             values.Remove(values.Length - 2, 2);
             values.Append(") ");
 
+            string idSelect = "; SELECT Id FROM Equipment ORDER BY Id DESC LIMIT 1";
+
+            if (_showDebug)
+			{
+                Console.WriteLine("InsertEquipment query:");
+                Console.WriteLine(header.ToString() + values.ToString() + idSelect);
+			}
+
             try
             {
-                success = _sqLiteDataAccessService.ExecuteNonQuery(header.ToString() + values.ToString());
+                using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(header.ToString() + values.ToString() + idSelect))
+				{
+                    newId = Convert.IsDBNull(ds.Tables[0].Rows[0]["Id"]) ? -1 : Convert.ToInt32(ds.Tables[0].Rows[0]["Id"]);
+				}
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            return success;
+            return newId;
         }
 
-        private bool UpdateEquipment(IEquipmentModel equipment)
+        private int UpdateEquipment(IEquipmentModel equipment)
         {
-            bool success = false;
+            int newId = -1;
 
             StringBuilder header = new StringBuilder();
             StringBuilder where = new StringBuilder();
@@ -675,36 +689,36 @@ namespace Demo2020.Biz.Equipment.Services
             header.Remove(header.Length - 2, 2);
             where.Append(" WHERE Id = " + equipment.Id);
 
-            // Debugging purposes
-            //Console.WriteLine(header.ToString() + where.ToString());
-
             try
             {
-                success = _sqLiteDataAccessService.ExecuteNonQuery(header.ToString() + where.ToString());
+                if(_sqLiteDataAccessService.ExecuteNonQuery(header.ToString() + where.ToString()))
+				{
+                    newId = equipment.Id;
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
 
-            return success;
+            return newId;
         }
 
-        private bool UpdateEquipment(IList<IEquipmentModel> equipment)
+        private int UpdateEquipment(IList<IEquipmentModel> equipments)
         {
-            bool success = false;
+            int newId = 1;
 
-            foreach (IEquipmentModel equipmentModel in equipment)
+            foreach (IEquipmentModel equipmentModel in equipments)
             {
-                success = UpdateEquipment(equipment);
-                if (success == false)
+                newId = UpdateEquipment(equipmentModel);
+                if (newId == -1)
                 {
                     Console.WriteLine("An error occurred during SaveEquipment.");
                     break;
                 }
             }
 
-            return success;
+            return newId;
         }
 
         private bool InsertEquipmentDescriptions(IEquipmentModel equipment, DescriptionModel description)

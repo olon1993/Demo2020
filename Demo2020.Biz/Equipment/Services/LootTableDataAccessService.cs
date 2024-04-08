@@ -9,12 +9,13 @@ using Demo2020.Biz.Equipment.Models;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 
 namespace Demo2020.Biz.Equipment.Services
 {
     public class LootTableDataAccessService : ILootTableDataAccessService
     {
-        private bool _showDebug = true;
+        private const bool _showDebug = false;
 
         private ISQLiteDataAccess _sqLiteDataAccessService;
         private ILootTableFactoryService _lootTableFactoryService;
@@ -40,6 +41,8 @@ namespace Demo2020.Biz.Equipment.Services
             ILootTableModel lootTable = _lootTableFactoryService.GetLootTable();
 
             string query = "SELECT " +
+                "LT.Id AS Id, " +
+                "LTD.Description AS LootTableDescription, " +
                 "LT.Name AS LootTableName, " +
                 "ES.Id AS EquipmentSlotId, " +
                 "ES.Multiplier, " +
@@ -64,6 +67,8 @@ namespace Demo2020.Biz.Equipment.Services
                 "E.ArmorCategory, " +
                 "E.GearCategory " +
             "FROM LootTables AS LT " +
+                "INNER JOIN LootTablesDescriptions AS LTD " +
+                    "ON LT.Id = LTD.LootTableId " +
                 "INNER JOIN EquipmentSlots AS ES " +
                     "ON LT.Id = ES.LootTableId " +
                 "INNER JOIN Equipment AS E " +
@@ -83,14 +88,15 @@ namespace Demo2020.Biz.Equipment.Services
                 {
                     if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
                     {
-                        bool isNameSet = false;
+                        bool isFirstRow = true;
 
                         foreach (DataRow row in ds.Tables[0].Rows)
                         {
-                            if(isNameSet == false)
-							{
-                                lootTable.Name = Convert.IsDBNull(row["LootTableName"]) ? "Loot Table Name" : Convert.ToString(row["LootTableName"]);
-                                isNameSet = true;
+                            if (isFirstRow)
+                            {
+                                lootTable.Description = Convert.IsDBNull(row["LootTableDescription"]) ? string.Empty : Convert.ToString(row["LootTableDescription"]);
+                                lootTable.Id = Convert.IsDBNull(row["Id"]) ? 0 : Convert.ToInt32(row["Id"]);
+                                isFirstRow = false;
                             }
 
                             IEquipmentSlotModel equipmentSlotModel = _equipmentSlotFactoryService.GetEquipmentSlot();
@@ -141,6 +147,7 @@ namespace Demo2020.Biz.Equipment.Services
             lootTable.Name = name;
             
             string query = "SELECT " +
+                "LT.Id AS Id, " +
                 "LTD.Description AS LootTableDescription, " + 
                 "ES.Id AS EquipmentSlotId, " +
                 "ES.Multiplier, " +
@@ -193,6 +200,7 @@ namespace Demo2020.Biz.Equipment.Services
                             if(isFirstRow)
 							{
                                 lootTable.Description = Convert.IsDBNull(row["LootTableDescription"]) ? string.Empty : Convert.ToString(row["LootTableDescription"]);
+                                lootTable.Id = Convert.IsDBNull(row["Id"]) ? 0 : Convert.ToInt32(row["Id"]);
                                 isFirstRow = false;
 							}
 
@@ -250,7 +258,8 @@ namespace Demo2020.Biz.Equipment.Services
 	                            ", D.Description " +
                             " FROM " + _lootTableName + " AS LT " +
                                 " INNER JOIN " + _descriptionTableName + " AS D " +
-                                    " ON LT.Id = D.LootTableId ";
+                                    " ON LT.Id = D.LootTableId " +
+                            " WHERE LT.IsDeleted = 0";
             try
             {
                 using (DataSet ds = _sqLiteDataAccessService.ExecuteQuery(query))
@@ -275,10 +284,30 @@ namespace Demo2020.Biz.Equipment.Services
 
         public bool SaveLootTable(ILootTableModel lootTable)
         {
-            throw new NotImplementedException();
+            if (lootTable.Id == 0)
+			{
+                return InsertLootTable(lootTable);
+			}
+			else
+			{
+                return UpdateLootTable(lootTable);
+			}
         }
 
-        public bool SaveLootTables(IList<ILootTableModel> lootTable)
+        public bool SaveLootTables(IList<ILootTableModel> lootTables)
+        {
+            foreach(ILootTableModel model in lootTables)
+            {
+                if (SaveLootTable(model) == false)
+				{
+                    return false;
+				}
+			}
+
+            return true;
+        }
+
+        public bool InsertLootTable(ILootTableModel lootTable)
         {
             throw new NotImplementedException();
         }
@@ -288,19 +317,49 @@ namespace Demo2020.Biz.Equipment.Services
             throw new NotImplementedException();
         }
 
-        public bool UpdateLootTables(IList<ILootTableModel> lootTable)
+        public bool UpdateLootTables(IList<ILootTableModel> lootTables)
         {
-            throw new NotImplementedException();
+            foreach (ILootTableModel model in lootTables)
+			{
+                if (UpdateLootTable(model) == false)
+				{
+                    return false;
+				}
+			}
+
+            return true;
         }
 
         public bool DeleteLootTable(ILootTableModel lootTable)
         {
-            throw new NotImplementedException();
+            bool success = false;
+
+            StringBuilder query = new StringBuilder();
+            query.Append("UPDATE LootTables SET IsDeleted = 1 WHERE Id = " + lootTable.Id);
+
+            try
+            {
+                success = _sqLiteDataAccessService.ExecuteNonQuery(query.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return success;
         }
 
-        public bool DeleteLootTables(IList<ILootTableModel> lootTable)
+        public bool DeleteLootTables(IList<ILootTableModel> lootTables)
         {
-            throw new NotImplementedException();
+            foreach (ILootTableModel model in lootTables)
+			{
+                if (DeleteLootTable(model) == false)
+				{
+                    return false;
+				}
+			}
+
+            return true;
         }
 
 

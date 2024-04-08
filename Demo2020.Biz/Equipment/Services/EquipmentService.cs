@@ -50,7 +50,7 @@ namespace Demo2020.Biz.Equipment.Services
             return _equipmentFactoryService.GetEquipment();
         }
 
-        public bool SaveEquipment(IEquipmentModel equipmentModel)
+        public int SaveEquipment(IEquipmentModel equipmentModel)
         {
             return _equipmentDataAccessService.SaveEquipment(equipmentModel);
         }

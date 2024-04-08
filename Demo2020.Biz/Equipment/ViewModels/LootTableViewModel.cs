@@ -28,6 +28,7 @@ namespace Demo2020.Biz.Equipment.ViewModels
         private int _selectedLootTableIndex = -1;
         private string _filter = "";
         private bool _isEditEnabled;
+        private bool _isSettingsVisible;
         private string _editIconSource;
 
         private const string UNLOCKED_IMAGE_PATH = "/Demo2020;component/Resources/Images/UnlockIcon.png";
@@ -47,13 +48,18 @@ namespace Demo2020.Biz.Equipment.ViewModels
             AddLootTableCommand = new RelayCommand(AddLootTable);
             EditIconSource = LOCKED_IMAGE_PATH;
 
-            Messenger.Default.Register<MessageWindowResponse>(this, "GetLootTableDetails", msg =>
-            {
-                if (msg.Response)
-                {
-                    GetLootTableDetails();
-                }
-            });
+            SaveCommand = new RelayCommand(SaveLootTable);
+            DeleteCommand = new RelayCommand(DeleteLootTable);
+            ShowSettingsCommand = new RelayCommand(() => SetSettingsVisibility(true));
+            HideSettingsCommand = new RelayCommand(() => SetSettingsVisibility(false));
+
+            //Messenger.Default.Register<MessageWindowResponse>(this, "GetLootTableDetails", msg =>
+            //{
+            //    if (msg.Response)
+            //    {
+            //        GetLootTableDetails();
+            //    }
+            //});
 
             GetLootTables();
         }
@@ -167,6 +173,23 @@ namespace Demo2020.Biz.Equipment.ViewModels
             SelectedLootTableIndex = lootTables.IndexOf(newTable);
         }
 
+        private void SaveLootTable()
+        {
+            _lootTableDataAccessService.SaveLootTable(CurrentLootTable);
+        }
+
+        private void DeleteLootTable()
+        {
+            _lootTableDataAccessService.DeleteLootTable(CurrentLootTable);
+            _lootTablesRaw = LootTables = _lootTableDataAccessService.GetLootTables();
+            CurrentLootTable = null;
+        }
+
+        private void SetSettingsVisibility(bool isVisible)
+        {
+            IsSettingsVisible = isVisible;
+        }
+
         //**************************************************\\
         //******************* Properties *******************\\
         //**************************************************\\
@@ -270,10 +293,31 @@ namespace Demo2020.Biz.Equipment.ViewModels
             }
         }
 
+        public bool IsSettingsVisible
+        {
+            get { return _isSettingsVisible; }
+            set
+            {
+                if (_isSettingsVisible != value)
+                {
+                    _isSettingsVisible = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public ICommand ToggleEditCommand { get; set; }
 
         public ICommand AddLootSlotCommand { get; set; }
 
         public ICommand AddLootTableCommand { get; set; }
+
+        public ICommand SaveCommand { get; set; }
+
+        public ICommand DeleteCommand { get; set; }
+
+        public ICommand ShowSettingsCommand { get; set; }
+
+        public ICommand HideSettingsCommand { get; set; }
     }
 }

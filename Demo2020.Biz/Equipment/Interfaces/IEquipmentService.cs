@@ -12,7 +12,7 @@ namespace Demo2020.Biz.Equipment.Interfaces
         IList<IEquipmentModel> GetAllEquipment();
         Task<IEquipmentModel> GetEquipmentAsync(string name);
         IEquipmentModel GetEquipment();
-        bool SaveEquipment(IEquipmentModel equipmentModel);
+        int SaveEquipment(IEquipmentModel equipmentModel);
         bool DeleteEquipment(IEquipmentModel equipmentModel);
         IList<IEquipmentModel> Filter(string filter);
         int AddEquipment();
